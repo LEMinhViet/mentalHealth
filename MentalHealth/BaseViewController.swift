@@ -83,7 +83,11 @@ class BaseViewController: UIViewController {
     }
     
     @objc private func homePush() {
-        self.dismiss(animated: true, completion: {})
-        self.navigationController?.popToRootViewController(animated: true)
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: ViewController.self) {
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+            }
+        }
     }
 }

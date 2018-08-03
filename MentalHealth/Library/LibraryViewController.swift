@@ -16,6 +16,12 @@ class LibraryViewController: BaseViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func documentClicked(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DocumentViewController") as UIViewController
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad(withMenu: false)
 

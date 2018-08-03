@@ -16,11 +16,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_diarybook" translatesAutoresizingMaskIntoConstraints="NO" id="lzm-y1-avR">
+                <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_diarybook" translatesAutoresizingMaskIntoConstraints="NO" id="lzm-y1-avR">
                     <rect key="frame" x="0.0" y="5" width="375" height="200"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="8Dh-PF-PfQ" appends="YES" id="Npb-tb-mok"/>
+                    </connections>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="lzm-y1-avR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6BR-Zm-75o"/>
                 <constraint firstItem="lzm-y1-avR" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="5" id="K1r-oY-17S"/>
@@ -34,6 +38,11 @@
             </connections>
             <point key="canvasLocation" x="25.5" y="-391"/>
         </view>
+        <tapGestureRecognizer id="8Dh-PF-PfQ">
+            <connections>
+                <action selector="onClicked:" destination="iN0-l3-epB" id="PWo-zY-W4T"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="img_diarybook" width="344" height="103"/>

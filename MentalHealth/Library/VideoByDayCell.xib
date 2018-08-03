@@ -16,14 +16,25 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_diarybook" translatesAutoresizingMaskIntoConstraints="NO" id="hQc-EO-etn">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_roiloancamxuc" translatesAutoresizingMaskIntoConstraints="NO" id="hQc-EO-etn">
                     <rect key="frame" x="0.0" y="5" width="375" height="190"/>
+                </imageView>
+                <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_video" translatesAutoresizingMaskIntoConstraints="NO" id="1dF-3q-MJl">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="zbj-6N-Saz" appends="YES" id="dJa-yO-pVJ"/>
+                    </connections>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="hQc-EO-etn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="BOp-9q-MXL"/>
+                <constraint firstItem="1dF-3q-MJl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Gu0-Uv-WrE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1dF-3q-MJl" secondAttribute="bottom" id="HGM-lN-o2m"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="hQc-EO-etn" secondAttribute="bottom" constant="5" id="Vru-78-HXt"/>
+                <constraint firstItem="1dF-3q-MJl" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="fBU-jk-sYj"/>
+                <constraint firstAttribute="trailing" secondItem="1dF-3q-MJl" secondAttribute="trailing" id="pxK-ib-LaH"/>
                 <constraint firstItem="hQc-EO-etn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="qTb-bM-arh"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hQc-EO-etn" secondAttribute="trailing" id="sr1-bY-wje"/>
             </constraints>
@@ -34,8 +45,14 @@
             </connections>
             <point key="canvasLocation" x="71.5" y="-175"/>
         </view>
+        <tapGestureRecognizer id="zbj-6N-Saz">
+            <connections>
+                <action selector="onClicked:" destination="iN0-l3-epB" id="VS4-48-qz1"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="img_diarybook" width="344" height="103"/>
+        <image name="ic_video" width="47" height="33"/>
+        <image name="img_roiloancamxuc" width="375" height="190"/>
     </resources>
 </document>

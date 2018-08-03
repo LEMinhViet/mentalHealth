@@ -19,8 +19,12 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var levelTableView: UITableView!
     @IBAction func backButtonClicked(_ sender: Any) {
-        self.dismiss(animated: true, completion: {})
-        self.navigationController?.popToRootViewController(animated: true)
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: ViewController.self) {
+                self.navigationController!.popToViewController(controller, animated: false)
+                break
+            }
+        }
     }
     
     @objc private func onLevelTap(_ sender: UITapGestureRecognizer) {

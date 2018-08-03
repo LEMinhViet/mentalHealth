@@ -19,7 +19,6 @@ class ThirtyDaysCell: UITableViewCell {
     @IBOutlet weak var bgButton: UIButton!
     @IBOutlet weak var dayLabel: UILabel!
     @IBAction func dayClicked(_ sender: Any) {
-        print ("TYPE = ", type, ThirtyDayEnum.LockedDay.rawValue)
         if (type == ThirtyDayEnum.LockedDay.rawValue) {
             return
         }

@@ -12,7 +12,7 @@ class NewsViewController: BaseViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var newsTableView: UITableView!
     
-    let dataByDays: [[String]] = [["img_hospital1", "img_hospital2"], ["img_hospital3.png"]];
+    let dataByDays: [[String]] = [["img_placeholder_news", "img_placeholder_news"], ["img_placeholder_news"]];
     
     override func viewDidLoad() {
         super.viewDidLoad(withMenu: false)
@@ -41,6 +41,7 @@ class NewsViewController: BaseViewController, UITableViewDelegate, UITableViewDa
             
             article.frame.size = CGSize(width: cellWidth, height: article.frame.height)
             article.featuredImage.image = UIImage(named: dataByDays[indexPath.row][i])
+            article.setNavigation(navigation: navigationController!)
 
             cell.contentStackView.addArrangedSubview(article);
         }

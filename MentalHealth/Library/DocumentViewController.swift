@@ -1,32 +1,32 @@
 //
-//  VideoViewController.swift
+//  DocumentViewController.swift
 //  MentalHealth
 //
-//  Created by LE Minh Viet on 13/07/2018.
+//  Created by LE Minh Viet on 25/07/2018.
 //  Copyright © 2018 LE Minh Viet. All rights reserved.
 //
 
 import UIKit
 
-class VideoViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class DocumentViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var videoTableView: UITableView!
+    @IBOutlet weak var documentTableView: UITableView!
     
-    let dataByDays: [[String]] = [["img_roiloanloau-1.png", "img_roiloanloau-1.png"], ["img_roiloancamxuc.png"]];
+    let dataByDays: [[String]] = [["img_placeholder_news.png", "img_placeholder_news.png"], ["img_placeholder_news.png"]];
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-        videoTableView.reloadData()
+        documentTableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     // The method returning size of the list
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataByDays.count
@@ -35,20 +35,21 @@ class VideoViewController: BaseViewController, UITableViewDelegate, UITableViewD
     // The method returning each cell of the list
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "videoCell", for: indexPath) as! VideoCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "documentCell", for: indexPath) as! DocumentCell
         
         // Displaying values
         for i in 0 ..< dataByDays[indexPath.row].count {
-            let video: VideoByDayCell = Bundle.main.loadNibNamed("VideoByDayCell", owner: self, options: nil)?.first as! VideoByDayCell
+            let document: DocumentByDayCell = Bundle.main.loadNibNamed("DocumentByDayCell", owner: self, options: nil)?.first as! DocumentByDayCell
             
             let cellWidth = cell.frame.width;
             
-            video.frame.size = CGSize(width: cellWidth, height: video.frame.height)
-            video.featuredVideo.image = UIImage(named: dataByDays[indexPath.row][i])
+            document.frame.size = CGSize(width: cellWidth, height: document.frame.height)
+            document.featuredImage.image = UIImage(named: dataByDays[indexPath.row][i])
             
-            cell.contentStackView.addArrangedSubview(video);
+            cell.contentStackView.addArrangedSubview(document);
         }
         
         return cell
     }
+
 }

@@ -48,10 +48,10 @@ class ViewController: BaseViewController, UIScrollViewDelegate {
     @IBAction func gameClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "GameViewController") as UIViewController
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: false)
     }
     
-    let placeHolders = ["img_charts.png", "img_ngaychuadoc.png", "img_ngaydadoc.png"];
+    let placeHolders = ["ic_tramcam.jpg", "ic_tramcam.jpg", "ic_tramcam.jpg"];
     
     var slides: [FeaturedSlide] = [];
     
@@ -95,12 +95,17 @@ class ViewController: BaseViewController, UIScrollViewDelegate {
                 self.view.frame.origin.x = self.leftPanelOffset;
                 self.navigationController?.navigationBar.frame.origin.x = self.leftPanelOffset
             }, completion: nil)
+            
+            // Disable interaction of main menu when left menu is opened
+            self.view.isUserInteractionEnabled = false
         }
         else {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.view.frame.origin.x = 0;
                 self.navigationController?.navigationBar.frame.origin.x = 0
             }, completion: nil)
+            
+            self.view.isUserInteractionEnabled = true
         }
     }
     
@@ -143,8 +148,6 @@ class ViewController: BaseViewController, UIScrollViewDelegate {
         let width = featuredScrollView.frame.width
         let height = featuredScrollView.frame.height
         
-        print (width, height)
-        
         featuredScrollView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         
         featuredScrollView.contentSize = CGSize(width: width * CGFloat(slides.count), height: height)
@@ -163,6 +166,8 @@ class ViewController: BaseViewController, UIScrollViewDelegate {
                 x: (width - slides[i].imageView.frame.width) / 2,
                 y: (height - slides[i].imageView.frame.height) / 2
             )
+            
+            slides[i].setNavigation(navigation: navigationController!)
             
             featuredScrollView.addSubview(slides[i])
         }
