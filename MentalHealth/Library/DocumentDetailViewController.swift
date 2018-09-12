@@ -1,0 +1,161 @@
+//
+//  DocumentDetailViewController.swift
+//  MentalHealth
+//
+//  Created by LE Minh Viet on 02/09/2018.
+//  Copyright © 2018 LE Minh Viet. All rights reserved.
+//
+
+import UIKit
+import PDFKit
+import WebKit
+
+struct DocumentData: Codable {
+    let id: Int
+    let title: String
+    let image: String?
+    let description: String?
+    let content: String?
+    let created_at: String?
+    let updated_at: String?
+}
+
+class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
+    
+    @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var mainStackView: UIStackView!
+    @IBOutlet weak var featuredImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contentWebView: WKWebView!
+    
+    @IBOutlet weak var featuredImageHeightConstraint: NSLayoutConstraint!
+    
+    let apiUrl = Constants.url + Constants.apiPrefix + "/documents"
+    
+    private var baseHTML: String = "<html><head><meta name=\"viewport\" content=\"initial-scale=1.0\" /></head><body>{body}</body></html>"
+    
+    public var urlVal: String = "http://www.pdf995.com/samples/pdf.pdf"
+    public var documentId: Int = 1
+    
+    private var isFeaturedLoaded: Bool = false
+    private var isBodyLoaded: Bool = false
+
+    override func viewDidLoad() {
+        super.viewDidLoad(withMenu: false, withItems: false)
+        
+        self.displaySpinner(onView: self.view)
+        self.isFeaturedLoaded = false
+        self.isBodyLoaded = false
+        
+        let documentUrl = apiUrl + "/" + String(documentId)
+        guard let url = URL(string: documentUrl) else { return }
+        URLSession.shared.dataTask(with: url) { (data, resonse, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let jsonData = try JSONDecoder().decode(DocumentData.self, from: data)
+                
+                // Get back to the main queue
+                DispatchQueue.main.async {
+                    self.titleLabel.text = jsonData.title
+                    if jsonData.image != nil {
+                        let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+                        if let url = URL(string: urlImage) {
+                            DispatchQueue.global().async {
+                                if let data = try? Data(contentsOf: url) {
+                                    DispatchQueue.main.async {
+                                        self.featuredImageView.image = UIImage(data: data)
+                                        
+                                        // Fit container to image
+                                        let image = self.featuredImageView.image
+                                        let ratio = (image?.size.width)! / (image?.size.height)!
+                                        let newHeight = self.featuredImageView.frame.width / ratio
+                                        
+                                        self.featuredImageHeightConstraint.constant = newHeight
+                                        
+                                        self.isFeaturedLoaded = true
+                                        if self.isFeaturedLoaded && self.isBodyLoaded {
+                                            self.removeSpinner()
+                                        }
+                                    }
+                                }
+                                else {
+                                    DispatchQueue.main.async {
+                                        self.isFeaturedLoaded = true
+                                        if self.isFeaturedLoaded && self.isBodyLoaded {
+                                            self.removeSpinner()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        self.featuredImageView.image = UIImage(named: "img_documnet")
+                        
+                        self.isFeaturedLoaded = true
+                        if self.isFeaturedLoaded && self.isBodyLoaded {
+                            self.removeSpinner()
+                        }
+                    }
+                    
+                    let contentText = self.baseHTML.replacingOccurrences(of: "{body}", with: jsonData.content ?? "")
+
+                    self.contentWebView.navigationDelegate = self
+                    self.contentWebView.loadHTMLString("\(contentText)", baseURL: Bundle.main.bundleURL)
+                }
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }.resume()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+            if complete != nil {
+                self.contentWebView.frame.size = self.contentWebView.scrollView.contentSize
+                
+                self.mainStackView.updateConstraints()
+                
+                self.mainScrollView.contentSize = CGSize(
+                    width: self.mainScrollView.frame.width,
+                    height: self.contentWebView.frame.origin.y + self.contentWebView.frame.size.height)
+                
+                self.isBodyLoaded = true
+                if self.isFeaturedLoaded && self.isBodyLoaded {
+                    self.removeSpinner()
+                }
+            }
+        })
+    }
+    
+    @IBAction func pdfClicked(_ sender: Any) {
+        guard let url = URL(string: urlVal) else { return }
+        guard let pdfDocument = PDFDocument(url: url) else { return }
+        guard let pdfData = pdfDocument.dataRepresentation() else { return }
+        
+        let shareVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
+        shareVC.popoverPresentationController?.sourceView = self.view
+        self.present(shareVC, animated: true, completion: nil)
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

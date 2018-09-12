@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "ic_sos@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ic_sos.png",
+      "filename" : "ic_sos@2x.png",
       "scale" : "2x"
     },
     {

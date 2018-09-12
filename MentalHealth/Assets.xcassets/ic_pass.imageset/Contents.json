@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "ic_pass@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ic_pass.png",
+      "filename" : "ic_pass@2x.png",
       "scale" : "2x"
     },
     {

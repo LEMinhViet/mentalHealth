@@ -22,4 +22,18 @@ class AnswerPanel: UIView {
     }
     */
 
+    public func updateAnswer(_ chooseText: String) {
+        resultImage.alpha = 0
+        answerLabel.text = chooseText;
+    }
+    
+    public func setRightAnswer() {
+        resultImage.alpha = 1
+        resultImage.isHighlighted = false
+    }
+    
+    public func setWrongAnswer() {
+        resultImage.alpha = 1
+        resultImage.isHighlighted = true
+    }
 }

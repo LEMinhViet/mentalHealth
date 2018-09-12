@@ -16,25 +16,41 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_diarybook" translatesAutoresizingMaskIntoConstraints="NO" id="lzm-y1-avR">
-                    <rect key="frame" x="0.0" y="5" width="375" height="200"/>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="8Dh-PF-PfQ" appends="YES" id="Npb-tb-mok"/>
-                    </connections>
-                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="k9w-x0-Hob">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTe-qJ-VeS">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="img_diarybook" translatesAutoresizingMaskIntoConstraints="NO" id="lzm-y1-avR">
+                            <rect key="frame" x="0.0" y="22" width="375" height="158"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="158" id="Gfz-ef-bZ2"/>
+                            </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="8Dh-PF-PfQ" appends="YES" id="Npb-tb-mok"/>
+                            </connections>
+                        </imageView>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="lzm-y1-avR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6BR-Zm-75o"/>
-                <constraint firstItem="lzm-y1-avR" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="5" id="K1r-oY-17S"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lzm-y1-avR" secondAttribute="trailing" id="PHq-c3-JCv"/>
-                <constraint firstItem="lzm-y1-avR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="qEd-SK-3bx"/>
+                <constraint firstItem="k9w-x0-Hob" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="4ti-am-b3W"/>
+                <constraint firstItem="k9w-x0-Hob" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Hh4-OK-LLq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="k9w-x0-Hob" secondAttribute="bottom" constant="20" id="r8j-FK-fqQ"/>
+                <constraint firstAttribute="trailing" secondItem="k9w-x0-Hob" secondAttribute="trailing" id="sY3-jp-33D"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="featuredImage" destination="lzm-y1-avR" id="nhW-Gz-vVJ"/>
+                <outlet property="imageHeightConstraint" destination="Gfz-ef-bZ2" id="4qC-CQ-hOM"/>
+                <outlet property="titleLabel" destination="dTe-qJ-VeS" id="2hg-dS-azR"/>
             </connections>
             <point key="canvasLocation" x="25.5" y="-391"/>
         </view>

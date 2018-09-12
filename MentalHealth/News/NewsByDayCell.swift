@@ -11,9 +11,14 @@ import UIKit
 class NewsByDayCell: UIView {
 
     @IBOutlet weak var featuredImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
+    
     @IBAction func onClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
+        vc.setNewsId(value: self.newsId)
         
         if (self.navigationController != nil) {
             self.navigationController.pushViewController(vc, animated: true)
@@ -24,6 +29,18 @@ class NewsByDayCell: UIView {
     
     public func setNavigation(navigation: UINavigationController) {
         self.navigationController = navigation
+    }
+    
+    var newsId: String = ""
+    
+    public func setNewsId(newsId: String) {
+        self.newsId = newsId
+    }
+    
+    var featuredImageName: String = ""
+    
+    public func setFeaturedImageName(value: String) {
+        self.featuredImageName = value
     }
     
     /*

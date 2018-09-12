@@ -8,6 +8,66 @@
 
 import UIKit
 
+struct AllLevels: Codable {
+    let per_page: Int
+    let current_page: Int
+    let next_page_url: String?
+    let prev_page_url: String?
+    let from: Int
+    let to: Int
+    let data: [LevelData]
+    
+    init() {
+        per_page = 0
+        current_page = 0
+        next_page_url = nil
+        prev_page_url = nil
+        from = 0
+        to = 0
+        data = []
+    }
+}
+
+struct LevelData: Codable {
+    let id: Int
+    let name: String
+    let created_at: String
+    let updated_at: String
+}
+
+struct LevelQuestions: Codable {
+    let per_page: Int
+    let current_page: Int
+    let next_page_url: String?
+    let prev_page_url: String?
+    let from: Int
+    let to: Int
+    let data: [OneQuestion]
+    
+    init() {
+        per_page = 0
+        current_page = 0
+        next_page_url = nil
+        prev_page_url = nil
+        from = 0
+        to = 0
+        data = []
+    }
+}
+
+struct OneQuestion: Codable {
+    let id: Int
+    let level_id: String
+    let content: String
+    let choose1: String
+    let choose2: String
+    let choose3: String
+    let choose4: String
+    let answer: String
+    let created_at: String?
+    let updated_at: String?
+}
+
 class GameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     /*
@@ -29,17 +89,12 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc private func onLevelTap(_ sender: UITapGestureRecognizer) {
         let level: Int = (sender.view?.tag)!
-        
-        print ("Level = ", level)
+        self.updateLevel(level)
         
         levelView.isHidden = true
-        questionView.isHidden = false
     }
     
-    var levels = ["Level 1", "Level 2", "Level 3",
-                  "Level 4", "Level 5", "Level 6",
-                  "Level 7", "Level 8", "Level 9"];
-    var currentLevel = 3
+    var currentLevel = 0
     
     /*
      * Variables for question view
@@ -49,6 +104,8 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var questionBg: UIImageView!
     @IBOutlet weak var backQuestionButton: UIButton!
     @IBOutlet weak var nextQuestionButton: UIButton!
+    @IBOutlet weak var questionLabel: UILabel!
+    
     @IBAction func backQuestionButtonClicked(_ sender: Any) {
         if (currentQuestion == 0) {
             questionView.isHidden = true
@@ -56,27 +113,69 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         else {
             currentQuestion -= 1
+            isAnswered = false
         }
+        
+        self.updateQuestion()
     }
     
     @IBAction func nextQuestionButtonClicked(_ sender: Any) {
-        if (currentQuestion == nbQuestions - 1) {
-            questionView.isHidden = true
+        if (!isAnswered) {
+            self.showQuestionResult(nil)
         }
         else {
-            currentQuestion += 1
+            if (currentQuestion == nbQuestions - 1) {
+                if (currentLevel + 1 < self.levelsData.data.count) {
+                    currentLevel += 1
+                    
+                    let defaults = UserDefaults.standard
+                    defaults.set(currentLevel, forKey: "currentQuestionLevel")
+
+                    print("SET ", currentLevel)
+                    
+                    levelTableView.reloadData()
+                }
+                
+                questionView.isHidden = true
+                levelView.isHidden = false
+            }
+            else {
+                currentQuestion += 1
+                isAnswered = false
+            }
+            
+            self.updateQuestion()
         }
     }
     
     @objc private func onQuestionTap(_ sender: UITapGestureRecognizer) {
-        print("YOOO")
-        questionView.isHidden = true
-        detailView.isHidden = false
+        self.showQuestionResult(sender.view)
+    }
+    
+    func showQuestionResult(_ selected: UIView?) {
+        if (!isAnswered) {
+            isAnswered = true
+            
+            let currentQuestionData = self.levelQuestionsData.data[self.currentQuestion]
+            for i in 0 ..< answerPanels.count {
+                if (String(i + 1) == currentQuestionData.answer) {
+                    answerPanels[i].setRightAnswer()
+                }
+                else if (answerPanels[i] == selected) {
+                    answerPanels[i].setWrongAnswer()
+                }
+            }
+        }
+        else {
+            questionView.isHidden = true
+            detailView.isHidden = false
+        }
     }
     
     var answerPanels: [AnswerPanel] = []
     
     var currentQuestion = 0
+    var isAnswered = false
     var nbQuestions = 5
     
     /*
@@ -92,20 +191,52 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         questionView.isHidden = false
     }
     
+    /*
+     * Variables for question api
+     */
+    
+    let apiUrl = Constants.url + Constants.apiPrefix + "/levels"
+    var levelsData = AllLevels()
+    
+    let questionUrl = Constants.url + Constants.apiPrefix + "/questions"
+    var levelQuestionsData = LevelQuestions()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        setupLevelView()
-        setupDetailView()
-        setupQuestionView()
+        let defaults = UserDefaults.standard
+        currentLevel = defaults.integer(forKey: "currentQuestionLevel")
         
-        levelTableView.reloadData()
+        // Do any additional setup after loading the view.
+        guard let url = URL(string: apiUrl) else { return }
+        URLSession.shared.dataTask(with: url) { (data, resonse, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let jsonData = try JSONDecoder().decode(AllLevels.self, from: data)
+                
+                //Get back to the main queue
+                DispatchQueue.main.async {
+                    self.levelsData = jsonData
+                    self.levelTableView.reloadData()
+                }
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }.resume()
+        
+        self.setupLevelView()
+        self.setupDetailView()
+        self.setupQuestionView()
     }
     
     // The method returning size of the list
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return levels.count
+        return levelsData.data.count
     }
     
     // The method returning each cell of the list
@@ -115,15 +246,15 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Displaying values
         cell.backgroundColor = UIColor.clear
-        cell.levelImage.isHighlighted = indexPath.row < currentLevel
-        cell.levelText.text = levels[indexPath.row]
+        cell.levelImage.isHighlighted = indexPath.row <= currentLevel
+        cell.levelText.text = levelsData.data[indexPath.row].name
         cell.tag = indexPath.row
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GameViewController.onLevelTap(_:)))
         tapGesture.numberOfTapsRequired = 1
         tapGesture.numberOfTouchesRequired = 1
         
-        cell.isUserInteractionEnabled = indexPath.row < currentLevel
+        cell.isUserInteractionEnabled = indexPath.row <= currentLevel
         cell.addGestureRecognizer(tapGesture)
         
         return cell
@@ -148,6 +279,35 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         )
     }
     
+    private func updateLevel(_ level: Int) {
+        let levelQuestionUrl = questionUrl + "/" + String(level + 1)
+        guard let url = URL(string: levelQuestionUrl) else { return }
+        URLSession.shared.dataTask(with: url) { (data, resonse, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let jsonData = try JSONDecoder().decode(LevelQuestions.self, from: data)
+                
+                //Get back to the main queue
+                DispatchQueue.main.async {
+                    self.levelQuestionsData = jsonData
+                    self.currentQuestion = 0
+                    self.isAnswered = false
+                    self.nbQuestions = self.levelQuestionsData.data.count
+                    self.updateQuestion()
+                    
+                    self.questionView.isHidden = false
+                }
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }.resume()
+    }
+    
     private func setupDetailView() {
         let viewFrameW = self.view.bounds.width
         let viewFrameH = self.view.bounds.height
@@ -169,6 +329,11 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         detailView.isHidden = true
     }
     
+    private func updateDetail() {
+        // detailText.text = ""
+        detailText.sizeToFit()
+    }
+    
     private func setupQuestionView() {
         let viewFrameW = self.view.bounds.width
         let viewFrameH = self.view.bounds.height
@@ -178,10 +343,16 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
             y: (viewFrameH - questionBg.frame.height) / 2 - 160
         )
         
+        questionLabel.frame.size = CGSize(width: 265, height: 130)
+        questionLabel.frame.origin = CGPoint(
+            x: (viewFrameW - questionLabel.frame.width) / 2,
+            y: (viewFrameH - questionLabel.frame.height) / 2 - 130
+        )
+        
         answerPanels = createAnswers()
         for i in 0 ..< answerPanels.count {
             answerPanels[i].frame.origin = CGPoint(
-                x: (viewFrameW - answerPanels[i].frame.width) / 2 - 10,
+                x: (viewFrameW - answerPanels[i].frame.width) / 2 + 0,
                 y: questionBg.frame.origin.y + questionBg.frame.height + 20 +  answerPanels[i].frame.height * CGFloat(i)
             )
             
@@ -206,6 +377,21 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         )
         
         questionView.isHidden = true
+    }
+    
+    private func updateQuestion() {
+        let currentQuestionData = self.levelQuestionsData.data[self.currentQuestion]
+        
+        questionLabel.frame.size = CGSize(width: 265, height: 130)
+        questionLabel.text = currentQuestionData.content
+        questionLabel.sizeToFit()
+        
+        answerPanels[0].updateAnswer(currentQuestionData.choose1)
+        answerPanels[1].updateAnswer(currentQuestionData.choose2)
+        answerPanels[2].updateAnswer(currentQuestionData.choose3)
+        answerPanels[3].updateAnswer(currentQuestionData.choose4)
+        
+        self.updateDetail()
     }
     
     func createAnswers() -> [AnswerPanel] {

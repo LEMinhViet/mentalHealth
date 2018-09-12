@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "img_roiloancamxuc@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "img_roiloancamxuc.png",
+      "filename" : "img_roiloancamxuc@2x.png",
       "scale" : "2x"
     },
     {

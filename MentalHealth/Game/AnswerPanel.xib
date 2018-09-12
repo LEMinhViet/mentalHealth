@@ -17,20 +17,20 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4n0-9o-g2k">
-                    <rect key="frame" x="0.0" y="0.0" width="335" height="70"/>
+                    <rect key="frame" x="10" y="0.0" width="325" height="70"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_true" highlightedImage="ic_false" translatesAutoresizingMaskIntoConstraints="NO" id="D4p-Ef-rY3">
                             <rect key="frame" x="0.0" y="0.0" width="25" height="70"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FX1-Gq-SWj" userLabel="answer">
-                            <rect key="frame" x="25" y="0.0" width="310" height="70"/>
+                            <rect key="frame" x="25" y="0.0" width="300" height="70"/>
                             <subviews>
-                                <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_a" translatesAutoresizingMaskIntoConstraints="NO" id="GTU-hX-BZs">
-                                    <rect key="frame" x="5" y="0.0" width="299" height="70"/>
+                                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_a" translatesAutoresizingMaskIntoConstraints="NO" id="GTU-hX-BZs">
+                                    <rect key="frame" x="5" y="0.0" width="275" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCz-9d-Xeq">
-                                    <rect key="frame" x="64" y="14" width="225" height="40"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="MCz-9d-Xeq">
+                                    <rect key="frame" x="60" y="14" width="215" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <attributedString key="attributedText">
                                         <fragment content="Ego vero sic intellego, Patres conscripti, nos hoc tempore.">
@@ -39,7 +39,7 @@
                                                 <color key="NSColor" red="1" green="0.99322694698117131" blue="0.97200711784927307" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="12" name="Verdana"/>
                                                 <real key="NSKern" value="0.0"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                     <tabStops/>
                                                 </paragraphStyle>
                                                 <color key="NSStrokeColor" red="0.36863000000000001" green="0.34117999999999998" blue="0.21568999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -57,7 +57,7 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4n0-9o-g2k" secondAttribute="bottom" id="Bru-U5-M4Q"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4n0-9o-g2k" secondAttribute="trailing" id="JDV-iX-jbP"/>
-                <constraint firstItem="4n0-9o-g2k" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZDJ-lX-bzB"/>
+                <constraint firstItem="4n0-9o-g2k" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="ZDJ-lX-bzB"/>
                 <constraint firstItem="4n0-9o-g2k" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="erO-Do-kzY"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

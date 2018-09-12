@@ -10,7 +10,6 @@
 		02B6D79E20E18CF800B9946A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6D79D20E18CF800B9946A /* AppDelegate.swift */; };
 		02B6D7A020E18CF800B9946A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6D79F20E18CF800B9946A /* ViewController.swift */; };
 		02B6D7A320E18CF800B9946A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02B6D7A120E18CF800B9946A /* Main.storyboard */; };
-		02B6D7A520E18CFB00B9946A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02B6D7A420E18CFB00B9946A /* Assets.xcassets */; };
 		02B6D7A820E18CFB00B9946A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02B6D7A620E18CFB00B9946A /* LaunchScreen.storyboard */; };
 		02B6D7B320E18CFB00B9946A /* MentalHealthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6D7B220E18CFB00B9946A /* MentalHealthUITests.swift */; };
 		53497FA23B78F72301272E35 /* Pods_MentalHealthUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE806E181179F8CE0FE05E2 /* Pods_MentalHealthUITests.framework */; };
@@ -26,6 +25,7 @@
 		8020E13020F56F7700D8AD9E /* ThirtyDaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020E12F20F56F7700D8AD9E /* ThirtyDaysCell.swift */; };
 		8020E13220F56FAA00D8AD9E /* ThirtyDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020E13120F56FAA00D8AD9E /* ThirtyDaysViewController.swift */; };
 		8020E13420F5853B00D8AD9E /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020E13320F5853B00D8AD9E /* DayViewController.swift */; };
+		802F5FA62145C7F500AFADB9 /* SOSDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F5FA52145C7F500AFADB9 /* SOSDetailViewController.swift */; };
 		8038CA23210141510042A64E /* NewDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038CA22210141510042A64E /* NewDiaryViewController.swift */; };
 		8038CA2521015D520042A64E /* DiaryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038CA2421015D520042A64E /* DiaryDetailViewController.swift */; };
 		8041B6C220F7FDDA00D5754E /* NewsByDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8041B6C120F7FDDA00D5754E /* NewsByDayCell.xib */; };
@@ -39,20 +39,32 @@
 		8051917B20F6D12A006ECB50 /* AZViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051917A20F6D12A006ECB50 /* AZViewController.swift */; };
 		8051917D20F6D13C006ECB50 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051917C20F6D13C006ECB50 /* DiaryViewController.swift */; };
 		8051917F20F6D152006ECB50 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051917E20F6D152006ECB50 /* NewsViewController.swift */; };
+		8052EB1B214088380085A04C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052EB1A214088380085A04C /* SearchViewController.swift */; };
+		8052EB1D21408D200085A04C /* SearchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052EB1C21408D200085A04C /* SearchListCell.swift */; };
 		8056D843210294D0008DB395 /* DiaryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8056D842210294D0008DB395 /* DiaryListViewController.swift */; };
 		8056D8452102A1F3008DB395 /* DiaryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8056D8442102A1F3008DB395 /* DiaryListCell.swift */; };
+		8057AB1B213B4A2600D689AC /* DocumentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057AB1A213B4A2600D689AC /* DocumentDetailViewController.swift */; };
+		8057C8DA213DC456004B6494 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057C8D9213DC456004B6494 /* TutorialViewController.swift */; };
+		8057C8DC213DD979004B6494 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057C8DB213DD979004B6494 /* NotificationViewController.swift */; };
+		8057C8DE213DDF01004B6494 /* NotificationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057C8DD213DDF01004B6494 /* NotificationListCell.swift */; };
+		8057C8E0213DED5E004B6494 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057C8DF213DED5E004B6494 /* FavoritesViewController.swift */; };
+		8057C8E2213DEE3A004B6494 /* FavoritesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8057C8E1213DEE3A004B6494 /* FavoritesListCell.swift */; };
+		805A78D72141B316003C60BC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805A78D62141B316003C60BC /* Constants.swift */; };
 		805C440F20F3D17F006D07FE /* AnswerPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 805C440E20F3D17F006D07FE /* AnswerPanel.xib */; };
 		805C441120F3E02C006D07FE /* AnswerPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805C441020F3E02C006D07FE /* AnswerPanel.swift */; };
+		805FC3592137715C001E5CEC /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805FC3582137715C001E5CEC /* InfoViewController.swift */; };
 		8061D15B2104173A000CAC43 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8061D15A2104173A000CAC43 /* ChatViewController.swift */; };
 		8061D15D21041749000CAC43 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8061D15C21041749000CAC43 /* ChartViewController.swift */; };
 		8061D1632104282F000CAC43 /* ActivityViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8061D1622104282F000CAC43 /* ActivityViewCell.swift */; };
-		80662B5021090B42009FB4B5 /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80662B4F21090B42009FB4B5 /* DocumentCell.swift */; };
 		80662B5221090BFE009FB4B5 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80662B5121090BFE009FB4B5 /* DocumentViewController.swift */; };
-		80662B5421090CF9009FB4B5 /* DocumentByDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80662B5321090CF9009FB4B5 /* DocumentByDayCell.swift */; };
-		80662B5621090D11009FB4B5 /* DocumentByDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80662B5521090D11009FB4B5 /* DocumentByDayCell.xib */; };
 		80662B582109169B009FB4B5 /* QuestionChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80662B572109169B009FB4B5 /* QuestionChatCell.swift */; };
 		80662B5A210916AC009FB4B5 /* AnswerChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80662B59210916AC009FB4B5 /* AnswerChatCell.swift */; };
 		806FD8F820F971B400BEFFA3 /* AZDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806FD8F720F971B400BEFFA3 /* AZDetailViewController.swift */; };
+		808CCB0721486A0900169733 /* DayViewSlide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 808CCB0621486A0900169733 /* DayViewSlide.xib */; };
+		808CCB0921486ACD00169733 /* DayViewSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808CCB0821486ACD00169733 /* DayViewSlide.swift */; };
+		808CCB0D214881A500169733 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808CCB0C214881A400169733 /* Assets.xcassets */; };
+		808CCB0F21489EEE00169733 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 808CCB0E21489EED00169733 /* GoogleService-Info.plist */; };
+		808CCB1021489EEE00169733 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 808CCB0E21489EED00169733 /* GoogleService-Info.plist */; };
 		80B3FEBD210808760043A034 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3FEBC210808760043A034 /* LeftViewController.swift */; };
 		80FAFB652113BFCC002F6071 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAFB642113BFCC002F6071 /* LoginViewController.swift */; };
 		80FAFB672113DA26002F6071 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAFB662113DA26002F6071 /* NewsDetailViewController.swift */; };
@@ -74,7 +86,6 @@
 		02B6D79D20E18CF800B9946A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02B6D79F20E18CF800B9946A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		02B6D7A220E18CF800B9946A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		02B6D7A420E18CFB00B9946A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02B6D7A720E18CFB00B9946A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02B6D7A920E18CFB00B9946A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02B6D7AE20E18CFB00B9946A /* MentalHealthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentalHealthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +106,7 @@
 		8020E12F20F56F7700D8AD9E /* ThirtyDaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThirtyDaysCell.swift; path = MentalHealth/30Days/ThirtyDaysCell.swift; sourceTree = SOURCE_ROOT; };
 		8020E13120F56FAA00D8AD9E /* ThirtyDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThirtyDaysViewController.swift; path = MentalHealth/30Days/ThirtyDaysViewController.swift; sourceTree = SOURCE_ROOT; };
 		8020E13320F5853B00D8AD9E /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DayViewController.swift; path = MentalHealth/30Days/DayViewController.swift; sourceTree = SOURCE_ROOT; };
+		802F5FA52145C7F500AFADB9 /* SOSDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSDetailViewController.swift; sourceTree = "<group>"; };
 		8038CA22210141510042A64E /* NewDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDiaryViewController.swift; sourceTree = "<group>"; };
 		8038CA2421015D520042A64E /* DiaryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailViewController.swift; sourceTree = "<group>"; };
 		8041B6C120F7FDDA00D5754E /* NewsByDayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsByDayCell.xib; sourceTree = "<group>"; };
@@ -108,21 +120,33 @@
 		8051917A20F6D12A006ECB50 /* AZViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AZViewController.swift; sourceTree = "<group>"; };
 		8051917C20F6D13C006ECB50 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		8051917E20F6D152006ECB50 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		8052EB1A214088380085A04C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8052EB1C21408D200085A04C /* SearchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListCell.swift; sourceTree = "<group>"; };
 		8056D842210294D0008DB395 /* DiaryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListViewController.swift; sourceTree = "<group>"; };
 		8056D8442102A1F3008DB395 /* DiaryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListCell.swift; sourceTree = "<group>"; };
+		8057AB1A213B4A2600D689AC /* DocumentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetailViewController.swift; sourceTree = "<group>"; };
+		8057C8D9213DC456004B6494 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		8057C8DB213DD979004B6494 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		8057C8DD213DDF01004B6494 /* NotificationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListCell.swift; sourceTree = "<group>"; };
+		8057C8DF213DED5E004B6494 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		8057C8E1213DEE3A004B6494 /* FavoritesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListCell.swift; sourceTree = "<group>"; };
+		805A78D62141B316003C60BC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		805C440E20F3D17F006D07FE /* AnswerPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerPanel.xib; sourceTree = "<group>"; };
 		805C441020F3E02C006D07FE /* AnswerPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerPanel.swift; sourceTree = "<group>"; };
+		805FC3582137715C001E5CEC /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		8061D15A2104173A000CAC43 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8061D15C21041749000CAC43 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		8061D1622104282F000CAC43 /* ActivityViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewCell.swift; sourceTree = "<group>"; };
-		80662B4F21090B42009FB4B5 /* DocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
 		80662B5121090BFE009FB4B5 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
-		80662B5321090CF9009FB4B5 /* DocumentByDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentByDayCell.swift; sourceTree = "<group>"; };
-		80662B5521090D11009FB4B5 /* DocumentByDayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentByDayCell.xib; sourceTree = "<group>"; };
 		80662B572109169B009FB4B5 /* QuestionChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionChatCell.swift; sourceTree = "<group>"; };
 		80662B59210916AC009FB4B5 /* AnswerChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerChatCell.swift; sourceTree = "<group>"; };
 		806FD8F720F971B400BEFFA3 /* AZDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AZDetailViewController.swift; sourceTree = "<group>"; };
+		808CCB0621486A0900169733 /* DayViewSlide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DayViewSlide.xib; path = MentalHealth/30Days/DayViewSlide.xib; sourceTree = SOURCE_ROOT; };
+		808CCB0821486ACD00169733 /* DayViewSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DayViewSlide.swift; path = MentalHealth/30Days/DayViewSlide.swift; sourceTree = SOURCE_ROOT; };
+		808CCB0C214881A400169733 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		808CCB0E21489EED00169733 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		80B3FEBC210808760043A034 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		80DC0B572147411E00F06B35 /* MentalHealth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MentalHealth.entitlements; sourceTree = "<group>"; };
 		80FAFB642113BFCC002F6071 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		80FAFB662113DA26002F6071 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		99934392AF05003300FC51AA /* Pods_MentalHealth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MentalHealth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +197,7 @@
 		02B6D79C20E18CF800B9946A /* MentalHealth */ = {
 			isa = PBXGroup;
 			children = (
+				80DC0B572147411E00F06B35 /* MentalHealth.entitlements */,
 				8041B6C520F8001C00D5754E /* Common */,
 				8008FCC120F2C7990038EA5E /* Featured */,
 				8051917720F6D0CA006ECB50 /* News */,
@@ -187,10 +212,12 @@
 				80B3FEBC210808760043A034 /* LeftViewController.swift */,
 				02B6D79F20E18CF800B9946A /* ViewController.swift */,
 				02B6D7A120E18CF800B9946A /* Main.storyboard */,
-				02B6D7A420E18CFB00B9946A /* Assets.xcassets */,
 				02B6D7A620E18CFB00B9946A /* LaunchScreen.storyboard */,
+				808CCB0E21489EED00169733 /* GoogleService-Info.plist */,
 				02B6D7A920E18CFB00B9946A /* Info.plist */,
+				808CCB0C214881A400169733 /* Assets.xcassets */,
 				80FAFB642113BFCC002F6071 /* LoginViewController.swift */,
+				805A78D62141B316003C60BC /* Constants.swift */,
 			);
 			path = MentalHealth;
 			sourceTree = "<group>";
@@ -209,6 +236,7 @@
 			children = (
 				8008FCBA20F272F50038EA5E /* SOSViewController.swift */,
 				8008FCBC20F281B60038EA5E /* SOSCell.swift */,
+				802F5FA52145C7F500AFADB9 /* SOSDetailViewController.swift */,
 			);
 			path = SOS;
 			sourceTree = "<group>";
@@ -239,6 +267,8 @@
 				8020E12F20F56F7700D8AD9E /* ThirtyDaysCell.swift */,
 				8020E13120F56FAA00D8AD9E /* ThirtyDaysViewController.swift */,
 				8020E13320F5853B00D8AD9E /* DayViewController.swift */,
+				808CCB0621486A0900169733 /* DayViewSlide.xib */,
+				808CCB0821486ACD00169733 /* DayViewSlide.swift */,
 			);
 			name = 30Days;
 			path = "New Group";
@@ -247,6 +277,14 @@
 		8041B6C520F8001C00D5754E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				805FC3582137715C001E5CEC /* InfoViewController.swift */,
+				8057C8D9213DC456004B6494 /* TutorialViewController.swift */,
+				8057C8DB213DD979004B6494 /* NotificationViewController.swift */,
+				8057C8DD213DDF01004B6494 /* NotificationListCell.swift */,
+				8057C8DF213DED5E004B6494 /* FavoritesViewController.swift */,
+				8057C8E1213DEE3A004B6494 /* FavoritesListCell.swift */,
+				8052EB1A214088380085A04C /* SearchViewController.swift */,
+				8052EB1C21408D200085A04C /* SearchListCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -259,10 +297,8 @@
 				8041B6D220F8166D00D5754E /* VideoByDayCell.swift */,
 				8041B6D420F8167700D5754E /* VideoByDayCell.xib */,
 				8041B6D620F816A800D5754E /* VideoCell.swift */,
-				80662B4F21090B42009FB4B5 /* DocumentCell.swift */,
 				80662B5121090BFE009FB4B5 /* DocumentViewController.swift */,
-				80662B5321090CF9009FB4B5 /* DocumentByDayCell.swift */,
-				80662B5521090D11009FB4B5 /* DocumentByDayCell.xib */,
+				8057AB1A213B4A2600D689AC /* DocumentDetailViewController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -380,6 +416,11 @@
 				TargetAttributes = {
 					02B6D79920E18CF800B9946A = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					02B6D7AD20E18CFB00B9946A = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -413,11 +454,12 @@
 			files = (
 				02B6D7A820E18CFB00B9946A /* LaunchScreen.storyboard in Resources */,
 				805C440F20F3D17F006D07FE /* AnswerPanel.xib in Resources */,
+				808CCB0F21489EEE00169733 /* GoogleService-Info.plist in Resources */,
 				8041B6C220F7FDDA00D5754E /* NewsByDayCell.xib in Resources */,
-				02B6D7A520E18CFB00B9946A /* Assets.xcassets in Resources */,
 				8041B6D520F8167700D5754E /* VideoByDayCell.xib in Resources */,
+				808CCB0721486A0900169733 /* DayViewSlide.xib in Resources */,
 				02B6D7A320E18CF800B9946A /* Main.storyboard in Resources */,
-				80662B5621090D11009FB4B5 /* DocumentByDayCell.xib in Resources */,
+				808CCB0D214881A500169733 /* Assets.xcassets in Resources */,
 				8008FCB520F2460E0038EA5E /* FeaturedSlide.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +468,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				808CCB1021489EEE00169733 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,11 +482,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MentalHealth/Pods-MentalHealth-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChart.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -495,9 +544,11 @@
 			files = (
 				8008FCC320F2C7EC0038EA5E /* LevelButton.swift in Sources */,
 				801ECDF520FE9C5C00DDAE76 /* AZDetailHeaderCell.swift in Sources */,
+				8057C8DA213DC456004B6494 /* TutorialViewController.swift in Sources */,
 				8051917D20F6D13C006ECB50 /* DiaryViewController.swift in Sources */,
 				801ECDF720FE9C6D00DDAE76 /* AZDetailCell.swift in Sources */,
 				80FAFB652113BFCC002F6071 /* LoginViewController.swift in Sources */,
+				8057C8E0213DED5E004B6494 /* FavoritesViewController.swift in Sources */,
 				8008FCC020F2B2790038EA5E /* GameViewController.swift in Sources */,
 				80FAFB672113DA26002F6071 /* NewsDetailViewController.swift in Sources */,
 				80662B582109169B009FB4B5 /* QuestionChatCell.swift in Sources */,
@@ -505,19 +556,27 @@
 				8041B6C420F7FE0F00D5754E /* NewsByDayCell.swift in Sources */,
 				8056D843210294D0008DB395 /* DiaryListViewController.swift in Sources */,
 				8041B6D120F8155700D5754E /* VideoViewController.swift in Sources */,
+				808CCB0921486ACD00169733 /* DayViewSlide.swift in Sources */,
 				8020E13220F56FAA00D8AD9E /* ThirtyDaysViewController.swift in Sources */,
+				802F5FA62145C7F500AFADB9 /* SOSDetailViewController.swift in Sources */,
 				8041B6D320F8166D00D5754E /* VideoByDayCell.swift in Sources */,
+				805FC3592137715C001E5CEC /* InfoViewController.swift in Sources */,
+				8052EB1D21408D200085A04C /* SearchListCell.swift in Sources */,
+				8057C8E2213DEE3A004B6494 /* FavoritesListCell.swift in Sources */,
 				8041B6D720F816A800D5754E /* VideoCell.swift in Sources */,
 				8008FCBD20F281B60038EA5E /* SOSCell.swift in Sources */,
+				8057AB1B213B4A2600D689AC /* DocumentDetailViewController.swift in Sources */,
 				8008FCBB20F272F50038EA5E /* SOSViewController.swift in Sources */,
 				8008FCB820F25C230038EA5E /* BaseViewController.swift in Sources */,
+				805A78D72141B316003C60BC /* Constants.swift in Sources */,
 				8008FCB320F245D40038EA5E /* FeaturedSlide.swift in Sources */,
+				8057C8DE213DDF01004B6494 /* NotificationListCell.swift in Sources */,
 				8041B6CF20F8041600D5754E /* NewsCell.swift in Sources */,
 				80662B5221090BFE009FB4B5 /* DocumentViewController.swift in Sources */,
 				805C441120F3E02C006D07FE /* AnswerPanel.swift in Sources */,
-				80662B5021090B42009FB4B5 /* DocumentCell.swift in Sources */,
 				02B6D79E20E18CF800B9946A /* AppDelegate.swift in Sources */,
 				8020E13020F56F7700D8AD9E /* ThirtyDaysCell.swift in Sources */,
+				8052EB1B214088380085A04C /* SearchViewController.swift in Sources */,
 				8038CA23210141510042A64E /* NewDiaryViewController.swift in Sources */,
 				8020E13420F5853B00D8AD9E /* DayViewController.swift in Sources */,
 				8051917920F6D0E0006ECB50 /* LibraryViewController.swift in Sources */,
@@ -526,7 +585,7 @@
 				80662B5A210916AC009FB4B5 /* AnswerChatCell.swift in Sources */,
 				8038CA2521015D520042A64E /* DiaryDetailViewController.swift in Sources */,
 				8061D1632104282F000CAC43 /* ActivityViewCell.swift in Sources */,
-				80662B5421090CF9009FB4B5 /* DocumentByDayCell.swift in Sources */,
+				8057C8DC213DD979004B6494 /* NotificationViewController.swift in Sources */,
 				806FD8F820F971B400BEFFA3 /* AZDetailViewController.swift in Sources */,
 				8061D15B2104173A000CAC43 /* ChatViewController.swift in Sources */,
 				80B3FEBD210808760043A034 /* LeftViewController.swift in Sources */,
@@ -692,17 +751,18 @@
 			baseConfigurationReference = D61DFD96ED2813686E2D248C /* Pods-MentalHealth.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MentalHealth/MentalHealth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GV3H7VH26F;
+				DEVELOPMENT_TEAM = 5G255Z53K9;
 				INFOPLIST_FILE = MentalHealth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ubiduck.app.MentalHealth;
+				PRODUCT_BUNDLE_IDENTIFIER = inno.app.mental.shiningmind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -711,17 +771,18 @@
 			baseConfigurationReference = 2E82B6510F68DD976142ADE6 /* Pods-MentalHealth.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MentalHealth/MentalHealth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GV3H7VH26F;
+				DEVELOPMENT_TEAM = 5G255Z53K9;
 				INFOPLIST_FILE = MentalHealth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ubiduck.app.MentalHealth;
+				PRODUCT_BUNDLE_IDENTIFIER = inno.app.mental.shiningmind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

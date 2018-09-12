@@ -11,10 +11,11 @@ import UIKit
 class VideoByDayCell: UIView {
 
     @IBOutlet weak var featuredVideo: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     @IBAction func onClicked(_ sender: Any) {
-        guard let url = URL(string: "https://www.youtube.com/watch?v=wENWyGTvmVM") else {
-            return //be safe
+        guard let url = URL(string: videoUrl) else {
+            return // Be safe
         }
         
         if #available(iOS 10.0, *) {
@@ -23,6 +24,8 @@ class VideoByDayCell: UIView {
             UIApplication.shared.openURL(url)
         }
     }
+    
+    public var videoUrl: String = ""
     
     /*
      // Only override draw() if you perform custom drawing.

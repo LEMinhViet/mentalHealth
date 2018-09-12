@@ -10,18 +10,31 @@ import UIKit
 
 class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var azDetailTableView: UITableView!
     
-    let titles = ["Rôi loạn trầm cảm là gì?", "Triệu chứng của bệnh", "Phương pháp điều trị", "Trích dẫn"]
+    let titles = ["Khái niệm", "Triệu chứng", "Phân loại", "Trị liệu", "Tự trợ giúp", "Trích nguồn"]
     
-    var isExtended = [false, false, false, false]
-    
-    let descriptions = ["Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam videosrem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C."]
+    var header = "img_roiloanloau.png"
+    var isExtended = [false, false, false, false, false, false]
+    var descriptions = ["", "", "", "", "", ""]
     
     override func viewDidLoad() {
         super.viewDidLoad(withMenu: false)
-        
+        headerImageView.image = UIImage(named: self.header)
         azDetailTableView.reloadData()
+    }
+    
+    public func setData(header: String, definition: String, symptom: String, type: String, treatments: String, help: String, quote: String) {
+        self.header = header
+        self.descriptions = [
+            definition,
+            symptom,
+            type,
+            treatments,
+            help,
+            quote
+        ]
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,7 +59,7 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
         if (indexPath.row == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "azDetailHeaderCell", for: indexPath) as! AZDetailHeaderCell
             
-            cell.label.text = titles[indexPath.row / 2]
+            cell.label.text = titles[indexPath.section]
             
             if (isExtended[indexPath.section]) {
                 cell.setExtended()
@@ -60,7 +73,7 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "azDetailCell", for: indexPath) as! AZDetailCell
             
-            cell.label.text = descriptions[0]
+            cell.label.text = descriptions[indexPath.section].htmlToString
             
             let borderLayer = cell.borderView.layer
 
@@ -99,5 +112,19 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension String {
+    var htmlToAttributedString: NSAttributedString? {
+        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        do {
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            return NSAttributedString()
+        }
+    }
+    
+    var htmlToString: String {
+        return htmlToAttributedString?.string ?? ""
+    }
 }

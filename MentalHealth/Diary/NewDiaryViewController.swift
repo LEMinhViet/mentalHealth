@@ -14,11 +14,21 @@ class NewDiaryViewController: BaseViewController, UITextViewDelegate {
     @IBOutlet weak var contentField: UITextView!
     @IBOutlet weak var saveButton: UIButton!
     @IBAction func onSaveClicked(_ sender: Any) {
+        diaryData.insert(DiaryData(id: diaryData.count, title: titleField.text, content: contentField.text, createdDate: Date()), at: 0)
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(diaryData), forKey: "diaryData")
+        
         navigationController?.popViewController(animated: true)
     }
     
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     var isTitleEdited: Bool = false
     var isContentEdited: Bool = false
+    var diaryData: [DiaryData] = []
+    
+    func setDiaryData(data: [DiaryData]) {
+        self.diaryData = data
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad(withMenu: false)
@@ -37,6 +47,51 @@ class NewDiaryViewController: BaseViewController, UITextViewDelegate {
         contentField.textContainerInset = UIEdgeInsetsMake(15, 15, 15, 15)
         
         saveButton.layer.cornerRadius = 5
+        
+        // Dismiss keyboard tap recognizer
+        let dismisTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(NewDiaryViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(dismisTap)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardNotification(notification:)),
+            name: NSNotification.Name.UIKeyboardWillChangeFrame,
+            object: nil)
+    }
+    
+    // Calls this function when the tap is recognized.
+    @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    // Keyboard handler
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func keyboardNotification(notification: NSNotification) {
+        let bottomMargin: CGFloat = 20.0
+        
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let endFrameY = endFrame?.origin.y ?? 0
+            let duration: TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+            let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            
+            if endFrameY >= UIScreen.main.bounds.size.height {
+                self.bottomConstraint?.constant = bottomMargin
+            } else {
+                self.bottomConstraint?.constant = (endFrame?.size.height)! + bottomMargin
+            }
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,15 +110,4 @@ class NewDiaryViewController: BaseViewController, UITextViewDelegate {
             contentField.text = nil
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -25,11 +25,21 @@
                         <outletCollection property="gestureRecognizers" destination="zbj-6N-Saz" appends="YES" id="dJa-yO-pVJ"/>
                     </connections>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="RpV-x1-flz">
+                    <rect key="frame" x="10" y="169.5" width="355" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <size key="shadowOffset" width="0.0" height="1"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="hQc-EO-etn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="BOp-9q-MXL"/>
+                <constraint firstItem="RpV-x1-flz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="E7r-L8-IyC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="RpV-x1-flz" secondAttribute="bottom" constant="10" id="FST-gr-Vfe"/>
                 <constraint firstItem="1dF-3q-MJl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Gu0-Uv-WrE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1dF-3q-MJl" secondAttribute="bottom" id="HGM-lN-o2m"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="hQc-EO-etn" secondAttribute="bottom" constant="5" id="Vru-78-HXt"/>
@@ -37,11 +47,13 @@
                 <constraint firstAttribute="trailing" secondItem="1dF-3q-MJl" secondAttribute="trailing" id="pxK-ib-LaH"/>
                 <constraint firstItem="hQc-EO-etn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="qTb-bM-arh"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hQc-EO-etn" secondAttribute="trailing" id="sr1-bY-wje"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RpV-x1-flz" secondAttribute="trailing" constant="10" id="yMU-jG-bSo"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="featuredVideo" destination="hQc-EO-etn" id="0nC-My-tjx"/>
+                <outlet property="titleLabel" destination="RpV-x1-flz" id="ohq-ZQ-4fw"/>
             </connections>
             <point key="canvasLocation" x="71.5" y="-175"/>
         </view>

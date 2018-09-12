@@ -11,6 +11,10 @@ import UIKit
 class DiaryListCell: UITableViewCell {
 
     @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var deleteImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

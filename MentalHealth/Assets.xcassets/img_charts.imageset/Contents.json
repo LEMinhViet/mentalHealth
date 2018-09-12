@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "img_charts@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "img_charts.png",
+      "filename" : "img_charts@2x.png",
       "scale" : "2x"
     },
     {
@@ -17,8 +18,5 @@
   "info" : {
     "version" : 1,
     "author" : "xcode"
-  },
-  "properties" : {
-    "template-rendering-intent" : "original"
   }
 }

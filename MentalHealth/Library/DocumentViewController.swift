@@ -8,48 +8,97 @@
 
 import UIKit
 
-class DocumentViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet weak var documentTableView: UITableView!
+struct AllDocumentData: Codable {
+    let per_page: Int
+    let current_page: Int
+    let next_page_url: String?
+    let prev_page_url: String?
+    let from: Int
+    let to: Int
+    let data: [DocumentData]
     
-    let dataByDays: [[String]] = [["img_placeholder_news.png", "img_placeholder_news.png"], ["img_placeholder_news.png"]];
+    init() {
+        per_page = 0
+        current_page = 0
+        next_page_url = ""
+        prev_page_url = ""
+        from = 0
+        to = 0
+        data = []
+    }
+}
+
+class DocumentViewController: BaseViewController {
+    
+    @IBOutlet weak var documentStackView: UIStackView!
+    @IBOutlet weak var studentImageView: UIImageView!
+    @IBOutlet weak var anxietyDisorderImageView: UIImageView!
+    @IBOutlet weak var stressImageView: UIImageView!
+    
+    let apiUrl = Constants.url + Constants.apiPrefix + "/documents"
+    var allDocumentData = AllDocumentData()
+    
+    @IBAction func studentClicked(_ sender: Any) {
+        if (allDocumentData.data.count > 0) {
+            openDocumentById(id: allDocumentData.data[0].id)
+        }
+    }
+    
+    @IBAction func anxietyDisorderClicked(_ sender: Any) {
+        if (allDocumentData.data.count > 1) {
+            openDocumentById(id: allDocumentData.data[1].id)
+        }
+    }
+    
+    @IBAction func stressClicked(_ sender: Any) {
+        if (allDocumentData.data.count > 2) {
+            openDocumentById(id: allDocumentData.data[2].id)
+        }
+    }
+    
+    private func openDocumentById(id: Int) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DocumentDetailViewController") as? DocumentDetailViewController
+        vc?.documentId = id
+        
+        navigationController?.pushViewController(vc!, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        documentTableView.reloadData()
+        self.displaySpinner(onView: self.view)
+        
+        documentStackView.isHidden = true
+        
+        guard let url = URL(string: apiUrl) else { return }
+        URLSession.shared.dataTask(with: url) { (data, resonse, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            do {
+                self.allDocumentData = try JSONDecoder().decode(AllDocumentData.self, from: data)
+                
+                // Get back to the main queue
+                DispatchQueue.main.async {
+                    self.documentStackView.isHidden = false
+                    
+                    self.removeSpinner()
+                }
+            } catch let jsonError {
+                DispatchQueue.main.async {
+                    self.removeSpinner()
+                }
+                
+                print(jsonError)
+            }
+        }.resume()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    // The method returning size of the list
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataByDays.count
-    }
-    
-    // The method returning each cell of the list
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "documentCell", for: indexPath) as! DocumentCell
-        
-        // Displaying values
-        for i in 0 ..< dataByDays[indexPath.row].count {
-            let document: DocumentByDayCell = Bundle.main.loadNibNamed("DocumentByDayCell", owner: self, options: nil)?.first as! DocumentByDayCell
-            
-            let cellWidth = cell.frame.width;
-            
-            document.frame.size = CGSize(width: cellWidth, height: document.frame.height)
-            document.featuredImage.image = UIImage(named: dataByDays[indexPath.row][i])
-            
-            cell.contentStackView.addArrangedSubview(document);
-        }
-        
-        return cell
-    }
-
 }

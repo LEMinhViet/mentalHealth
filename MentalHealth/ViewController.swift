@@ -8,52 +8,71 @@
 
 import UIKit
 
-class ViewController: BaseViewController, UIScrollViewDelegate {
+struct FeaturedData: Codable {
+    let title: String
+    let image: String
+}
+
+class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageDelegate {
 
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var mainView: UIStackView!
+    @IBOutlet weak var subBgView: UIView!
     @IBOutlet weak var featuredScrollView: UIScrollView!
     @IBOutlet weak var featuredPageControl: UIPageControl!
     
+    @IBOutlet var newsTapGesture: UITapGestureRecognizer!
     @IBAction func newsClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "NewsViewController") as UIViewController
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBOutlet var thirtyDaysTapGesture: UITapGestureRecognizer!
     @IBAction func thirtyDaysClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ThirtyDaysViewController") as UIViewController
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBOutlet var azTapGesture: UITapGestureRecognizer!
     @IBAction func azClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "AZViewController") as UIViewController
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBOutlet var libraryTapGesture: UITapGestureRecognizer!
     @IBAction func libraryClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "LibraryViewController") as UIViewController
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBOutlet var diaryTapGesture: UITapGestureRecognizer!
     @IBAction func diaryClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "DiaryViewController") as UIViewController
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBOutlet var gameTapGesture: UITapGestureRecognizer!
     @IBAction func gameClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "GameViewController") as UIViewController
         navigationController?.pushViewController(vc, animated: false)
     }
     
-    let placeHolders = ["ic_tramcam.jpg", "ic_tramcam.jpg", "ic_tramcam.jpg"];
+    let featuredUrl = Constants.url + Constants.apiPrefix + "/banners"
+    var placeHolders = ["ic_tramcam.jpg", "ic_tramcam.jpg", "ic_tramcam.jpg"]
+    var featuredTitles = [
+        "Những giấu hiêu của bệnh rối loạn lo âu",
+        "Những giấu hiêu của bệnh rối loạn lo âu",
+        "Những giấu hiêu của bệnh rối loạn lo âu"]
     
     var slides: [FeaturedSlide] = [];
+    
+    var nbLoadingSlides: Int = 0
     
     let leftPanelOffset: CGFloat = 240
     var leftPanelExpanded = false
@@ -62,6 +81,8 @@ class ViewController: BaseViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad(withMenu: true)
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.displaySpinner(onView: self.view)
         
         let navibarHeight = (self.navigationController?.navigationBar.frame.height)!
         
@@ -86,37 +107,89 @@ class ViewController: BaseViewController, UIScrollViewDelegate {
             width: self.view.frame.width + leftPanelOffset,
             height: self.view.frame.height + navibarHeight * 2
         )
+        
+        self.leftViewController?.delegate = self
+        
+        featuredScrollView.delegate = self
+        
+        guard let url = URL(string: featuredUrl) else { return }
+        URLSession.shared.dataTask(with: url) { (data, resonse, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let jsonData = try JSONDecoder().decode([FeaturedData].self, from: data)
+                
+                // Get back to the main queue
+                DispatchQueue.main.async {
+                    self.placeHolders = []
+                    self.featuredTitles = []
+                    
+                    self.nbLoadingSlides = jsonData.count
+                    
+                    for i in 0 ..< jsonData.count {
+                        self.placeHolders.append(Constants.url + Constants.filePrefix + "/" + jsonData[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
+                        self.featuredTitles.append(jsonData[i].title)
+                    }
+                    
+                    self.slides = self.createSlides()
+                    self.setupSlideScrollView(slides: self.slides)
+                    self.featuredPageControl.numberOfPages = self.slides.count
+                    self.featuredPageControl.currentPage = 0
+                }
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }.resume()
+        
+        self.view.bringSubview(toFront: self.featuredPageControl)
     }
     
     @objc private func menuPush() {
         leftPanelExpanded = !leftPanelExpanded
         if (leftPanelExpanded) {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                self.view.frame.origin.x = self.leftPanelOffset;
+                self.mainView.frame.origin.x = self.leftPanelOffset;
+                self.subBgView.frame.origin.x = self.leftPanelOffset;
+                self.leftViewController?.view.frame.origin.x = 0;
                 self.navigationController?.navigationBar.frame.origin.x = self.leftPanelOffset
             }, completion: nil)
             
             // Disable interaction of main menu when left menu is opened
-            self.view.isUserInteractionEnabled = false
+            self.enableMainTaps(false)
         }
         else {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                self.view.frame.origin.x = 0;
+                self.mainView.frame.origin.x = 0;
+                self.subBgView.frame.origin.x = 0;
+                self.leftViewController?.view.frame.origin.x = -self.leftPanelOffset;
                 self.navigationController?.navigationBar.frame.origin.x = 0
             }, completion: nil)
             
-            self.view.isUserInteractionEnabled = true
+            self.enableMainTaps(true)
         }
     }
     
+    func hideLeftPage() {
+        leftPanelExpanded = true
+        self.menuPush()
+    }
+    
+    private func enableMainTaps(_ value: Bool) {
+        featuredScrollView.isUserInteractionEnabled = value
+        newsTapGesture.isEnabled = value
+        thirtyDaysTapGesture.isEnabled = value
+        azTapGesture.isEnabled = value
+        libraryTapGesture.isEnabled = value
+        diaryTapGesture.isEnabled = value
+        gameTapGesture.isEnabled = value
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        featuredScrollView.delegate = self
         
-        slides = createSlides()
-        setupSlideScrollView(slides: slides)
-        featuredPageControl.numberOfPages = slides.count
-        featuredPageControl.currentPage = 0
-        view.bringSubview(toFront: featuredPageControl)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -132,16 +205,44 @@ class ViewController: BaseViewController, UIScrollViewDelegate {
      * Create and populate slides in featured panel
      */
     func createSlides() -> [FeaturedSlide] {
-        let slide_00: FeaturedSlide = Bundle.main.loadNibNamed("FeaturedSlide", owner: self, options: nil)?.first as! FeaturedSlide
-        slide_00.imageView.image = UIImage(named: placeHolders[0])
+        var createdSlides: [FeaturedSlide] = []
         
-        let slide_01: FeaturedSlide = Bundle.main.loadNibNamed("FeaturedSlide", owner: self, options: nil)?.first as! FeaturedSlide
-        slide_01.imageView.image = UIImage(named: placeHolders[1])
+        for i in 0 ..< placeHolders.count {
+            let slide: FeaturedSlide = Bundle.main.loadNibNamed("FeaturedSlide", owner: self, options: nil)?.first as! FeaturedSlide
+            slide.titleLabel.text = featuredTitles[i]
+            
+            if let url = URL(string: placeHolders[i]) {
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: url)
+                    {
+                        DispatchQueue.main.async {
+                            slide.imageView.image = UIImage(data: data)
+                            
+                            self.nbLoadingSlides -= 1
+                            if self.nbLoadingSlides == 0 {
+                                self.removeSpinner()
+                            }
+                        }
+                    }
+                    else {
+                        self.nbLoadingSlides -= 1
+                        if self.nbLoadingSlides == 0 {
+                            self.removeSpinner()
+                        }
+                    }
+                }
+            }
+            else {
+                self.nbLoadingSlides -= 1
+                if self.nbLoadingSlides == 0 {
+                    self.removeSpinner()
+                }
+            }
+            
+            createdSlides.append(slide)
+        }
         
-        let slide_02: FeaturedSlide = Bundle.main.loadNibNamed("FeaturedSlide", owner: self, options: nil)?.first as! FeaturedSlide
-        slide_02.imageView.image = UIImage(named: placeHolders[2])
-        
-        return [slide_00, slide_01, slide_02]
+        return createdSlides
     }
     
     func setupSlideScrollView(slides: [FeaturedSlide]) {
@@ -162,9 +263,19 @@ class ViewController: BaseViewController, UIScrollViewDelegate {
                 width: width,
                 height: width * ratio)
             
+            slides[i].imageView.frame.size = CGSize(
+                width: width,
+                height: width * ratio
+            )
+            
             slides[i].imageView.frame.origin = CGPoint(
-                x: (width - slides[i].imageView.frame.width) / 2,
-                y: (height - slides[i].imageView.frame.height) / 2
+                x: 0, // (width - slides[i].imageView.frame.width) / 2,
+                y: height - slides[i].imageView.frame.height
+            )
+            
+            slides[i].titleLabel.frame.origin = CGPoint(
+                x: (width - slides[i].titleLabel.frame.width) / 2,
+                y: height - featuredPageControl.frame.height - slides[i].titleLabel.frame.height
             )
             
             slides[i].setNavigation(navigation: navigationController!)

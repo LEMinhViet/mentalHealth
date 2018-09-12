@@ -11,7 +11,7 @@ import UIKit
 class SOSCell: UITableViewCell {
 
     @IBOutlet weak var hospitalImage: UIImageView!
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

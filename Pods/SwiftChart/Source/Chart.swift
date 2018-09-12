@@ -580,7 +580,7 @@ open class Chart: UIControl {
         }
 
         let scaled = scaleValuesOnXAxis(labels)
-        let padding: CGFloat = 5
+        let padding: CGFloat = 0
         scaled.enumerated().forEach { (i, value) in
             let x = CGFloat(value)
             let isLastLabel = x == drawingWidth + leftInset

@@ -7,6 +7,8 @@ target 'MentalHealth' do
 
   # Pods for MentalHealth
   pod "SwiftChart"
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 
   target 'MentalHealthUITests' do
     inherit! :search_paths
