@@ -29,6 +29,7 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
     @IBOutlet weak var contentWebView: WKWebView!
     
     @IBOutlet weak var featuredImageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentWebViewHeightConstraint: NSLayoutConstraint!
     
     let apiUrl = Constants.url + Constants.apiPrefix + "/documents"
     
@@ -104,7 +105,8 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
                     }
                     
                     let contentText = self.baseHTML.replacingOccurrences(of: "{body}", with: jsonData.content ?? "")
-
+                    
+                    self.contentWebViewHeightConstraint.isActive = false
                     self.contentWebView.navigationDelegate = self
                     self.contentWebView.loadHTMLString("\(contentText)", baseURL: Bundle.main.bundleURL)
                 }
@@ -123,6 +125,9 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
         webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
             if complete != nil {
                 self.contentWebView.frame.size = self.contentWebView.scrollView.contentSize
+                
+                self.contentWebViewHeightConstraint = NSLayoutConstraint(item: self.contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.contentWebView.scrollView.contentSize.height);
+                self.contentWebViewHeightConstraint.isActive = true
                 
                 self.mainStackView.updateConstraints()
                 

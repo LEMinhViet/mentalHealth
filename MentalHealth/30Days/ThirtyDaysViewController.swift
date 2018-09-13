@@ -31,7 +31,7 @@ struct AllDays: Codable {
 struct OneDay: Codable {
     let id: Int
     let name: String
-    let active: String
+    let active: Int
     let wasRead: Bool
 }
 
@@ -92,7 +92,7 @@ class ThirtyDaysViewController: BaseViewController, UITableViewDelegate, UITable
         cell.setFeaturedImageName(value: "img_ngaydadoc.png")
         cell.setNavigation(navigation: navigationController!)
         
-        if isActive == "1" {
+        if isActive == 1 {
             if wasRead {
                 cell.updateContent(dayId: daysData.data[indexPath.row].id, type: 1)
             }
