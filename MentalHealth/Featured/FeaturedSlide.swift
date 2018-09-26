@@ -9,16 +9,21 @@
 import UIKit
 
 class FeaturedSlide: UIView {
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-        
+    @IBOutlet weak var titleBackground: UIView!
+    
+    public var newsId: Int = -1
+    
     @IBAction func onClicked(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
-        
-        if (self.navigationController != nil) {
-            self.navigationController.pushViewController(vc, animated: true)
+        if newsId != -1 {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
+            vc.newsId = String(newsId)
+            if (self.navigationController != nil) {
+                self.navigationController.pushViewController(vc, animated: true)
+            }
         }
     }
     
@@ -27,13 +32,4 @@ class FeaturedSlide: UIView {
     public func setNavigation(navigation: UINavigationController) {
         self.navigationController = navigation
     }
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

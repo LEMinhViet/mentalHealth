@@ -45,6 +45,7 @@ class BaseViewController: UIViewController {
             menuButton = UIButton(type: .system)
             menuButton?.setImage(UIImage(named: "ic_menu.png"), for: .normal)
             menuButton?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+            
             navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton!)
         }
         

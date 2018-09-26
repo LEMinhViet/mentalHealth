@@ -25,8 +25,19 @@ class DayViewController: BaseViewController {
     @IBOutlet weak var contentView: UIView!
     
     public var dayId: Int = 0
+    public var dayName: String = ""
     
-    private var allData: [OneDayDetail] = []
+    private var allData: [OneDayDetail] = [] {
+        didSet {
+            if !allData.isEmpty {
+                if let firstItem = allData.first {
+                    DispatchQueue.main.async {
+                        self.navigationItem.title = self.dayName
+                    }
+                }
+            }
+        }
+    }
     
     private var dayPages: [UIView] = []
     private var currentPage: Int = 0
@@ -83,9 +94,8 @@ class DayViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad(withMenu: false)
-
+        
         // Do any additional setup after loading the view.
-        self.navigationItem.title = "Ngày thứ " + String(dayId)
         
         guard let url = URL(string: apiUrl + "/" + String(dayId)) else { return }
         URLSession.shared.dataTask(with: url) { (data, resonse, error) in
@@ -131,24 +141,26 @@ class DayViewController: BaseViewController {
                     self.enableSwipe(value: false)
                 }
             }
-        }.resume()
+            }.resume()
     }
     
     private func createSlide(index: Int, data: OneDayDetail) {
         let slide: DayViewSlide = Bundle.main.loadNibNamed("DayViewSlide", owner: self, options: nil)?.first as! DayViewSlide
         
-       slide.titleLabel.text = data.title
-
-        let contentView: UIView
+        slide.titleLabel.text = data.title
+        
+        var contentView: UIView = UIView()
         if data.text != nil && data.text != "" {
             contentView = self.createTextSlide(index: index, text: data.text!)
         }
         else if data.video != nil && data.video != "" {
-            contentView = self.createVideoSlide(index: index, image: data.image!, video: data.video!)
+            contentView = self.createVideoSlide(index: index, image: data.image ?? "", video: data.video!)
         }
         else {
-            contentView = self.createImageSlide(index: index, image: data.image!)
-
+            if data.image != nil {
+                contentView = self.createImageSlide(index: index, image: data.image!)
+            }
+            
         }
         
         slide.contentView.addSubview(contentView)
@@ -167,6 +179,7 @@ class DayViewController: BaseViewController {
     
     private func createImageSlide(index: Int, image: String) -> UIImageView {
         let slideContent: UIImageView = UIImageView(image: UIImage(named: "img_roiloancamxuc"))
+        slideContent.isHidden = true
         
         let urlImage = Constants.url + Constants.filePrefix + "/" + image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
         
@@ -175,6 +188,8 @@ class DayViewController: BaseViewController {
                 if let data = try? Data(contentsOf: url) {
                     DispatchQueue.main.async {
                         slideContent.image = UIImage(data: data)
+                        slideContent.contentMode = .scaleAspectFit
+                        slideContent.isHidden = false
                     }
                 }
             }
@@ -185,14 +200,22 @@ class DayViewController: BaseViewController {
     
     private func createVideoSlide(index: Int, image: String, video: String) -> UIImageView {
         let slideContent: UIImageView = UIImageView(image: UIImage(named: "img_roiloancamxuc"))
+        slideContent.contentMode = .scaleAspectFit
         
-        let urlImage = Constants.url + Constants.filePrefix + "/" + image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
-        
-        if let url = URL(string: urlImage) {
-            DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: url) {
-                    DispatchQueue.main.async {
-                        slideContent.image = UIImage(data: data)
+        print("image ", image)
+        if (image != "") {
+            slideContent.isHidden = true
+            
+            let urlImage = Constants.url + Constants.filePrefix + "/" + image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+            
+            if let url = URL(string: urlImage) {
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: url) {
+                        DispatchQueue.main.async {
+                            slideContent.image = UIImage(data: data)
+                            slideContent.contentMode = .scaleAspectFit
+                            slideContent.isHidden = false
+                        }
                     }
                 }
             }
@@ -238,10 +261,10 @@ class DayViewController: BaseViewController {
         slideContent.text = text
         slideContent.alpha = 0
         slideContent.sizeToFit()
-
+        
         return slideContent
     }
-
+    
     private func fillAnchor(parent: UIView, child: UIView) {
         child.translatesAutoresizingMaskIntoConstraints = false
         
@@ -257,20 +280,4 @@ class DayViewController: BaseViewController {
         child.leadingAnchor.constraint(equalTo: parent.leadingAnchor).isActive = true
         child.trailingAnchor.constraint(equalTo: parent.trailingAnchor).isActive = true
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

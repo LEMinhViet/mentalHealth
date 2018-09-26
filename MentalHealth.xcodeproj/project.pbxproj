@@ -35,6 +35,10 @@
 		8041B6D320F8166D00D5754E /* VideoByDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8041B6D220F8166D00D5754E /* VideoByDayCell.swift */; };
 		8041B6D520F8167700D5754E /* VideoByDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8041B6D420F8167700D5754E /* VideoByDayCell.xib */; };
 		8041B6D720F816A800D5754E /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8041B6D620F816A800D5754E /* VideoCell.swift */; };
+		804E66052159A244008C07AE /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E66032159A243008C07AE /* NotificationHandler.swift */; };
+		804E66062159A244008C07AE /* StoryBoardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E66042159A244008C07AE /* StoryBoardManager.swift */; };
+		804E660A2159A26F008C07AE /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E66092159A26F008C07AE /* DocumentCell.swift */; };
+		804E660E2159BD21008C07AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 804E660D2159BD21008C07AE /* GoogleService-Info.plist */; };
 		8051917920F6D0E0006ECB50 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051917820F6D0E0006ECB50 /* LibraryViewController.swift */; };
 		8051917B20F6D12A006ECB50 /* AZViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051917A20F6D12A006ECB50 /* AZViewController.swift */; };
 		8051917D20F6D13C006ECB50 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8051917C20F6D13C006ECB50 /* DiaryViewController.swift */; };
@@ -63,8 +67,6 @@
 		808CCB0721486A0900169733 /* DayViewSlide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 808CCB0621486A0900169733 /* DayViewSlide.xib */; };
 		808CCB0921486ACD00169733 /* DayViewSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808CCB0821486ACD00169733 /* DayViewSlide.swift */; };
 		808CCB0D214881A500169733 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808CCB0C214881A400169733 /* Assets.xcassets */; };
-		808CCB0F21489EEE00169733 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 808CCB0E21489EED00169733 /* GoogleService-Info.plist */; };
-		808CCB1021489EEE00169733 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 808CCB0E21489EED00169733 /* GoogleService-Info.plist */; };
 		80B3FEBD210808760043A034 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3FEBC210808760043A034 /* LeftViewController.swift */; };
 		80FAFB652113BFCC002F6071 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAFB642113BFCC002F6071 /* LoginViewController.swift */; };
 		80FAFB672113DA26002F6071 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAFB662113DA26002F6071 /* NewsDetailViewController.swift */; };
@@ -116,6 +118,10 @@
 		8041B6D220F8166D00D5754E /* VideoByDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoByDayCell.swift; sourceTree = "<group>"; };
 		8041B6D420F8167700D5754E /* VideoByDayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoByDayCell.xib; sourceTree = "<group>"; };
 		8041B6D620F816A800D5754E /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
+		804E66032159A243008C07AE /* NotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
+		804E66042159A244008C07AE /* StoryBoardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoardManager.swift; sourceTree = "<group>"; };
+		804E66092159A26F008C07AE /* DocumentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
+		804E660D2159BD21008C07AE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8051917820F6D0E0006ECB50 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		8051917A20F6D12A006ECB50 /* AZViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AZViewController.swift; sourceTree = "<group>"; };
 		8051917C20F6D13C006ECB50 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
@@ -144,7 +150,6 @@
 		808CCB0621486A0900169733 /* DayViewSlide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DayViewSlide.xib; path = MentalHealth/30Days/DayViewSlide.xib; sourceTree = SOURCE_ROOT; };
 		808CCB0821486ACD00169733 /* DayViewSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DayViewSlide.swift; path = MentalHealth/30Days/DayViewSlide.swift; sourceTree = SOURCE_ROOT; };
 		808CCB0C214881A400169733 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		808CCB0E21489EED00169733 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		80B3FEBC210808760043A034 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		80DC0B572147411E00F06B35 /* MentalHealth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MentalHealth.entitlements; sourceTree = "<group>"; };
 		80FAFB642113BFCC002F6071 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -213,8 +218,8 @@
 				02B6D79F20E18CF800B9946A /* ViewController.swift */,
 				02B6D7A120E18CF800B9946A /* Main.storyboard */,
 				02B6D7A620E18CFB00B9946A /* LaunchScreen.storyboard */,
-				808CCB0E21489EED00169733 /* GoogleService-Info.plist */,
 				02B6D7A920E18CFB00B9946A /* Info.plist */,
+				804E660D2159BD21008C07AE /* GoogleService-Info.plist */,
 				808CCB0C214881A400169733 /* Assets.xcassets */,
 				80FAFB642113BFCC002F6071 /* LoginViewController.swift */,
 				805A78D62141B316003C60BC /* Constants.swift */,
@@ -277,8 +282,10 @@
 		8041B6C520F8001C00D5754E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				804E66042159A244008C07AE /* StoryBoardManager.swift */,
 				805FC3582137715C001E5CEC /* InfoViewController.swift */,
 				8057C8D9213DC456004B6494 /* TutorialViewController.swift */,
+				804E66032159A243008C07AE /* NotificationHandler.swift */,
 				8057C8DB213DD979004B6494 /* NotificationViewController.swift */,
 				8057C8DD213DDF01004B6494 /* NotificationListCell.swift */,
 				8057C8DF213DED5E004B6494 /* FavoritesViewController.swift */,
@@ -292,6 +299,7 @@
 		8051917420F6D0B0006ECB50 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				804E66092159A26F008C07AE /* DocumentCell.swift */,
 				8051917820F6D0E0006ECB50 /* LibraryViewController.swift */,
 				8041B6D020F8155700D5754E /* VideoViewController.swift */,
 				8041B6D220F8166D00D5754E /* VideoByDayCell.swift */,
@@ -454,7 +462,7 @@
 			files = (
 				02B6D7A820E18CFB00B9946A /* LaunchScreen.storyboard in Resources */,
 				805C440F20F3D17F006D07FE /* AnswerPanel.xib in Resources */,
-				808CCB0F21489EEE00169733 /* GoogleService-Info.plist in Resources */,
+				804E660E2159BD21008C07AE /* GoogleService-Info.plist in Resources */,
 				8041B6C220F7FDDA00D5754E /* NewsByDayCell.xib in Resources */,
 				8041B6D520F8167700D5754E /* VideoByDayCell.xib in Resources */,
 				808CCB0721486A0900169733 /* DayViewSlide.xib in Resources */,
@@ -468,7 +476,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				808CCB1021489EEE00169733 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +572,8 @@
 				8057C8E2213DEE3A004B6494 /* FavoritesListCell.swift in Sources */,
 				8041B6D720F816A800D5754E /* VideoCell.swift in Sources */,
 				8008FCBD20F281B60038EA5E /* SOSCell.swift in Sources */,
+				804E66062159A244008C07AE /* StoryBoardManager.swift in Sources */,
+				804E660A2159A26F008C07AE /* DocumentCell.swift in Sources */,
 				8057AB1B213B4A2600D689AC /* DocumentDetailViewController.swift in Sources */,
 				8008FCBB20F272F50038EA5E /* SOSViewController.swift in Sources */,
 				8008FCB820F25C230038EA5E /* BaseViewController.swift in Sources */,
@@ -579,6 +588,7 @@
 				8052EB1B214088380085A04C /* SearchViewController.swift in Sources */,
 				8038CA23210141510042A64E /* NewDiaryViewController.swift in Sources */,
 				8020E13420F5853B00D8AD9E /* DayViewController.swift in Sources */,
+				804E66052159A244008C07AE /* NotificationHandler.swift in Sources */,
 				8051917920F6D0E0006ECB50 /* LibraryViewController.swift in Sources */,
 				8056D8452102A1F3008DB395 /* DiaryListCell.swift in Sources */,
 				8051917B20F6D12A006ECB50 /* AZViewController.swift in Sources */,
@@ -753,14 +763,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MentalHealth/MentalHealth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GV3H7VH26F;
+				DEVELOPMENT_TEAM = 59MNVF6V67;
 				INFOPLIST_FILE = MentalHealth/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ubi.app.mental.shiningmind;
+				PRODUCT_BUNDLE_IDENTIFIER = crisp.mentalhealth.shinningmind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -774,14 +784,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MentalHealth/MentalHealth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GV3H7VH26F;
+				DEVELOPMENT_TEAM = 59MNVF6V67;
 				INFOPLIST_FILE = MentalHealth/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ubi.app.mental.shiningmind;
+				PRODUCT_BUNDLE_IDENTIFIER = crisp.mentalhealth.shinningmind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

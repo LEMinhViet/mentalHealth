@@ -13,4 +13,7 @@ struct Constants {
     
     static let TO_BACKGROUND: Int = 1
     static let TO_FOREGROUND: Int = 0
+    
+    //MARK: FCM
+    static let FCM_TOPIC  = "signning_mine"
 }

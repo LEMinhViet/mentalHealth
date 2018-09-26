@@ -36,6 +36,7 @@ class ThirtyDaysCell: UITableViewCell {
         let vc = storyboard.instantiateViewController(withIdentifier: "DayViewController") as! DayViewController
         
         vc.dayId = dayId
+        vc.dayName = dayName
         
         if (self.navigationController != nil) {
             self.navigationController?.pushViewController(vc, animated: true)
@@ -100,6 +101,12 @@ class ThirtyDaysCell: UITableViewCell {
         self.dayId = dayId
     }
     
+    var dayName: String = ""
+    
+    public func setDayName(name: String) {
+        self.dayName = name
+    }
+    
     var type: Int = 0;
     var navigationController: UINavigationController!
     
@@ -122,11 +129,12 @@ class ThirtyDaysCell: UITableViewCell {
         self.navigationController = navigation
     }
     
-    public func updateContent(dayId: Int, type: Int) {
+    public func updateContent(dayId: Int, name: String = "", type: Int) {
         self.dayId = dayId
         self.type = type
-
-        dayLabel.text = "Ngày thứ " + String(dayId)
+        self.dayName = name
+        
+        dayLabel.text = name
         bgButton.setImage(UIImage(named: images[type]), for: .normal)
     }
 }

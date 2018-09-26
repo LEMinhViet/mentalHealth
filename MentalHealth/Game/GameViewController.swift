@@ -74,6 +74,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
      * Variables for level view
      */
     
+    @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var levelView: UIView!
     @IBOutlet weak var popupBg: UIImageView!
     @IBOutlet weak var backButton: UIButton!
@@ -130,8 +131,6 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                     let defaults = UserDefaults.standard
                     defaults.set(currentLevel, forKey: "currentQuestionLevel")
-
-                    print("SET ", currentLevel)
                     
                     levelTableView.reloadData()
                 }
@@ -248,7 +247,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.backgroundColor = UIColor.clear
         cell.levelImage.isHighlighted = indexPath.row <= currentLevel
         cell.levelText.text = levelsData.data[indexPath.row].name
-        cell.tag = indexPath.row
+        cell.tag = levelsData.data[indexPath.row].id
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(GameViewController.onLevelTap(_:)))
         tapGesture.numberOfTapsRequired = 1
@@ -266,20 +265,29 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         let popupImageW = popupBg.image?.size.width
         let popupImageH = popupBg.image?.size.height
         
+        let offsetY: CGFloat = -30.0
+        
+        popupBg.frame = CGRect(
+            x: (viewFrameW - popupImageW!) / 2,
+            y: (viewFrameH - popupImageH!) / 2 + offsetY,
+            width: popupImageW!,
+            height: popupImageH!
+        )
+        
         backButton.frame.origin = CGPoint(
             x: (viewFrameW - backButton.frame.width) / 2,
-            y: (viewFrameH + popupImageH! - backButton.frame.height) / 2 - 10
+            y: (viewFrameH + popupImageH! - backButton.frame.height) / 2 + offsetY - 10
         )
         
         levelTableView.frame = CGRect(
             x: viewFrameW * 0.5 - popupImageW! * 0.45,
-            y: viewFrameH * 0.5 - popupImageH! * 0.4,
+            y: viewFrameH * 0.5 - popupImageH! * 0.4 + offsetY + 10,
             width: popupImageW! * 0.9,
             height: popupImageH! * 0.8
         )
     }
     
-    private func updateLevel(_ level: Int) {
+    func updateLevel(_ level: Int) {
         let levelQuestionUrl = questionUrl + "/" + String(level + 1)
         guard let url = URL(string: levelQuestionUrl) else { return }
         URLSession.shared.dataTask(with: url) { (data, resonse, error) in
@@ -294,6 +302,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 //Get back to the main queue
                 DispatchQueue.main.async {
+                    self.levelView.isHidden = true
                     self.levelQuestionsData = jsonData
                     self.currentQuestion = 0
                     self.isAnswered = false
@@ -352,7 +361,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         answerPanels = createAnswers()
         for i in 0 ..< answerPanels.count {
             answerPanels[i].frame.origin = CGPoint(
-                x: (viewFrameW - answerPanels[i].frame.width) / 2 + 0,
+                x: (viewFrameW - answerPanels[i].frame.width) / 2,
                 y: questionBg.frame.origin.y + questionBg.frame.height + 20 +  answerPanels[i].frame.height * CGFloat(i)
             )
             

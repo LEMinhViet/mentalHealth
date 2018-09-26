@@ -28,16 +28,38 @@ class AZDetailHeaderCell: UITableViewCell {
         arrow.isHighlighted = true
         
         label.layer.masksToBounds = true
-        label.layer.cornerRadius = 10
-        label.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-
+        self.roundCorners(label, corners: [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner], radius: 10)
     }
     
     func setCollapsed() {
         arrow.isHighlighted = false
         
         label.layer.masksToBounds = true
-        label.layer.cornerRadius = 10
-        label.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        self.roundCorners(label, corners: [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner], radius: 10)
+    }
+    
+    func roundCorners(_ view: UIView, corners: CACornerMask, radius: CGFloat) {
+        if #available(iOS 11, *) {
+            view.layer.cornerRadius = radius
+            view.layer.maskedCorners = corners
+        } else {
+            var cornerMask = UIRectCorner()
+            if(corners.contains(.layerMinXMinYCorner)){
+                cornerMask.insert(.topLeft)
+            }
+            if(corners.contains(.layerMaxXMinYCorner)){
+                cornerMask.insert(.topRight)
+            }
+            if(corners.contains(.layerMinXMaxYCorner)){
+                cornerMask.insert(.bottomLeft)
+            }
+            if(corners.contains(.layerMaxXMaxYCorner)){
+                cornerMask.insert(.bottomRight)
+            }
+            let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: cornerMask, cornerRadii: CGSize(width: radius, height: radius))
+            let mask = CAShapeLayer()
+            mask.path = path.cgPath
+            view.layer.mask = mask
+        }
     }
 }

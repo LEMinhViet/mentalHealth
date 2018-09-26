@@ -18,7 +18,7 @@ struct LogResult: Codable {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
-
+    
     var window: UIWindow?
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
@@ -30,49 +30,85 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
     
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+        
+        //register FCM Topic
+        Messaging.messaging().subscribe(toTopic: Constants.FCM_TOPIC) { (err) in
+            print("FCM Messaging Err: \(String(describing: err?.localizedDescription))")
+        }
+    }
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID.
-//        if let messageID = userInfo {
-//            print("Message ID: \(messageID)")
-//        }
-        
-        // Print full message.
-        print(userInfo)
+        let noti = NotiObject(dict: userInfo)
+        NotificationHandler.receiveNoti(noti)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print(error)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
+
+       let noti = NotiObject(dict: userInfo)
         
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID.
-//        if let messageID = userInfo[gcmMessageIDKey] {
-//            print("Message ID: \(messageID)")
-//        }
-        
-        // Print full message.
-        print(userInfo)
+        if application.applicationState == .active {
+//            let alert = UIAlertController(title: noti.title, message: "", preferredStyle: .alert)
+//            let actionYes = UIAlertAction(title: "OK", style: .default) { (action) in
+//                NotificationHandler.receiveNoti(noti)
+//            }
+//            let actionNo = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//            alert.addAction(actionYes)
+//            alert.addAction(actionNo)
+//
+//            guard let navigation = UIApplication.shared.keyWindow?.rootViewController else {
+//                return
+//            }
+//
+//            let content = UNMutableNotificationContent()
+//            content.title = "Don't forget"
+//            content.body = "Buy some milk"
+//            content.sound = UNNotificationSound.default()
+//
+//            //navigation.present(alert, animated: true)
+        } else {
+            NotificationHandler.receiveNoti(noti)
+        }
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
-
+    
+    func scheduleLocalNotification(noti: NotiObject) {
+        // Create Notification Content
+        let notificationContent = UNMutableNotificationContent()
+        
+        // Configure Notification Content
+        notificationContent.title = noti.title
+        
+        // Add Trigger
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.0, repeats: false)
+        
+        // Create Notification Request
+        let notificationRequest = UNNotificationRequest(identifier: "duringActiveNoti", content: notificationContent, trigger: notificationTrigger)
+        
+        // Add Request to User Notification Center
+        UNUserNotificationCenter.current().add(notificationRequest) { (error) in
+            if let error = error {
+                print("Unable to Add Notification Request (\(error), \(error.localizedDescription))")
+            }
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert])
+    }
     
     // The callback to handle data message received via FCM for devices running iOS 10 or above.
     func applicationReceivedRemoteMessage(_ remoteMessage: MessagingRemoteMessage) {
         print(remoteMessage.appData)
     }
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         if #available(iOS 10.0, *) {
@@ -100,6 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let defaults = UserDefaults.standard
         let isLoggedIn = defaults.bool(forKey: "isUserLoggedIn")
+        
         print ("IS USER LOGGED ", isLoggedIn)
         if isLoggedIn {
             let nvc = storyboard.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
@@ -118,33 +155,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return true
     }
-
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
         logTime(action: Constants.TO_BACKGROUND)
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         logTime(action: Constants.TO_FOREGROUND)
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         
         logTime(action: Constants.TO_BACKGROUND)
     }
-
+    
     func logTime(action: Int) {
         let apiUrl: String = Constants.url + Constants.apiPrefix + "/logtime"
         guard let loginUrl = URL(string: apiUrl) else { return }
@@ -199,7 +236,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     
                 }
             }
-        }.resume()
+            }.resume()
     }
 }
-

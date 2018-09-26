@@ -236,16 +236,13 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if curQuestion < question.count - 1 {
-            print(curQuestion * 2 + 1)
             return curQuestion * 2 + 1
         }
         else {
             if answer.count == question.count {
-                print(question.count * 2)
                 return question.count * 2
             }
             else {
-                print(curQuestion * 2 - 1)
                 return curQuestion * 2 + 1
             }
         }
@@ -265,9 +262,8 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
             cell.chatContent.frame.size = CGSize(width: newSize.width, height: newSize.height)
             
             layer.masksToBounds = true
-            layer.cornerRadius = frame.height * 0.25
-            layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner]
-                        
+            self.roundCorners(cell.chatContent, corners: [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner], radius: frame.height * 0.25)
+            
             return cell
         }
         else {
@@ -283,8 +279,7 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
             cell.chatContent.frame.size = CGSize(width: newSize.width, height: newSize.height)
             
             layer.masksToBounds = true
-            layer.cornerRadius = frame.height * 0.25
-            layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMinXMaxYCorner]
+            self.roundCorners(cell.chatContent, corners: [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMinXMaxYCorner], radius: frame.height * 0.25)
             
             return cell
         }
@@ -329,6 +324,31 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
                            options: animationCurve,
                            animations: { self.view.layoutIfNeeded() },
                            completion: nil)
+        }
+    }
+    
+    func roundCorners(_ view: UIView, corners: CACornerMask, radius: CGFloat) {
+        if #available(iOS 11, *) {
+            view.layer.cornerRadius = radius
+            view.layer.maskedCorners = corners
+        } else {
+            var cornerMask = UIRectCorner()
+            if(corners.contains(.layerMinXMinYCorner)){
+                cornerMask.insert(.topLeft)
+            }
+            if(corners.contains(.layerMaxXMinYCorner)){
+                cornerMask.insert(.topRight)
+            }
+            if(corners.contains(.layerMinXMaxYCorner)){
+                cornerMask.insert(.bottomLeft)
+            }
+            if(corners.contains(.layerMaxXMaxYCorner)){
+                cornerMask.insert(.bottomRight)
+            }
+            let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: cornerMask, cornerRadii: CGSize(width: radius, height: radius))
+            let mask = CAShapeLayer()
+            mask.path = path.cgPath
+            view.layer.mask = mask
         }
     }
 }

@@ -86,23 +86,24 @@ class ThirtyDaysViewController: BaseViewController, UITableViewDelegate, UITable
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "thirtyDaysCell", for: indexPath) as! ThirtyDaysCell
         
-        let isActive = daysData.data[indexPath.row].active
-        let wasRead = daysData.data[indexPath.row].wasRead
+        let dayData = daysData.data[indexPath.row]
+        
+        let isActive = dayData.active
+        let wasRead = dayData.wasRead
         
         cell.setFeaturedImageName(value: "img_ngaydadoc.png")
         cell.setNavigation(navigation: navigationController!)
         
         if isActive == 1 {
             if wasRead {
-                cell.updateContent(dayId: daysData.data[indexPath.row].id, type: 1)
+                cell.updateContent(dayId: dayData.id, name: dayData.name, type: 1)
             }
             else {
-                cell.updateContent(dayId: daysData.data[indexPath.row].id, type: 2)
+                cell.updateContent(dayId: dayData.id, name: dayData.name, type: 2)
             }
-            
         }
         else {
-            cell.updateContent(dayId: daysData.data[indexPath.row].id, type: 0)
+            cell.updateContent(dayId: dayData.id, name: dayData.name, type: 0)
         }
         
         return cell

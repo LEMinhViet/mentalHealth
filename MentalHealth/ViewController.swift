@@ -63,16 +63,18 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
         navigationController?.pushViewController(vc, animated: false)
     }
     
-    let featuredUrl = Constants.url + Constants.apiPrefix + "/banners"
+    let featuredUrl = Constants.url + Constants.apiPrefix + "/news"//"/banners"
     var placeHolders = ["ic_tramcam.jpg", "ic_tramcam.jpg", "ic_tramcam.jpg"]
     var featuredTitles = [
         "Những giấu hiêu của bệnh rối loạn lo âu",
         "Những giấu hiêu của bệnh rối loạn lo âu",
         "Những giấu hiêu của bệnh rối loạn lo âu"]
+    var featuredIds = [-1, -1, -1]
     
     var slides: [FeaturedSlide] = [];
     
     var nbLoadingSlides: Int = 0
+    var nbFeaturedSlides: Int = 3
     
     let leftPanelOffset: CGFloat = 240
     var leftPanelExpanded = false
@@ -121,19 +123,21 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
             guard let data = data else { return }
             
             do {
-                let jsonData = try JSONDecoder().decode([FeaturedData].self, from: data)
-                
+               // let jsonData = try JSONDecoder().decode([FeaturedData].self, from: data)
+                let jsonData = try JSONDecoder().decode(AllNews.self, from: data)
                 // Get back to the main queue
                 DispatchQueue.main.async {
                     self.placeHolders = []
                     self.featuredTitles = []
+                    self.featuredIds = []
                     
-                    self.nbLoadingSlides = jsonData.count
-                    
-                    for i in 0 ..< jsonData.count {
-                        self.placeHolders.append(Constants.url + Constants.filePrefix + "/" + jsonData[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
-                        self.featuredTitles.append(jsonData[i].title)
+                    for i in 0 ..< min(jsonData.data.count, self.nbFeaturedSlides) {
+                        self.placeHolders.append(Constants.url + Constants.filePrefix + "/" + jsonData.data[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
+                        self.featuredTitles.append(jsonData.data[i].title)
+                        self.featuredIds.append(jsonData.data[i].id)
                     }
+                    
+                    self.nbLoadingSlides = self.featuredTitles.count
                     
                     self.slides = self.createSlides()
                     self.setupSlideScrollView(slides: self.slides)
@@ -209,7 +213,9 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
         
         for i in 0 ..< placeHolders.count {
             let slide: FeaturedSlide = Bundle.main.loadNibNamed("FeaturedSlide", owner: self, options: nil)?.first as! FeaturedSlide
+            
             slide.titleLabel.text = featuredTitles[i]
+            slide.newsId = featuredIds[i]
             
             if let url = URL(string: placeHolders[i]) {
                 DispatchQueue.global().async {
@@ -239,7 +245,9 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                 }
             }
             
-            createdSlides.append(slide)
+            if createdSlides.count < 3 {
+                createdSlides.append(slide)
+            }
         }
         
         return createdSlides
@@ -261,16 +269,21 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                 x: width * CGFloat(i),
                 y: 0,
                 width: width,
-                height: width * ratio)
-            
-            slides[i].imageView.frame.size = CGSize(
-                width: width,
                 height: width * ratio
             )
             
-            slides[i].imageView.frame.origin = CGPoint(
-                x: 0, // (width - slides[i].imageView.frame.width) / 2,
-                y: height - slides[i].imageView.frame.height
+            slides[i].imageView.frame = CGRect(
+                x: 0,
+                y: 0,
+                width: width,
+                height: height
+            )
+            
+            slides[i].titleBackground.frame = CGRect(
+                x: 0,
+                y: height - 80,
+                width: width,
+                height: 80
             )
             
             slides[i].titleLabel.frame.origin = CGPoint(

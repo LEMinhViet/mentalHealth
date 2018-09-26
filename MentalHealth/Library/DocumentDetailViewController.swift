@@ -26,10 +26,10 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
     @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var featuredImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentWebView: WKWebView!
+    private var contentWebView: WKWebView = WKWebView()
     
     @IBOutlet weak var featuredImageHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var contentWebViewHeightConstraint: NSLayoutConstraint!
+    private var contentWebViewHeightConstraint: NSLayoutConstraint?
     
     let apiUrl = Constants.url + Constants.apiPrefix + "/documents"
     
@@ -43,6 +43,11 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad(withMenu: false, withItems: false)
+        
+        contentWebView.configuration.dataDetectorTypes = .all
+        
+        contentWebViewHeightConstraint = NSLayoutConstraint(item: contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 235)
+        mainStackView.addArrangedSubview(contentWebView)
         
         self.displaySpinner(onView: self.view)
         self.isFeaturedLoaded = false
@@ -106,7 +111,7 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
                     
                     let contentText = self.baseHTML.replacingOccurrences(of: "{body}", with: jsonData.content ?? "")
                     
-                    self.contentWebViewHeightConstraint.isActive = false
+                    self.contentWebViewHeightConstraint?.isActive = false
                     self.contentWebView.navigationDelegate = self
                     self.contentWebView.loadHTMLString("\(contentText)", baseURL: Bundle.main.bundleURL)
                 }
@@ -127,7 +132,7 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
                 self.contentWebView.frame.size = self.contentWebView.scrollView.contentSize
                 
                 self.contentWebViewHeightConstraint = NSLayoutConstraint(item: self.contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.contentWebView.scrollView.contentSize.height);
-                self.contentWebViewHeightConstraint.isActive = true
+                self.contentWebViewHeightConstraint?.isActive = true
                 
                 self.mainStackView.updateConstraints()
                 
@@ -145,12 +150,18 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
     
     @IBAction func pdfClicked(_ sender: Any) {
         guard let url = URL(string: urlVal) else { return }
-        guard let pdfDocument = PDFDocument(url: url) else { return }
-        guard let pdfData = pdfDocument.dataRepresentation() else { return }
         
-        let shareVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
-        shareVC.popoverPresentationController?.sourceView = self.view
-        self.present(shareVC, animated: true, completion: nil)
+        if #available(iOS 11, *) {
+            guard let pdfDocument = PDFDocument(url: url) else { return }
+            guard let pdfData = pdfDocument.dataRepresentation() else { return }
+            
+            let shareVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
+            shareVC.popoverPresentationController?.sourceView = self.view
+            self.present(shareVC, animated: true, completion: nil)
+        }
+        else if #available(iOS 10, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
 
     /*

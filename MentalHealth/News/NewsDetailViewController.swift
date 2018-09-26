@@ -88,16 +88,21 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
     @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var featuredImageView: UIImageView!
-    @IBOutlet weak var contentWebView: WKWebView!
+    private var contentWebView: WKWebView = WKWebView()
 
     @IBOutlet weak var featuredImageHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var contentWebViewHeightConstraint: NSLayoutConstraint!
+    private var contentWebViewHeightConstraint: NSLayoutConstraint?
     
     private var isFeaturedLoaded: Bool = false
     private var isBodyLoaded: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad(withMenu: false, withItems: false)
+        
+        contentWebView.configuration.dataDetectorTypes = .all
+        
+        contentWebViewHeightConstraint = NSLayoutConstraint(item: contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 235)
+        mainStackView.addArrangedSubview(contentWebView)
         
         self.displaySpinner(onView: self.view)
         self.isFeaturedLoaded = false
@@ -169,7 +174,7 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
                         
                         let contentText = self.baseHTML.replacingOccurrences(of: "{body}", with: jsonData.content ?? "")
                         
-                        self.contentWebViewHeightConstraint.isActive = false
+                        self.contentWebViewHeightConstraint?.isActive = false
                         self.contentWebView.navigationDelegate = self
                         self.contentWebView.loadHTMLString("\(contentText)", baseURL: Bundle.main.bundleURL)
                     }
@@ -189,7 +194,7 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
                 self.contentWebView.frame.size = self.contentWebView.scrollView.contentSize
                 
                 self.contentWebViewHeightConstraint = NSLayoutConstraint(item: self.contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.contentWebView.scrollView.contentSize.height);
-                self.contentWebViewHeightConstraint.isActive = true
+                self.contentWebViewHeightConstraint?.isActive = true
                 
                 self.mainScrollView.contentSize = CGSize(
                     width: self.mainScrollView.frame.width,

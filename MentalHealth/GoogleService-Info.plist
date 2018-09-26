@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>476765078400-4b0a4imot3q4c5f9eg9n5kgb4ueotrhi.apps.googleusercontent.com</string>
+	<string>476765078400-lbgughljkfnl9n1a6b01riotacoep7uo.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.476765078400-4b0a4imot3q4c5f9eg9n5kgb4ueotrhi</string>
+	<string>com.googleusercontent.apps.476765078400-lbgughljkfnl9n1a6b01riotacoep7uo</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBNx_ajxPvzhEqprMUAx_CUgsRVZrqmPsA</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>inno.app.mental.shiningmind</string>
+	<string>crisp.mentalhealth.shinningmind</string>
 	<key>PROJECT_ID</key>
 	<string>mentalhealth-d6674</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:476765078400:ios:3c2629f8acbfc668</string>
+	<string>1:476765078400:ios:f7ce78a160ce76e6</string>
 	<key>DATABASE_URL</key>
 	<string>https://mentalhealth-d6674.firebaseio.com</string>
 </dict>
