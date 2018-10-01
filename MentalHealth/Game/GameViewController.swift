@@ -64,6 +64,7 @@ struct OneQuestion: Codable {
     let choose3: String
     let choose4: String
     let answer: String
+    let about_answer: String
     let created_at: String?
     let updated_at: String?
 }
@@ -90,6 +91,10 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc private func onLevelTap(_ sender: UITapGestureRecognizer) {
         let level: Int = (sender.view?.tag)!
+        self.showLevel(level)
+    }
+    
+    public func showLevel(_ level: Int) {
         self.updateLevel(level)
         
         levelView.isHidden = true
@@ -184,7 +189,8 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var popupDetailBg: UIImageView!
     @IBOutlet weak var backDetailButton: UIButton!
-    @IBOutlet weak var detailText: UILabel!
+    @IBOutlet weak var detailText: UITextView!
+    
     @IBAction func backDetailButtonClicked(_ sender: Any) {
         detailView.isHidden = true
         questionView.isHidden = false
@@ -288,7 +294,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func updateLevel(_ level: Int) {
-        let levelQuestionUrl = questionUrl + "/" + String(level + 1)
+        let levelQuestionUrl = questionUrl + "/" + String(level)
         guard let url = URL(string: levelQuestionUrl) else { return }
         URLSession.shared.dataTask(with: url) { (data, resonse, error) in
             if error != nil {
@@ -323,14 +329,23 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         let popupImageW = popupDetailBg.image?.size.width
         let popupImageH = popupDetailBg.image?.size.height
         
+        let offsetY: CGFloat = -30.0
+        
+        popupDetailBg.frame = CGRect(
+            x: (viewFrameW - popupImageW!) / 2,
+            y: (viewFrameH - popupImageH!) / 2 + offsetY,
+            width: popupImageW!,
+            height: popupImageH!
+        )
+        
         backDetailButton.frame.origin = CGPoint(
             x: (viewFrameW - backDetailButton.frame.width) / 2,
-            y: (viewFrameH + popupImageH! - backDetailButton.frame.height) / 2 - 10
+            y: (viewFrameH + popupImageH! - backDetailButton.frame.height) / 2 + offsetY - 10
         )
         
         detailText.frame = CGRect(
             x: viewFrameW * 0.5 - popupImageW! * 0.4,
-            y: viewFrameH * 0.5 - popupImageH! * 0.4,
+            y: viewFrameH * 0.5 - popupImageH! * 0.4 + offsetY,
             width: popupImageW! * 0.8,
             height: popupImageH! * 0.8
         )
@@ -338,9 +353,8 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         detailView.isHidden = true
     }
     
-    private func updateDetail() {
-        // detailText.text = ""
-        detailText.sizeToFit()
+    private func updateDetail(aboutAnswer: String) {
+        detailText.text = aboutAnswer.htmlToString
     }
     
     private func setupQuestionView() {
@@ -400,7 +414,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         answerPanels[2].updateAnswer(currentQuestionData.choose3)
         answerPanels[3].updateAnswer(currentQuestionData.choose4)
         
-        self.updateDetail()
+        self.updateDetail(aboutAnswer: currentQuestionData.about_answer)
     }
     
     func createAnswers() -> [AnswerPanel] {

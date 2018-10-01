@@ -73,7 +73,6 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
     
     var slides: [FeaturedSlide] = [];
     
-    var nbLoadingSlides: Int = 0
     var nbFeaturedSlides: Int = 3
     
     let leftPanelOffset: CGFloat = 240
@@ -85,6 +84,11 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
         // Do any additional setup after loading the view, typically from a nib.
         
         self.displaySpinner(onView: self.view)
+        self.updateBadge()
+    
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BadgeNotification"), object: nil, queue: nil) { (note) -> Void in
+            self.updateBadge()
+        }
         
         let navibarHeight = (self.navigationController?.navigationBar.frame.height)!
         
@@ -136,8 +140,6 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                         self.featuredTitles.append(jsonData.data[i].title)
                         self.featuredIds.append(jsonData.data[i].id)
                     }
-                    
-                    self.nbLoadingSlides = self.featuredTitles.count
                     
                     self.slides = self.createSlides()
                     self.setupSlideScrollView(slides: self.slides)
@@ -224,25 +226,18 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                         DispatchQueue.main.async {
                             slide.imageView.image = UIImage(data: data)
                             
-                            self.nbLoadingSlides -= 1
-                            if self.nbLoadingSlides == 0 {
+                            if i == 0 {
                                 self.removeSpinner()
                             }
                         }
                     }
-                    else {
-                        self.nbLoadingSlides -= 1
-                        if self.nbLoadingSlides == 0 {
-                            self.removeSpinner()
-                        }
+                    else if i == 0 {
+                        self.removeSpinner()
                     }
                 }
             }
-            else {
-                self.nbLoadingSlides -= 1
-                if self.nbLoadingSlides == 0 {
-                    self.removeSpinner()
-                }
+            else if i == 0 {
+                self.removeSpinner()
             }
             
             if createdSlides.count < 3 {
@@ -307,5 +302,14 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
         featuredPageControl.currentPage = Int(pageIndex)
     }
     
-    
+    func updateBadge() {
+        let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
+        var nbBadge = groupDefaults?.integer(forKey: "nbBadge")
+        
+        if nbBadge == nil {
+            nbBadge = 0
+        }
+        
+        self.updateNotification(nbBadge: nbBadge!)
+    }
 }

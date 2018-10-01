@@ -1,0 +1,92 @@
+//
+//  NotificationService.swift
+//  NotificationService
+//
+//  Created by LE Minh Viet on 01/10/2018.
+//  Copyright © 2018 LE Minh Viet. All rights reserved.
+//
+
+import UserNotifications
+
+struct NotiObject: Codable {
+    var id : Int = 0
+    var type: NotiType = .news
+    var title: String = ""
+    
+    init(dict: [AnyHashable: Any]) {
+        
+        if let newId = dict["id"] as? String {
+            self.id = Int(newId) ?? -1
+        }
+        
+        if let type = dict["type"] as? String {
+            self.type = NotiType(rawValue: Int(type) ?? 0) ?? .news
+        }
+        
+        if let aps = dict["aps"] as? [String: Any] {
+            if let alertObj = aps["alert"] as? [String: Any] {
+                if let title = alertObj["title"] as? String {
+                    self.title = title
+                }
+            }
+        }
+    }
+}
+
+enum NotiType: Int, Codable {
+    case news, thirdtyDay, emotion, quiz
+}
+
+class NotificationService: UNNotificationServiceExtension {
+
+    var contentHandler: ((UNNotificationContent) -> Void)?
+    var bestAttemptContent: UNMutableNotificationContent?
+
+    override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+        self.contentHandler = contentHandler
+        bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
+        
+        let userInfo = request.content.userInfo as! [String: Any]
+        let noti = NotiObject(dict: userInfo)
+        
+        let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
+        var nbBadge = groupDefaults?.integer(forKey: "nbBadge")
+        
+        let notificationRawDatas = groupDefaults?.value(forKey: "notificationDatas") as? Data
+        var notificationDatas = Array<NotiObject>()
+        
+        
+        if nbBadge == nil {
+            nbBadge = 0
+        }
+        
+        nbBadge = nbBadge! + 1
+        
+        if notificationRawDatas != nil {
+            notificationDatas = try! PropertyListDecoder().decode(Array<NotiObject>.self, from: notificationRawDatas!)
+        }
+        
+        notificationDatas.append(noti)
+        
+        groupDefaults?.set(nbBadge, forKey: "nbBadge")
+        groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
+        
+        if let bestAttemptContent = bestAttemptContent {
+            // Modify the notification content here...
+            // bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
+            
+            bestAttemptContent.sound = .default
+            bestAttemptContent.badge = nbBadge as NSNumber?
+                        
+            contentHandler(bestAttemptContent)
+        }
+    }
+    
+    override func serviceExtensionTimeWillExpire() {
+        // Called just before the extension will be terminated by the system.
+        // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
+        if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
+            contentHandler(bestAttemptContent)
+        }
+    }
+}

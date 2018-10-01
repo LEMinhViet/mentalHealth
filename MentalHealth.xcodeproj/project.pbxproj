@@ -25,12 +25,13 @@
 		8020E13020F56F7700D8AD9E /* ThirtyDaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020E12F20F56F7700D8AD9E /* ThirtyDaysCell.swift */; };
 		8020E13220F56FAA00D8AD9E /* ThirtyDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020E13120F56FAA00D8AD9E /* ThirtyDaysViewController.swift */; };
 		8020E13420F5853B00D8AD9E /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8020E13320F5853B00D8AD9E /* DayViewController.swift */; };
+		8025C219216188E9009D199C /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025C218216188E9009D199C /* NotificationService.swift */; };
+		8025C21D216188E9009D199C /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8025C216216188E9009D199C /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		802F5FA62145C7F500AFADB9 /* SOSDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802F5FA52145C7F500AFADB9 /* SOSDetailViewController.swift */; };
 		8038CA23210141510042A64E /* NewDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038CA22210141510042A64E /* NewDiaryViewController.swift */; };
 		8038CA2521015D520042A64E /* DiaryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8038CA2421015D520042A64E /* DiaryDetailViewController.swift */; };
-		8041B6C220F7FDDA00D5754E /* NewsByDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8041B6C120F7FDDA00D5754E /* NewsByDayCell.xib */; };
-		8041B6C420F7FE0F00D5754E /* NewsByDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8041B6C320F7FE0F00D5754E /* NewsByDayCell.swift */; };
-		8041B6CF20F8041600D5754E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8041B6CE20F8041600D5754E /* NewsCell.swift */; };
+		8041B6C220F7FDDA00D5754E /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8041B6C120F7FDDA00D5754E /* NewsCell.xib */; };
+		8041B6C420F7FE0F00D5754E /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8041B6C320F7FE0F00D5754E /* NewsCell.swift */; };
 		8041B6D120F8155700D5754E /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8041B6D020F8155700D5754E /* VideoViewController.swift */; };
 		8041B6D320F8166D00D5754E /* VideoByDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8041B6D220F8166D00D5754E /* VideoByDayCell.swift */; };
 		8041B6D520F8167700D5754E /* VideoByDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8041B6D420F8167700D5754E /* VideoByDayCell.xib */; };
@@ -56,6 +57,7 @@
 		805A78D72141B316003C60BC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805A78D62141B316003C60BC /* Constants.swift */; };
 		805C440F20F3D17F006D07FE /* AnswerPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 805C440E20F3D17F006D07FE /* AnswerPanel.xib */; };
 		805C441120F3E02C006D07FE /* AnswerPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805C441020F3E02C006D07FE /* AnswerPanel.swift */; };
+		805F0BCC2162BA7100667177 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 805F0BCB2162BA7000667177 /* Assets.xcassets */; };
 		805FC3592137715C001E5CEC /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805FC3582137715C001E5CEC /* InfoViewController.swift */; };
 		8061D15B2104173A000CAC43 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8061D15A2104173A000CAC43 /* ChatViewController.swift */; };
 		8061D15D21041749000CAC43 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8061D15C21041749000CAC43 /* ChartViewController.swift */; };
@@ -66,7 +68,6 @@
 		806FD8F820F971B400BEFFA3 /* AZDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806FD8F720F971B400BEFFA3 /* AZDetailViewController.swift */; };
 		808CCB0721486A0900169733 /* DayViewSlide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 808CCB0621486A0900169733 /* DayViewSlide.xib */; };
 		808CCB0921486ACD00169733 /* DayViewSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808CCB0821486ACD00169733 /* DayViewSlide.swift */; };
-		808CCB0D214881A500169733 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808CCB0C214881A400169733 /* Assets.xcassets */; };
 		80B3FEBD210808760043A034 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3FEBC210808760043A034 /* LeftViewController.swift */; };
 		80FAFB652113BFCC002F6071 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAFB642113BFCC002F6071 /* LoginViewController.swift */; };
 		80FAFB672113DA26002F6071 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FAFB662113DA26002F6071 /* NewsDetailViewController.swift */; };
@@ -81,7 +82,28 @@
 			remoteGlobalIDString = 02B6D79920E18CF800B9946A;
 			remoteInfo = MentalHealth;
 		};
+		8025C21B216188E9009D199C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 02B6D79220E18CF800B9946A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8025C215216188E9009D199C;
+			remoteInfo = NotificationService;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		80DAE65D215C288D002310D6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8025C21D216188E9009D199C /* NotificationService.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		02B6D79A20E18CF800B9946A /* MentalHealth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentalHealth.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,12 +130,14 @@
 		8020E12F20F56F7700D8AD9E /* ThirtyDaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThirtyDaysCell.swift; path = MentalHealth/30Days/ThirtyDaysCell.swift; sourceTree = SOURCE_ROOT; };
 		8020E13120F56FAA00D8AD9E /* ThirtyDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThirtyDaysViewController.swift; path = MentalHealth/30Days/ThirtyDaysViewController.swift; sourceTree = SOURCE_ROOT; };
 		8020E13320F5853B00D8AD9E /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DayViewController.swift; path = MentalHealth/30Days/DayViewController.swift; sourceTree = SOURCE_ROOT; };
+		8025C216216188E9009D199C /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8025C218216188E9009D199C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		8025C21A216188E9009D199C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		802F5FA52145C7F500AFADB9 /* SOSDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSDetailViewController.swift; sourceTree = "<group>"; };
 		8038CA22210141510042A64E /* NewDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDiaryViewController.swift; sourceTree = "<group>"; };
 		8038CA2421015D520042A64E /* DiaryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailViewController.swift; sourceTree = "<group>"; };
-		8041B6C120F7FDDA00D5754E /* NewsByDayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsByDayCell.xib; sourceTree = "<group>"; };
-		8041B6C320F7FE0F00D5754E /* NewsByDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsByDayCell.swift; sourceTree = "<group>"; };
-		8041B6CE20F8041600D5754E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		8041B6C120F7FDDA00D5754E /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
+		8041B6C320F7FE0F00D5754E /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		8041B6D020F8155700D5754E /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		8041B6D220F8166D00D5754E /* VideoByDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoByDayCell.swift; sourceTree = "<group>"; };
 		8041B6D420F8167700D5754E /* VideoByDayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoByDayCell.xib; sourceTree = "<group>"; };
@@ -139,6 +163,8 @@
 		805A78D62141B316003C60BC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		805C440E20F3D17F006D07FE /* AnswerPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerPanel.xib; sourceTree = "<group>"; };
 		805C441020F3E02C006D07FE /* AnswerPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerPanel.swift; sourceTree = "<group>"; };
+		805F0BCA2162A8E200667177 /* NotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationService.entitlements; sourceTree = "<group>"; };
+		805F0BCB2162BA7000667177 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		805FC3582137715C001E5CEC /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		8061D15A2104173A000CAC43 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8061D15C21041749000CAC43 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
@@ -149,7 +175,6 @@
 		806FD8F720F971B400BEFFA3 /* AZDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AZDetailViewController.swift; sourceTree = "<group>"; };
 		808CCB0621486A0900169733 /* DayViewSlide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DayViewSlide.xib; path = MentalHealth/30Days/DayViewSlide.xib; sourceTree = SOURCE_ROOT; };
 		808CCB0821486ACD00169733 /* DayViewSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DayViewSlide.swift; path = MentalHealth/30Days/DayViewSlide.swift; sourceTree = SOURCE_ROOT; };
-		808CCB0C214881A400169733 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80B3FEBC210808760043A034 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		80DC0B572147411E00F06B35 /* MentalHealth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MentalHealth.entitlements; sourceTree = "<group>"; };
 		80FAFB642113BFCC002F6071 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +201,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8025C213216188E9009D199C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -184,6 +216,7 @@
 			children = (
 				02B6D79C20E18CF800B9946A /* MentalHealth */,
 				02B6D7B120E18CFB00B9946A /* MentalHealthUITests */,
+				8025C217216188E9009D199C /* NotificationService */,
 				02B6D79B20E18CF800B9946A /* Products */,
 				AA184F5037328A8481DC00E2 /* Pods */,
 				E6ED2B6FB56828E32B662157 /* Frameworks */,
@@ -195,6 +228,7 @@
 			children = (
 				02B6D79A20E18CF800B9946A /* MentalHealth.app */,
 				02B6D7AE20E18CFB00B9946A /* MentalHealthUITests.xctest */,
+				8025C216216188E9009D199C /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,9 +252,9 @@
 				02B6D79F20E18CF800B9946A /* ViewController.swift */,
 				02B6D7A120E18CF800B9946A /* Main.storyboard */,
 				02B6D7A620E18CFB00B9946A /* LaunchScreen.storyboard */,
+				805F0BCB2162BA7000667177 /* Assets.xcassets */,
 				02B6D7A920E18CFB00B9946A /* Info.plist */,
 				804E660D2159BD21008C07AE /* GoogleService-Info.plist */,
-				808CCB0C214881A400169733 /* Assets.xcassets */,
 				80FAFB642113BFCC002F6071 /* LoginViewController.swift */,
 				805A78D62141B316003C60BC /* Constants.swift */,
 			);
@@ -277,6 +311,16 @@
 			);
 			name = 30Days;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		8025C217216188E9009D199C /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				805F0BCA2162A8E200667177 /* NotificationService.entitlements */,
+				8025C218216188E9009D199C /* NotificationService.swift */,
+				8025C21A216188E9009D199C /* Info.plist */,
+			);
+			path = NotificationService;
 			sourceTree = "<group>";
 		};
 		8041B6C520F8001C00D5754E /* Common */ = {
@@ -343,9 +387,8 @@
 			isa = PBXGroup;
 			children = (
 				8051917E20F6D152006ECB50 /* NewsViewController.swift */,
-				8041B6C120F7FDDA00D5754E /* NewsByDayCell.xib */,
-				8041B6C320F7FE0F00D5754E /* NewsByDayCell.swift */,
-				8041B6CE20F8041600D5754E /* NewsCell.swift */,
+				8041B6C120F7FDDA00D5754E /* NewsCell.xib */,
+				8041B6C320F7FE0F00D5754E /* NewsCell.swift */,
 				80FAFB662113DA26002F6071 /* NewsDetailViewController.swift */,
 			);
 			path = News;
@@ -383,10 +426,12 @@
 				02B6D79720E18CF800B9946A /* Frameworks */,
 				02B6D79820E18CF800B9946A /* Resources */,
 				B65B65B579FBDC9D2A9266FA /* [CP] Embed Pods Frameworks */,
+				80DAE65D215C288D002310D6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8025C21C216188E9009D199C /* PBXTargetDependency */,
 			);
 			name = MentalHealth;
 			productName = MentalHealth;
@@ -412,19 +457,39 @@
 			productReference = 02B6D7AE20E18CFB00B9946A /* MentalHealthUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8025C215216188E9009D199C /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8025C21E216188E9009D199C /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				8025C212216188E9009D199C /* Sources */,
+				8025C213216188E9009D199C /* Frameworks */,
+				8025C214216188E9009D199C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			productName = NotificationService;
+			productReference = 8025C216216188E9009D199C /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		02B6D79220E18CF800B9946A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "LE Minh Viet";
 				TargetAttributes = {
 					02B6D79920E18CF800B9946A = {
 						CreatedOnToolsVersion = 9.4.1;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -433,6 +498,14 @@
 					02B6D7AD20E18CFB00B9946A = {
 						CreatedOnToolsVersion = 9.4.1;
 						TestTargetID = 02B6D79920E18CF800B9946A;
+					};
+					8025C215216188E9009D199C = {
+						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -451,6 +524,7 @@
 			targets = (
 				02B6D79920E18CF800B9946A /* MentalHealth */,
 				02B6D7AD20E18CFB00B9946A /* MentalHealthUITests */,
+				8025C215216188E9009D199C /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -463,16 +537,23 @@
 				02B6D7A820E18CFB00B9946A /* LaunchScreen.storyboard in Resources */,
 				805C440F20F3D17F006D07FE /* AnswerPanel.xib in Resources */,
 				804E660E2159BD21008C07AE /* GoogleService-Info.plist in Resources */,
-				8041B6C220F7FDDA00D5754E /* NewsByDayCell.xib in Resources */,
+				8041B6C220F7FDDA00D5754E /* NewsCell.xib in Resources */,
 				8041B6D520F8167700D5754E /* VideoByDayCell.xib in Resources */,
 				808CCB0721486A0900169733 /* DayViewSlide.xib in Resources */,
 				02B6D7A320E18CF800B9946A /* Main.storyboard in Resources */,
-				808CCB0D214881A500169733 /* Assets.xcassets in Resources */,
+				805F0BCC2162BA7100667177 /* Assets.xcassets in Resources */,
 				8008FCB520F2460E0038EA5E /* FeaturedSlide.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		02B6D7AC20E18CFB00B9946A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8025C214216188E9009D199C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -560,7 +641,7 @@
 				80FAFB672113DA26002F6071 /* NewsDetailViewController.swift in Sources */,
 				80662B582109169B009FB4B5 /* QuestionChatCell.swift in Sources */,
 				02B6D7A020E18CF800B9946A /* ViewController.swift in Sources */,
-				8041B6C420F7FE0F00D5754E /* NewsByDayCell.swift in Sources */,
+				8041B6C420F7FE0F00D5754E /* NewsCell.swift in Sources */,
 				8056D843210294D0008DB395 /* DiaryListViewController.swift in Sources */,
 				8041B6D120F8155700D5754E /* VideoViewController.swift in Sources */,
 				808CCB0921486ACD00169733 /* DayViewSlide.swift in Sources */,
@@ -580,7 +661,6 @@
 				805A78D72141B316003C60BC /* Constants.swift in Sources */,
 				8008FCB320F245D40038EA5E /* FeaturedSlide.swift in Sources */,
 				8057C8DE213DDF01004B6494 /* NotificationListCell.swift in Sources */,
-				8041B6CF20F8041600D5754E /* NewsCell.swift in Sources */,
 				80662B5221090BFE009FB4B5 /* DocumentViewController.swift in Sources */,
 				805C441120F3E02C006D07FE /* AnswerPanel.swift in Sources */,
 				02B6D79E20E18CF800B9946A /* AppDelegate.swift in Sources */,
@@ -612,6 +692,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8025C212216188E9009D199C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8025C219216188E9009D199C /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -619,6 +707,11 @@
 			isa = PBXTargetDependency;
 			target = 02B6D79920E18CF800B9946A /* MentalHealth */;
 			targetProxy = 02B6D7AF20E18CFB00B9946A /* PBXContainerItemProxy */;
+		};
+		8025C21C216188E9009D199C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8025C215216188E9009D199C /* NotificationService */;
+			targetProxy = 8025C21B216188E9009D199C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -693,7 +786,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -747,7 +840,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -760,6 +853,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D61DFD96ED2813686E2D248C /* Pods-MentalHealth.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MentalHealth/MentalHealth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -781,6 +875,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2E82B6510F68DD976142ADE6 /* Pods-MentalHealth.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MentalHealth/MentalHealth.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -838,6 +933,51 @@
 			};
 			name = Release;
 		};
+		8025C21F216188E9009D199C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NotificationService/NotificationService.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59MNVF6V67;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = crisp.mentalhealth.shinningmind.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		8025C220216188E9009D199C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NotificationService/NotificationService.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59MNVF6V67;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = crisp.mentalhealth.shinningmind.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -864,6 +1004,15 @@
 			buildConfigurations = (
 				02B6D7BB20E18CFB00B9946A /* Debug */,
 				02B6D7BC20E18CFB00B9946A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8025C21E216188E9009D199C /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8025C21F216188E9009D199C /* Debug */,
+				8025C220216188E9009D199C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

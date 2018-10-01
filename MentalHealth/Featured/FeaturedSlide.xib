@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sru-IS-8fL">
+                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="sru-IS-8fL">
                     <rect key="frame" x="0.0" y="0.0" width="355" height="200"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <connections>
@@ -53,4 +53,7 @@
             </connections>
         </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="img_placeholder" width="380" height="185"/>
+    </resources>
 </document>

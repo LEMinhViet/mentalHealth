@@ -34,15 +34,16 @@ struct OneNews: Codable {
     let image: String
 }
 
-class NewsViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class NewsViewController: BaseViewController {
 
-    @IBOutlet weak var newsTableView: UITableView!
+    @IBOutlet weak var newsStackView: UIStackView!
     
-    var idByDays: [[String]] = []
-    var imagesByDays: [[String]] = []
-    var titleByDays: [[String]] = []
+    var newsIds: [String] = []
+    var newsImages: [String] = []
+    var newsTitles: [String] = []
     
     var nbLoadingImage: Int = 0
+    var nbFirstLoadingImage: Int = 3
     
     let apiUrl: String = Constants.url + Constants.apiPrefix + "/news"
     var newsData = AllNews()
@@ -70,22 +71,20 @@ class NewsViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                 DispatchQueue.main.async {
                     self.newsData = jsonData
                     
-                    self.idByDays = []
-                    self.imagesByDays = []
-                    self.titleByDays = []
-                    
-                    self.idByDays.append([])
-                    self.imagesByDays.append([])
-                    self.titleByDays.append([])
+                    self.newsIds = []
+                    self.newsImages = []
+                    self.newsTitles = []
                     
                     for i in 0 ..< self.newsData.data.count {
-                        self.idByDays[0].append(String(self.newsData.data[i].id))
-                        self.imagesByDays[0].append(Constants.url + Constants.filePrefix + "/" + self.newsData.data[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
-                        self.titleByDays[0].append(self.newsData.data[i].title)
+                        self.newsIds.append(String(self.newsData.data[i].id))
+                        self.newsImages.append(Constants.url + Constants.filePrefix + "/" + self.newsData.data[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
+                        self.newsTitles.append(self.newsData.data[i].title)
                     }
                     
-                    self.nbLoadingImage = self.newsData.data.count
-                    self.newsTableView.reloadData()
+                    self.nbLoadingImage = min(self.newsData.data.count, self.nbFirstLoadingImage)
+                    self.updateStackView()
+                    
+                    self.removeSpinner()
                 }
             } catch let jsonError {
                 print(jsonError)
@@ -93,30 +92,23 @@ class NewsViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         }.resume()
     }
     
-    // The method returning size of the list
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return imagesByDays.count
-    }
-    
     // The method returning each cell of the list
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as! NewsCell
-        
+    public func updateStackView() {
         // Remove old content if needed
-        for oldNews in cell.contentStackView.subviews{
+        for oldNews in newsStackView.subviews{
             oldNews.removeFromSuperview()
         }
         
         // Displaying values
-        for i in 0 ..< imagesByDays[indexPath.row].count {
-            let article: NewsByDayCell = Bundle.main.loadNibNamed("NewsByDayCell", owner: self, options: nil)?.first as! NewsByDayCell
+        for i in 0 ..< newsImages.count {
+            let article: NewsCell = Bundle.main.loadNibNamed("NewsCell", owner: self, options: nil)?.first as! NewsCell
             
-            let cellWidth = cell.frame.width;
+            let cellWidth = newsStackView.frame.width;
             
+            article.translatesAutoresizingMaskIntoConstraints = false
             article.frame.size = CGSize(width: cellWidth, height: article.frame.height)
             
-            if let url = URL(string: imagesByDays[indexPath.row][i]) {
+            if let url = URL(string: newsImages[i]) {
                 DispatchQueue.global().async {
                     if let data = try? Data(contentsOf: url) {
                         DispatchQueue.main.async {
@@ -128,46 +120,23 @@ class NewsViewController: BaseViewController, UITableViewDelegate, UITableViewDa
                             let newHeight = article.featuredImage.frame.width / ratio
                             
                             article.imageHeightConstraint.constant = newHeight
-                            
-                            self.nbLoadingImage -= 1
-                            if (self.nbLoadingImage == 0) {
-                                self.newsTableView.beginUpdates()
-                                self.newsTableView.endUpdates()
-                                
-                                self.removeSpinner()
-                            }
                         }
                     }
                     else {
                         DispatchQueue.main.async {
                             article.featuredImage.image = UIImage(named: "img_roiloancamxuc")
-                            
-                            self.nbLoadingImage -= 1
-                            if (self.nbLoadingImage == 0) {
-                                self.newsTableView.beginUpdates()
-                                self.newsTableView.endUpdates()
-                                
-                                self.removeSpinner()
-                            }
                         }
                     }
                 }
             }
             
-            article.titleLabel.text = titleByDays[indexPath.row][i]
+            article.titleLabel.text = newsTitles[i]
             
-            article.setFeaturedImageName(value: imagesByDays[indexPath.row][i])
-            article.setNewsId(newsId: idByDays[indexPath.row][i])
+            article.setFeaturedImageName(value: newsImages[i])
+            article.setNewsId(newsId: newsIds[i])
             article.setNavigation(navigation: navigationController!)
 
-            cell.contentStackView.addArrangedSubview(article);
+            newsStackView.addArrangedSubview(article);
         }
-        
-        return cell
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

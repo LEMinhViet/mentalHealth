@@ -41,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         let noti = NotiObject(dict: userInfo)
+        
+        removeNotification(data: noti)
         NotificationHandler.receiveNoti(noti)
     }
     
@@ -51,27 +53,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 
-       let noti = NotiObject(dict: userInfo)
+        print("GO REMOTE NOTIF")
+        let noti = NotiObject(dict: userInfo)
+        removeNotification(data: noti)
         
         if application.applicationState == .active {
-//            let alert = UIAlertController(title: noti.title, message: "", preferredStyle: .alert)
-//            let actionYes = UIAlertAction(title: "OK", style: .default) { (action) in
-//                NotificationHandler.receiveNoti(noti)
-//            }
-//            let actionNo = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//            alert.addAction(actionYes)
-//            alert.addAction(actionNo)
-//
-//            guard let navigation = UIApplication.shared.keyWindow?.rootViewController else {
-//                return
-//            }
-//
-//            let content = UNMutableNotificationContent()
-//            content.title = "Don't forget"
-//            content.body = "Buy some milk"
-//            content.sound = UNNotificationSound.default()
-//
-//            //navigation.present(alert, animated: true)
+            NotificationHandler.receiveNoti(noti)
         } else {
             NotificationHandler.receiveNoti(noti)
         }
@@ -79,28 +66,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
-    func scheduleLocalNotification(noti: NotiObject) {
-        // Create Notification Content
-        let notificationContent = UNMutableNotificationContent()
-        
-        // Configure Notification Content
-        notificationContent.title = noti.title
-        
-        // Add Trigger
-        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.0, repeats: false)
-        
-        // Create Notification Request
-        let notificationRequest = UNNotificationRequest(identifier: "duringActiveNoti", content: notificationContent, trigger: notificationTrigger)
-        
-        // Add Request to User Notification Center
-        UNUserNotificationCenter.current().add(notificationRequest) { (error) in
-            if let error = error {
-                print("Unable to Add Notification Request (\(error), \(error.localizedDescription))")
-            }
-        }
-    }
-    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo as! [String: Any]
+        
+        // Print full message.
+        print("Notification message === ", userInfo)
+        
+//        [
+//            "title": 'Hôm nay bạn cảm thấy thế nào?',
+//            "id": 0,
+//            "gcm.message_id": 0:1538429451929790%0e2953720e295372,
+//            "type": 2,
+//            "google.c.a.e": 1,
+//            "gcm.notification.id": 0,
+//            "aps": {
+//                alert = {
+//                    title = "'H\U00f4m nay b\U1ea1n c\U1ea3m th\U1ea5y th\U1ebf n\U00e0o?'";
+//                };
+//            },
+//            "gcm.notification.type": 2
+//        ]
+        
+        let noti = NotiObject(dict: userInfo)
+        addNotification(data: noti)
+        
         completionHandler([.alert])
     }
     
@@ -159,26 +148,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-        logTime(action: Constants.TO_BACKGROUND)
+        print("RESIGN ACTIVE")
+//        logTime(action: Constants.TO_BACKGROUND)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        print("ENTER BACKGROUND")
+        logTime(action: Constants.TO_BACKGROUND)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        print("ENTER FOREGROUND")
         logTime(action: Constants.TO_FOREGROUND)
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        print("DID BECOME ACTIVE")
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        
+        print("WILL TERMINATE")
         logTime(action: Constants.TO_BACKGROUND)
     }
     
@@ -220,7 +214,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             do {
                 let logResult = try JSONDecoder().decode(LogResult.self, from: data)
                 
-                //Get back to the main queue
+                // Get back to the main queue
                 DispatchQueue.main.async {
                     print("LOG ", action, logResult)
                     if logResult.message == "success" {
@@ -236,6 +230,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     
                 }
             }
-            }.resume()
+        }.resume()
+    }
+    
+    func addNotification(data: NotiObject) {
+        let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
+        var nbBadge = groupDefaults?.integer(forKey: "nbBadge")
+        
+//        let notificationRawDatas = groupDefaults?.value(forKey: "notificationDatas") as? Data
+//        var notificationDatas = Array<NotiObject>()
+//
+//        if nbBadge == nil {
+//            nbBadge = 0
+//        }
+//
+//        nbBadge = max(0, nbBadge! + 1)
+//
+//        if notificationRawDatas != nil {
+//            notificationDatas = try! PropertyListDecoder().decode(Array<NotiObject>.self, from: notificationRawDatas!)
+//        }
+//
+//        notificationDatas.append(data)
+//        groupDefaults?.set(nbBadge, forKey: "nbBadge")
+//        groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
+
+        UIApplication.shared.applicationIconBadgeNumber = nbBadge!
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "BadgeNotification"), object: nil)
+    }
+    
+    func removeNotification(data: NotiObject) {
+        let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
+        var nbBadge = groupDefaults?.integer(forKey: "nbBadge")
+        
+        let notificationRawDatas = groupDefaults?.value(forKey: "notificationDatas") as? Data
+        
+        if nbBadge == nil {
+            nbBadge = 0
+        }
+        
+        nbBadge = max(0, nbBadge! - 1)
+        
+        if notificationRawDatas != nil {
+            var notificationDatas = try! PropertyListDecoder().decode(Array<NotiObject>.self, from: notificationRawDatas!)
+            
+            notificationDatas.removeLast()
+            groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
+        }
+        
+        groupDefaults?.set(nbBadge, forKey: "nbBadge")
+        
+        UIApplication.shared.applicationIconBadgeNumber = nbBadge!
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "BadgeNotification"), object: nil)
     }
 }

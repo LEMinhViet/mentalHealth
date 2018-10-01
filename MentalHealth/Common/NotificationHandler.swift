@@ -33,6 +33,7 @@ class NotificationHandler {
 
         case .quiz:
             let quizVC = StoryboardManager.shared.instantiateQuizViewController()
+//            quizVC.showLevel(noti.id)
             navigation.pushViewController(quizVC, animated: true)
             
         default:
@@ -42,7 +43,7 @@ class NotificationHandler {
     }
 }
 
-struct NotiObject {
+struct NotiObject: Codable {
     var id : Int = 0
     var type: NotiType = .news
     var title: String = ""
@@ -57,12 +58,16 @@ struct NotiObject {
             self.type = NotiType(rawValue: Int(type) ?? 0) ?? .news
         }
         
-        if let title = dict["title"] as? String {
-            self.title = title
+        if let aps = dict["aps"] as? [String: Any] {
+            if let alertObj = aps["alert"] as? [String: Any] {
+                if let title = alertObj["title"] as? String {
+                    self.title = title
+                }
+            }
         }
     }
 }
 
-enum NotiType: Int {
+enum NotiType: Int, Codable {
     case news, thirdtyDay, emotion, quiz
 }

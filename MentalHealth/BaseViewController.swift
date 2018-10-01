@@ -11,6 +11,8 @@ import UIKit
 class BaseViewController: UIViewController {
 
     public var menuButton: UIButton?
+    private var notificationBg: UIImageView?
+    private var notificationLabel: UILabel?
     private var backButton: UIButton?
     
     private var sosButton: UIButton?
@@ -47,6 +49,25 @@ class BaseViewController: UIViewController {
             menuButton?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
             
             navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton!)
+            
+            notificationBg = UIImageView(image: UIImage(named: "ic_noti_badge.png"))
+            notificationBg?.frame = CGRect(
+                x: (menuButton?.frame.width)! - 12,
+                y: 0,
+                width: 16,
+                height: 16
+            )
+            menuButton?.addSubview(notificationBg!)
+            
+            notificationLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
+            notificationLabel?.textAlignment = .center
+            notificationLabel?.font = UIFont.boldSystemFont(ofSize: 10)
+            notificationLabel?.textColor = UIColor.white
+            notificationLabel?.numberOfLines = 1
+            notificationLabel?.text = "0"
+            
+            notificationBg?.addSubview(notificationLabel!)
+            notificationBg?.isHidden = true
         }
         
         if (withItems) {
@@ -149,5 +170,15 @@ class BaseViewController: UIViewController {
         }
         
         self.navigationItem.hidesBackButton = !value
+    }
+    
+    func updateNotification(nbBadge: Int) {
+        if nbBadge > 0 {
+            notificationBg?.isHidden = false
+            notificationLabel!.text = String(nbBadge)
+        }
+        else {
+            notificationBg?.isHidden = true
+        }
     }
 }
