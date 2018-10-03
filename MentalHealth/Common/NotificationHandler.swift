@@ -47,6 +47,8 @@ struct NotiObject: Codable {
     var id : Int = 0
     var type: NotiType = .news
     var title: String = ""
+    var date: Date?
+    var isRead: Bool?
     
     init(dict: [AnyHashable: Any]) {
         
@@ -65,6 +67,9 @@ struct NotiObject: Codable {
                 }
             }
         }
+        
+        self.date = Date()
+        self.isRead = false
     }
 }
 

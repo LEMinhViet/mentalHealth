@@ -1334,7 +1334,6 @@
                                                                     <rect key="frame" x="15" y="15" width="70" height="69.5"/>
                                                                 </imageView>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="100" id="jUN-qV-UOI"/>
                                                                 <constraint firstAttribute="bottom" secondItem="mTn-o7-dUL" secondAttribute="bottom" constant="15" id="nhd-3Q-RQ4"/>
@@ -1355,7 +1354,7 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2IV-4E-C52">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2IV-4E-C52">
                                                                             <rect key="frame" x="0.0" y="51.5" width="255" height="18"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1364,7 +1363,6 @@
                                                                     </subviews>
                                                                 </stackView>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="kfr-Oa-LfE" firstAttribute="leading" secondItem="ULl-wZ-Cyz" secondAttribute="leading" id="eNc-xO-cY3"/>
                                                                 <constraint firstAttribute="bottom" secondItem="kfr-Oa-LfE" secondAttribute="bottom" constant="15" id="ghT-2g-JD9"/>
