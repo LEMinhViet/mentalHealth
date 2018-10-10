@@ -106,7 +106,7 @@ class DayViewController: BaseViewController {
             guard let data = data else { return }
             
             do {
-                let jsonData = try JSONDecoder().decode([OneDayDetail].self, from: data)
+                let jsonData = try JSONDecoder().decode(Array<OneDayDetail>.self, from: data)
                 
                 self.allData = jsonData
                 
@@ -181,8 +181,10 @@ class DayViewController: BaseViewController {
         let slideContent: UIImageView = UIImageView(image: UIImage(named: "img_roiloancamxuc"))
         slideContent.isHidden = true
         
-        let urlImage = Constants.url + Constants.filePrefix + "/" + image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+        // var urlImage = Constants.url + Constants.filePrefix + "/" + image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
         
+        let urlImage = Constants.url + Constants.filePrefix + "/" + image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+                
         if let url = URL(string: urlImage) {
             DispatchQueue.global().async {
                 if let data = try? Data(contentsOf: url) {
@@ -202,11 +204,12 @@ class DayViewController: BaseViewController {
         let slideContent: UIImageView = UIImageView(image: UIImage(named: "img_roiloancamxuc"))
         slideContent.contentMode = .scaleAspectFit
         
-        print("image ", image)
         if (image != "") {
             slideContent.isHidden = true
             
-            let urlImage = Constants.url + Constants.filePrefix + "/" + image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+            // let urlImage = Constants.url + Constants.filePrefix + "/" + image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+            
+            let urlImage = Constants.url + Constants.filePrefix + "/" + image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
             
             if let url = URL(string: urlImage) {
                 DispatchQueue.global().async {

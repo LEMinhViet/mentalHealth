@@ -135,7 +135,8 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
                         self.setNewsTitle(value: jsonData.title)
                         
                         if jsonData.image != nil {
-                            let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+                            // let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+                            let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
                             self.setFeaturedImage(value: urlImage)
                             
                             if let url = URL(string: urlImage) {

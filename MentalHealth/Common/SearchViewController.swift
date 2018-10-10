@@ -104,7 +104,8 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating, UISearc
         cell.titleLabel.text = cellData.title
         cell.featuredImageView.tag = self.currentTag
         
-        if let url = URL(string: Constants.url + Constants.filePrefix + "/" + (cellData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)) {
+        // if let url = URL(string: Constants.url + Constants.filePrefix + "/" + (cellData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)) {
+        if let url = URL(string: Constants.url + Constants.filePrefix + "/" + (cellData.image!).addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!) {
             DispatchQueue.global().async {
                 if let data = try? Data(contentsOf: url) {
                     DispatchQueue.main.async {

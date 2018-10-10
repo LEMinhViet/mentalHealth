@@ -136,7 +136,8 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                     self.featuredIds = []
                     
                     for i in 0 ..< min(jsonData.data.count, self.nbFeaturedSlides) {
-                        self.placeHolders.append(Constants.url + Constants.filePrefix + "/" + jsonData.data[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
+                        // self.placeHolders.append(Constants.url + Constants.filePrefix + "/" + jsonData.data[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
+                        self.placeHolders.append(Constants.url + Constants.filePrefix + "/" + jsonData.data[i].image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!)
                         self.featuredTitles.append(jsonData.data[i].title)
                         self.featuredIds.append(jsonData.data[i].id)
                     }

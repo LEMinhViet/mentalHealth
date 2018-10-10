@@ -69,7 +69,9 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
                 DispatchQueue.main.async {
                     self.titleLabel.text = jsonData.title
                     if jsonData.image != nil {
-                        let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+                        // let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+                        let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+                        
                         if let url = URL(string: urlImage) {
                             DispatchQueue.global().async {
                                 if let data = try? Data(contentsOf: url) {

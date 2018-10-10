@@ -45,7 +45,8 @@ class SOSDetailViewController: BaseViewController {
                 
                 // Get back to the main queue
                 DispatchQueue.main.async {
-                    let imageUrl = Constants.url + Constants.filePrefix + "/" + (jsonData.image).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+                    // let imageUrl = Constants.url + Constants.filePrefix + "/" + (jsonData.image).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+                    let imageUrl = Constants.url + Constants.filePrefix + "/" + (jsonData.image).addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
 
                     if let url = URL(string: imageUrl) {
                         DispatchQueue.global().async {
