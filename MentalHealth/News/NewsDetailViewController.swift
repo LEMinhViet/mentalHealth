@@ -42,7 +42,9 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
                 favoritesData.append(FavoritesData(
                     id: self.newsId,
                     title: self.newsTitle,
+                    date: self.newsDate,
                     featuredImage: self.featuredImage,
+                    description: self.newsDescription,
                     content: self.newsContent))
             }
         }
@@ -61,7 +63,9 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
     
     var newsId: String = ""
     var newsTitle: String = ""
+    var newsDate: String = ""
     var featuredImage: String = ""
+    var newsDescription: String = ""
     var newsContent: String = ""
     
     func setNewsId(value: String) {
@@ -72,8 +76,16 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
         newsTitle = value
     }
     
+    func setNewsDate(value: String) {
+        newsDate = value
+    }
+    
     func setFeaturedImage(value: String) {
         featuredImage = value
+    }
+    
+    func setNewsDescription(value: String) {
+        newsDescription = value
     }
     
     func setNewsContent(value: String) {
@@ -87,11 +99,15 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var featuredImageView: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     private var contentWebView: WKWebView = WKWebView()
 
     @IBOutlet weak var featuredImageHeightConstraint: NSLayoutConstraint!
     private var contentWebViewHeightConstraint: NSLayoutConstraint?
+    private var contentWebViewTopConstraint: NSLayoutConstraint?
     
     private var isFeaturedLoaded: Bool = false
     private var isBodyLoaded: Bool = false
@@ -102,6 +118,7 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
         contentWebView.configuration.dataDetectorTypes = .all
         
         contentWebViewHeightConstraint = NSLayoutConstraint(item: contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 235)
+        
         mainStackView.addArrangedSubview(contentWebView)
         
         self.displaySpinner(onView: self.view)
@@ -133,6 +150,17 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
                     DispatchQueue.main.async {
                         self.titleLabel.text = jsonData.title
                         self.setNewsTitle(value: jsonData.title)
+                        
+                        self.dateLabel.text = self.formatDate(jsonData.updated_at ?? "")
+                        self.setNewsDate(value: jsonData.updated_at ?? "")
+                        
+                        var despStr: String = jsonData.description?.htmlToString ?? ""
+                        if despStr.last == "\n" {
+                            despStr.removeLast()
+                        }
+                        
+                        self.descriptionLabel.text = despStr
+                        self.setNewsDescription(value: jsonData.description ?? "")
                         
                         if jsonData.image != nil {
                             // let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
@@ -189,6 +217,22 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
         }
     }
     
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == WKNavigationType.linkActivated {
+            if let url = navigationAction.request.url {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:])
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
+            }
+            
+            decisionHandler(WKNavigationActionPolicy.cancel)
+            return
+        }
+        decisionHandler(WKNavigationActionPolicy.allow)
+    }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
             if complete != nil {
@@ -207,6 +251,21 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
                 }
             }
         })
+    }
+    
+    func formatDate(_ date: String) -> String {
+        let dateFormatterIn = DateFormatter()
+        dateFormatterIn.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let dateFormatterOut = DateFormatter()
+        dateFormatterOut.dateFormat = "dd/MM/yyyy"
+        
+        if let date = dateFormatterIn.date(from: date) {
+            return dateFormatterOut.string(from: date)
+        } else {
+            print("There was an error decoding the string")
+            return ""
+        }
     }
 
     override func didReceiveMemoryWarning() {

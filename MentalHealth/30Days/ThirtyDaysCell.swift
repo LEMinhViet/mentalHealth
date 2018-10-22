@@ -44,49 +44,50 @@ class ThirtyDaysCell: UITableViewCell {
         
         // Update read state
         if (type == ThirtyDayEnum.CurrentDay.rawValue) {
-            let apiUrl: String = Constants.url + Constants.apiPrefix + "/update_day"
-            guard let updateUrl = URL(string: apiUrl) else { return }
-            
-            let defaults = UserDefaults.standard
-            let userId = defaults.integer(forKey: "loggedUserId")
-            
-            let updateData: [String: Any] = [
-                "user_id": userId,
-                "day_id": dayId
-            ]
-            
-            guard let httpBody = try? JSONSerialization.data(withJSONObject: updateData, options: []) else {
-                return
+            self.updateReadState(dayId: dayId)
+        }
+    }
+    
+    public func updateReadState(dayId: Int) {
+        let apiUrl: String = Constants.url + Constants.apiPrefix + "/update_day"
+        guard let updateUrl = URL(string: apiUrl) else { return }
+        
+        let defaults = UserDefaults.standard
+        let userId = defaults.integer(forKey: "loggedUserId")
+        
+        let updateData: [String: Any] = [
+            "user_id": userId,
+            "day_id": dayId
+        ]
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: updateData, options: []) else {
+            return
+        }
+        
+        var updateUrlRequest = URLRequest(url: updateUrl)
+        updateUrlRequest.httpMethod = "POST"
+        updateUrlRequest.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        updateUrlRequest.httpBody = httpBody
+        
+        URLSession.shared.dataTask(with: updateUrlRequest) { (data, response, error)
+            in
+            if error != nil {
+                print(error!.localizedDescription)
             }
             
-            var updateUrlRequest = URLRequest(url: updateUrl)
-            updateUrlRequest.httpMethod = "POST"
-            updateUrlRequest.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-            updateUrlRequest.httpBody = httpBody
+            guard let data = data else { return }
             
-            URLSession.shared.dataTask(with: updateUrlRequest) { (data, response, error)
-                in
-                if error != nil {
-                    print(error!.localizedDescription)
-                }
+            do {
+                let updateResult = try JSONDecoder().decode(UpdateResult.self, from: data)
                 
-                guard let data = data else { return }
-                
-                do {
-                    let updateResult = try JSONDecoder().decode(UpdateResult.self, from: data)
-                    
-                    //Get back to the main queue
-                    DispatchQueue.main.async {
-                        self.updateContent(dayId: updateResult.day_id!, type: ThirtyDayEnum.PassedDay.rawValue)
-                    }
-                } catch let jsonError {
-                    print(jsonError)
-                    DispatchQueue.main.async {
-                        
-                    }
+                //Get back to the main queue
+                DispatchQueue.main.async {
+                    self.updateContent(dayId: updateResult.day_id!, name: self.dayName, type: ThirtyDayEnum.PassedDay.rawValue)
                 }
-            }.resume()
-        }
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }.resume()
     }
     
     var featuredImageName: String = ""
@@ -132,9 +133,12 @@ class ThirtyDaysCell: UITableViewCell {
     public func updateContent(dayId: Int, name: String = "", type: Int) {
         self.dayId = dayId
         self.type = type
-        self.dayName = name
         
-        dayLabel.text = name
+        if (name != "" || self.dayName == "") {
+            self.dayName = name
+        }
+        
+        dayLabel.text = self.dayName
         bgButton.setImage(UIImage(named: images[type]), for: .normal)
     }
 }

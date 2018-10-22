@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 struct SOSDetailData: Codable {
     let id: Int
@@ -18,17 +19,27 @@ struct SOSDetailData: Codable {
     let updated_at: String
 }
 
-class SOSDetailViewController: BaseViewController {
+class SOSDetailViewController: BaseViewController, WKNavigationDelegate {
     
     @IBOutlet weak var featuredImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var mainStackView: UIStackView!
+    
+    private var contentWebView: WKWebView = WKWebView()
+    private var contentWebViewHeightConstraint: NSLayoutConstraint?
+    private var baseHTML: String = "<html><head><meta name=\"viewport\" content=\"initial-scale=1.0\" /></head><body>{body}</body></html>"
     
     public var hospitalId: Int = 1
     let sosUrl = Constants.url + Constants.apiPrefix + "/sos"
 
     override func viewDidLoad() {
         super.viewDidLoad(withMenu: false, withItems: false)
+        
+        contentWebView.configuration.dataDetectorTypes = .all
+        
+        contentWebViewHeightConstraint = NSLayoutConstraint(item: contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 235)
+        mainStackView.addArrangedSubview(contentWebView)
         
         self.displaySpinner(onView: self.view)
 
@@ -68,12 +79,48 @@ class SOSDetailViewController: BaseViewController {
                     
                     self.title = jsonData.title
                     self.titleLabel.text = jsonData.description.htmlToString
-                    self.contentLabel.text = jsonData.content.htmlToString
+                    
+                    let contentText = self.baseHTML.replacingOccurrences(of: "{body}", with: jsonData.content)
+                    
+                    self.contentWebViewHeightConstraint?.isActive = false
+                    self.contentWebView.navigationDelegate = self
+                    self.contentWebView.loadHTMLString("\(contentText)", baseURL: Bundle.main.bundleURL)
                 }
             } catch let jsonError {
                 print(jsonError)
             }
         }.resume()
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == WKNavigationType.linkActivated {
+            if let url = navigationAction.request.url {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:])
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
+            }
+            
+            decisionHandler(WKNavigationActionPolicy.cancel)
+            return
+        }
+        decisionHandler(WKNavigationActionPolicy.allow)
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+            if complete != nil {
+                self.contentWebView.frame.size = self.contentWebView.scrollView.contentSize
+                
+                self.contentWebViewHeightConstraint = NSLayoutConstraint(item: self.contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.contentWebView.scrollView.contentSize.height);
+                self.contentWebViewHeightConstraint?.isActive = true
+                
+                self.mainScrollView.contentSize = CGSize(
+                    width: self.mainScrollView.frame.width,
+                    height: self.contentWebView.frame.origin.y + self.contentWebView.frame.size.height)
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {

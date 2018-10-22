@@ -108,4 +108,11 @@ class ThirtyDaysViewController: BaseViewController, UITableViewDelegate, UITable
         
         return cell
     }
+    
+    public func updateCellContent(row: Int, section: Int, type: Int) {
+        let indexPath = IndexPath(row: row, section: section)
+        let cell = daysTableView.cellForRow(at: indexPath) as? ThirtyDaysCell
+        
+        cell?.updateContent(dayId: row, type: type)
+    }
 }

@@ -28,7 +28,7 @@ class AZDetailHeaderCell: UITableViewCell {
         arrow.isHighlighted = true
         
         label.layer.masksToBounds = true
-        self.roundCorners(label, corners: [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner], radius: 10)
+        self.roundCorners(label, corners: [.layerMaxXMinYCorner, .layerMinXMinYCorner], radius: 10)
     }
     
     func setCollapsed() {

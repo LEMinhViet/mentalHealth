@@ -128,6 +128,22 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == WKNavigationType.linkActivated {
+            if let url = navigationAction.request.url {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:])
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
+            }
+            
+            decisionHandler(WKNavigationActionPolicy.cancel)
+            return
+        }
+        decisionHandler(WKNavigationActionPolicy.allow)
+    }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
             if complete != nil {

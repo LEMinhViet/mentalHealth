@@ -511,7 +511,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oAl-Tg-iRA">
-                                                <rect key="frame" x="10" y="0.0" width="355" height="1008.5"/>
+                                                <rect key="frame" x="10" y="0.0" width="355" height="215.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="dhu-fO-PA8">
                                                         <rect key="frame" x="0.0" y="0.0" width="355" height="185"/>
@@ -520,37 +520,6 @@
                                                         <rect key="frame" x="0.0" y="195" width="355" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m43-QK-ayF">
-                                                        <rect key="frame" x="0.0" y="225.5" width="355" height="783"/>
-                                                        <attributedString key="attributedText">
-                                                            <fragment>
-                                                                <string key="content">Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam videosrem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C.   Caesare reducit, reconciliat, restituit in gratiam. Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam viderem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C. Caesare reducit, reconciliat, restituit in gratiam.  </string>
-                                                                <attributes>
-                                                                    <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <color key="NSColor" red="0.36863000000000001" green="0.34117999999999998" blue="0.21568999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                                                    <real key="NSKern" value="0.0"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                    <color key="NSStrokeColor" red="0.36863000000000001" green="0.34117999999999998" blue="0.21568999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">Caesare reducit, reconciliat, restituit in gratiam. Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam viderem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C. Caesare reducit, reconciliat, restituit in gratiam.  Caesare reducit, reconciliat, restituit in gratiam. Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam viderem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C. Caesare reducit, reconciliat, restituit in gratiam.  Caesare reducit, reconciliat, restituit in gratiam. Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam viderem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C. Caesare reducit, reconciliat, restituit in gratiam.</string>
-                                                                <attributes>
-                                                                    <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <color key="NSColor" red="0.36863000000000001" green="0.34117999999999998" blue="0.21568999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                                                    <real key="NSKern" value="0.0"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -577,8 +546,9 @@
                         <viewLayoutGuide key="safeArea" id="kPC-1M-KLr"/>
                     </view>
                     <connections>
-                        <outlet property="contentLabel" destination="m43-QK-ayF" id="hVU-mX-If7"/>
                         <outlet property="featuredImage" destination="dhu-fO-PA8" id="imf-Bz-NYd"/>
+                        <outlet property="mainScrollView" destination="ga7-8f-pG6" id="BWT-Oo-EkI"/>
+                        <outlet property="mainStackView" destination="oAl-Tg-iRA" id="LGP-o9-vQO"/>
                         <outlet property="titleLabel" destination="aTY-u0-5m8" id="nLO-X7-ZLc"/>
                     </connections>
                 </viewController>
@@ -2796,7 +2766,7 @@ FB: https://www.facebook.com/crisp.ued/
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AB2-5R-W3h">
-                                        <rect key="frame" x="10" y="0.0" width="355" height="245.5"/>
+                                        <rect key="frame" x="10" y="0.0" width="355" height="299.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Och-pK-AMK">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="190"/>
@@ -2810,8 +2780,14 @@ FB: https://www.facebook.com/crisp.ued/
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1S-NL-a48">
+                                                <rect key="frame" x="0.0" y="230.5" width="355" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3wU-jB-UHt">
-                                                <rect key="frame" x="0.0" y="230.5" width="355" height="15"/>
+                                                <rect key="frame" x="0.0" y="257.5" width="355" height="15"/>
                                                 <subviews>
                                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_like" highlightedImage="ic_like1" translatesAutoresizingMaskIntoConstraints="NO" id="1g5-13-iPy">
                                                         <rect key="frame" x="0.0" y="0.0" width="17" height="15"/>
@@ -2827,6 +2803,11 @@ FB: https://www.facebook.com/crisp.ued/
                                                     </imageView>
                                                 </subviews>
                                             </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83M-PU-eGf">
+                                                <rect key="frame" x="0.0" y="282.5" width="355" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -2849,6 +2830,8 @@ FB: https://www.facebook.com/crisp.ued/
                         <viewLayoutGuide key="safeArea" id="dTv-0k-yuw"/>
                     </view>
                     <connections>
+                        <outlet property="dateLabel" destination="F1S-NL-a48" id="6KY-E8-EXh"/>
+                        <outlet property="descriptionLabel" destination="83M-PU-eGf" id="m6t-qE-w6q"/>
                         <outlet property="featuredImageHeightConstraint" destination="nm3-bE-0K5" id="OaN-vN-R38"/>
                         <outlet property="featuredImageView" destination="Och-pK-AMK" id="cgi-CM-tPZ"/>
                         <outlet property="likeImageView" destination="1g5-13-iPy" id="cy6-8X-5Gx"/>
@@ -2982,110 +2965,124 @@ FB: https://www.facebook.com/crisp.ued/
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bTi-BX-NHJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tQm-4C-nF8">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_roiloantramcam" translatesAutoresizingMaskIntoConstraints="NO" id="9hK-vP-fCE">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="103"/>
-                                    </imageView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tQm-4C-nF8">
-                                        <rect key="frame" x="0.0" y="103" width="375" height="544"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="azDetailHeaderCell" rowHeight="80" id="UCd-hB-19Q" customClass="AZDetailHeaderCell" customModule="MentalHealth" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UCd-hB-19Q" id="cOl-zb-Rhg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rối loạn trầm cảm là gì ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkR-kT-W1Q">
-                                                            <rect key="frame" x="20" y="20" width="335" height="60"/>
-                                                            <color key="backgroundColor" red="0.12549019607843137" green="0.46274509803921571" blue="0.6470588235294118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow1" highlightedImage="ic_arrow2" translatesAutoresizingMaskIntoConstraints="NO" id="VEC-B8-Ybf">
-                                                            <rect key="frame" x="35" y="20" width="305" height="60"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="RkR-kT-W1Q" firstAttribute="top" secondItem="cOl-zb-Rhg" secondAttribute="top" constant="20" id="0ew-fD-1Yg"/>
-                                                        <constraint firstAttribute="bottom" secondItem="RkR-kT-W1Q" secondAttribute="bottom" id="8Up-3f-QNe"/>
-                                                        <constraint firstItem="VEC-B8-Ybf" firstAttribute="leading" secondItem="cOl-zb-Rhg" secondAttribute="leading" constant="35" id="HMz-ky-Vl7"/>
-                                                        <constraint firstItem="VEC-B8-Ybf" firstAttribute="top" secondItem="cOl-zb-Rhg" secondAttribute="top" constant="20" id="Rl1-87-ggk"/>
-                                                        <constraint firstItem="RkR-kT-W1Q" firstAttribute="leading" secondItem="cOl-zb-Rhg" secondAttribute="leading" constant="20" id="WYV-BH-f7S"/>
-                                                        <constraint firstAttribute="trailing" secondItem="RkR-kT-W1Q" secondAttribute="trailing" constant="20" id="YCY-g7-BgL"/>
-                                                        <constraint firstAttribute="trailing" secondItem="VEC-B8-Ybf" secondAttribute="trailing" constant="35" id="p0M-Aq-sct"/>
-                                                        <constraint firstAttribute="bottom" secondItem="VEC-B8-Ybf" secondAttribute="bottom" id="tqg-HN-EVS"/>
-                                                    </constraints>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <outlet property="arrow" destination="VEC-B8-Ybf" id="cGq-Vu-3Za"/>
-                                                    <outlet property="label" destination="RkR-kT-W1Q" id="0Ce-DR-0kV"/>
-                                                </connections>
-                                            </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="azDetailCell" id="YVA-LL-Jlb" customClass="AZDetailCell" customModule="MentalHealth" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="108" width="375" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YVA-LL-Jlb" id="ZYu-cL-sFi">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="azHeaderImage" id="4ND-g6-w2e" userLabel="azHeaderImage" customClass="AZHeaderImage" customModule="MentalHealth" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4ND-g6-w2e" id="biW-lm-fvo">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_roiloantramcam" translatesAutoresizingMaskIntoConstraints="NO" id="9hK-vP-fCE">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zFy-oW-XqP">
-                                                            <rect key="frame" x="20" y="0.0" width="335" height="43.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnE-oV-fQj">
-                                                                    <rect key="frame" x="20" y="20" width="295" height="223.5"/>
-                                                                    <string key="text">Ardeo, mihi credite, Patres conscripti (id quod vosmet de me existimatis et facitis ipsi) incredibili quodam amore patriae, qui me amor et subvenire olim impendentibus periculis maximis cum dimicatione capitis, et rursum, cum omnia tela undique esse intenta in patriam videosrem, subire coegit atque excipere unum pro universis. Hic me meus in rem publicam animus pristinus ac perennis cum C. </string>
-                                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="AnE-oV-fQj" secondAttribute="bottom" constant="20" id="0Yy-UR-Dzg"/>
-                                                                <constraint firstItem="AnE-oV-fQj" firstAttribute="top" secondItem="zFy-oW-XqP" secondAttribute="top" constant="20" id="Qhu-nj-ime"/>
-                                                                <constraint firstAttribute="trailing" secondItem="AnE-oV-fQj" secondAttribute="trailing" constant="20" id="l9g-E8-RR1"/>
-                                                                <constraint firstItem="AnE-oV-fQj" firstAttribute="leading" secondItem="zFy-oW-XqP" secondAttribute="leading" constant="20" id="lkZ-tH-bcI"/>
-                                                            </constraints>
-                                                        </view>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="zFy-oW-XqP" firstAttribute="leading" secondItem="ZYu-cL-sFi" secondAttribute="leading" constant="20" id="3AZ-iG-Zg0"/>
-                                                        <constraint firstItem="zFy-oW-XqP" firstAttribute="top" secondItem="ZYu-cL-sFi" secondAttribute="top" id="UU4-OX-JMy"/>
-                                                        <constraint firstAttribute="bottom" secondItem="zFy-oW-XqP" secondAttribute="bottom" constant="20" id="ZFb-p2-IEA"/>
-                                                        <constraint firstAttribute="trailing" secondItem="zFy-oW-XqP" secondAttribute="trailing" constant="20" id="mEB-Yj-iTO"/>
-                                                    </constraints>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <outlet property="borderView" destination="zFy-oW-XqP" id="5QK-01-pwg"/>
-                                                    <outlet property="label" destination="AnE-oV-fQj" id="Tr0-UP-58z"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="9hK-vP-fCE" secondAttribute="trailing" id="6YG-uJ-OfE"/>
+                                                <constraint firstItem="9hK-vP-fCE" firstAttribute="leading" secondItem="biW-lm-fvo" secondAttribute="leading" id="8R7-MS-8uG"/>
+                                                <constraint firstAttribute="bottom" secondItem="9hK-vP-fCE" secondAttribute="bottom" id="QEp-P0-iS1"/>
+                                                <constraint firstItem="9hK-vP-fCE" firstAttribute="top" secondItem="biW-lm-fvo" secondAttribute="top" id="aT1-OR-pdp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="dataSource" destination="CtT-AL-TIL" id="ktR-aN-Xvm"/>
-                                            <outlet property="delegate" destination="CtT-AL-TIL" id="YLh-qQ-kxy"/>
+                                            <outlet property="headerImage" destination="9hK-vP-fCE" id="RTJ-XM-fDa"/>
                                         </connections>
-                                    </tableView>
-                                </subviews>
-                            </stackView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="azDetailHeaderCell" rowHeight="80" id="UCd-hB-19Q" customClass="AZDetailHeaderCell" customModule="MentalHealth" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UCd-hB-19Q" id="cOl-zb-Rhg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rối loạn trầm cảm là gì ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkR-kT-W1Q">
+                                                    <rect key="frame" x="20" y="20" width="335" height="60"/>
+                                                    <color key="backgroundColor" red="0.12549019607843137" green="0.46274509803921571" blue="0.6470588235294118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow1" highlightedImage="ic_arrow2" translatesAutoresizingMaskIntoConstraints="NO" id="VEC-B8-Ybf">
+                                                    <rect key="frame" x="35" y="20" width="305" height="60"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RkR-kT-W1Q" firstAttribute="top" secondItem="cOl-zb-Rhg" secondAttribute="top" constant="20" id="0ew-fD-1Yg"/>
+                                                <constraint firstAttribute="bottom" secondItem="RkR-kT-W1Q" secondAttribute="bottom" id="8Up-3f-QNe"/>
+                                                <constraint firstItem="VEC-B8-Ybf" firstAttribute="leading" secondItem="cOl-zb-Rhg" secondAttribute="leading" constant="35" id="HMz-ky-Vl7"/>
+                                                <constraint firstItem="VEC-B8-Ybf" firstAttribute="top" secondItem="cOl-zb-Rhg" secondAttribute="top" constant="20" id="Rl1-87-ggk"/>
+                                                <constraint firstItem="RkR-kT-W1Q" firstAttribute="leading" secondItem="cOl-zb-Rhg" secondAttribute="leading" constant="20" id="WYV-BH-f7S"/>
+                                                <constraint firstAttribute="trailing" secondItem="RkR-kT-W1Q" secondAttribute="trailing" constant="20" id="YCY-g7-BgL"/>
+                                                <constraint firstAttribute="trailing" secondItem="VEC-B8-Ybf" secondAttribute="trailing" constant="35" id="p0M-Aq-sct"/>
+                                                <constraint firstAttribute="bottom" secondItem="VEC-B8-Ybf" secondAttribute="bottom" id="tqg-HN-EVS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="arrow" destination="VEC-B8-Ybf" id="cGq-Vu-3Za"/>
+                                            <outlet property="label" destination="RkR-kT-W1Q" id="0Ce-DR-0kV"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="azDetailCell" id="YVA-LL-Jlb" customClass="AZDetailCell" customModule="MentalHealth" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="152" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YVA-LL-Jlb" id="ZYu-cL-sFi">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFy-oW-XqP">
+                                                    <rect key="frame" x="20" y="0.0" width="335" height="24"/>
+                                                    <subviews>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pUa-Qi-dqv">
+                                                            <rect key="frame" x="20" y="0.0" width="295" height="4"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                                                        </textView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="pUa-Qi-dqv" secondAttribute="bottom" constant="20" id="fwF-go-Xb9"/>
+                                                        <constraint firstItem="pUa-Qi-dqv" firstAttribute="leading" secondItem="zFy-oW-XqP" secondAttribute="leading" constant="20" id="hda-Lt-GCt"/>
+                                                        <constraint firstAttribute="trailing" secondItem="pUa-Qi-dqv" secondAttribute="trailing" constant="20" id="n1V-CR-mrU"/>
+                                                        <constraint firstItem="pUa-Qi-dqv" firstAttribute="top" secondItem="zFy-oW-XqP" secondAttribute="top" id="qvD-9c-Ome"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zFy-oW-XqP" firstAttribute="leading" secondItem="ZYu-cL-sFi" secondAttribute="leading" constant="20" id="3AZ-iG-Zg0"/>
+                                                <constraint firstItem="zFy-oW-XqP" firstAttribute="top" secondItem="ZYu-cL-sFi" secondAttribute="top" id="UU4-OX-JMy"/>
+                                                <constraint firstAttribute="bottom" secondItem="zFy-oW-XqP" secondAttribute="bottom" constant="20" id="ZFb-p2-IEA"/>
+                                                <constraint firstAttribute="trailing" secondItem="zFy-oW-XqP" secondAttribute="trailing" constant="20" id="mEB-Yj-iTO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="borderView" destination="zFy-oW-XqP" id="5QK-01-pwg"/>
+                                            <outlet property="textView" destination="pUa-Qi-dqv" id="uYr-E3-kwQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="CtT-AL-TIL" id="ktR-aN-Xvm"/>
+                                    <outlet property="delegate" destination="CtT-AL-TIL" id="YLh-qQ-kxy"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="bTi-BX-NHJ" secondAttribute="trailing" id="Iv5-o6-5wD"/>
-                            <constraint firstItem="Aco-wl-vb3" firstAttribute="bottom" secondItem="bTi-BX-NHJ" secondAttribute="bottom" id="QxG-nh-dr1"/>
-                            <constraint firstItem="bTi-BX-NHJ" firstAttribute="top" secondItem="Aco-wl-vb3" secondAttribute="top" id="bbs-Ln-fdI"/>
-                            <constraint firstItem="bTi-BX-NHJ" firstAttribute="leading" secondItem="Aco-wl-vb3" secondAttribute="leading" id="kH0-fE-yw6"/>
+                            <constraint firstItem="tQm-4C-nF8" firstAttribute="leading" secondItem="Aco-wl-vb3" secondAttribute="leading" id="ER1-gp-Hqe"/>
+                            <constraint firstItem="Aco-wl-vb3" firstAttribute="bottom" secondItem="tQm-4C-nF8" secondAttribute="bottom" id="Ney-gc-Dvm"/>
+                            <constraint firstItem="tQm-4C-nF8" firstAttribute="top" secondItem="Aco-wl-vb3" secondAttribute="top" id="hZh-3w-sHb"/>
+                            <constraint firstItem="tQm-4C-nF8" firstAttribute="trailing" secondItem="Aco-wl-vb3" secondAttribute="trailing" id="reu-Eb-hgt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Aco-wl-vb3"/>
                     </view>
                     <connections>
                         <outlet property="azDetailTableView" destination="tQm-4C-nF8" id="KjF-Vz-hVd"/>
-                        <outlet property="headerImageView" destination="9hK-vP-fCE" id="inb-7E-zJn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ds-xF-bpC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3522,6 +3519,57 @@ FB: https://www.facebook.com/crisp.ued/
                                                     <outlet property="titleLabel" destination="ApF-Cb-EmF" id="8hr-jG-ZmP"/>
                                                 </connections>
                                             </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="diaryGroupCell" id="Mi8-8B-TLv" userLabel="diaryGroupCell" customClass="DiaryGroupCell" customModule="MentalHealth" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="128" width="355" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mi8-8B-TLv" id="ifs-rE-oX2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XiO-PX-aOa">
+                                                            <rect key="frame" x="10" y="10" width="335" height="79.5"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </view>
+                                                        <stackView opaque="NO" contentMode="top" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aDM-oH-OFB">
+                                                            <rect key="frame" x="28" y="28" width="80" height="43.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6 tháng 6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Jh-pT-NFm">
+                                                                    <rect key="frame" x="1" y="0.0" width="78" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                    <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THỨ 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwW-oi-cd4">
+                                                                    <rect key="frame" x="7.5" y="27" width="65" height="16.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                                    <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="80" id="ZId-v4-ds0"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="aDM-oH-OFB" firstAttribute="top" secondItem="ifs-rE-oX2" secondAttribute="topMargin" constant="20" id="8qo-tf-Ilf"/>
+                                                        <constraint firstItem="aDM-oH-OFB" firstAttribute="leading" secondItem="ifs-rE-oX2" secondAttribute="leadingMargin" constant="20" id="CfQ-nw-0x5"/>
+                                                        <constraint firstItem="XiO-PX-aOa" firstAttribute="leading" secondItem="ifs-rE-oX2" secondAttribute="leading" constant="10" id="CzJ-bJ-GVu"/>
+                                                        <constraint firstAttribute="bottom" secondItem="XiO-PX-aOa" secondAttribute="bottom" constant="10" id="GGl-Pn-mZw"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="aDM-oH-OFB" secondAttribute="bottom" constant="20" id="Loa-kN-8nA"/>
+                                                        <constraint firstAttribute="trailing" secondItem="XiO-PX-aOa" secondAttribute="trailing" constant="10" id="MF1-JA-fJQ"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="aDM-oH-OFB" secondAttribute="trailing" constant="20" id="aL9-e2-0sL"/>
+                                                        <constraint firstItem="XiO-PX-aOa" firstAttribute="top" secondItem="ifs-rE-oX2" secondAttribute="top" constant="10" id="mFE-pt-pyb"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="monthLabel" destination="0Jh-pT-NFm" id="y4I-gB-EqT"/>
+                                                    <outlet property="shadowView" destination="XiO-PX-aOa" id="hpT-p8-l9J"/>
+                                                    <outlet property="stackView" destination="aDM-oH-OFB" id="IFb-hy-bXH"/>
+                                                    <outlet property="yearLabel" destination="zwW-oi-cd4" id="qa5-IZ-EUa"/>
+                                                </connections>
+                                            </tableViewCell>
                                         </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="NbQ-VJ-gAH" id="oae-f6-Zt7"/>
@@ -3668,7 +3716,7 @@ FB: https://www.facebook.com/crisp.ued/
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fd0-My-buE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2797.5999999999999" y="1536.8815592203898"/>
+            <point key="canvasLocation" x="2797.5999999999999" y="1535.9820089955024"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="Wpv-Ac-L9N">
@@ -3735,10 +3783,11 @@ FB: https://www.facebook.com/crisp.ued/
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Tốt" translatesAutoresizingMaskIntoConstraints="NO" id="GQ9-DM-MfM">
-                                                    <rect key="frame" x="334" y="10" width="31" height="32"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <rect key="frame" x="333" y="10" width="32" height="32"/>
+                                                    <color key="backgroundColor" red="0.46666666666666667" green="0.60392156862745094" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <inset key="scrollIndicatorInsets" minX="10" minY="0.0" maxX="0.0" maxY="10"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>

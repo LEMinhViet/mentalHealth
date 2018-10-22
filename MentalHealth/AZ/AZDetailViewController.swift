@@ -10,7 +10,6 @@ import UIKit
 
 class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var azDetailTableView: UITableView!
     
     let titles = ["Khái niệm", "Triệu chứng", "Phân loại", "Trị liệu", "Tự trợ giúp", "Trích nguồn"]
@@ -21,7 +20,6 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad(withMenu: false)
-        headerImageView.image = UIImage(named: self.header)
         azDetailTableView.reloadData()
     }
     
@@ -38,15 +36,15 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return titles.count
+        return titles.count + 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isExtended[section] ? 2 : 1
+        return section == 0 ? 1 : isExtended[section - 1] ? 2 : 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.row == 0) {
+        if (indexPath.section != 0 && indexPath.row == 0) {
             return 80
         } else {
             return UITableViewAutomaticDimension
@@ -55,13 +53,19 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
     
     // The method returning each cell of the list
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        
-        if (indexPath.row == 0) {
+        if (indexPath.section == 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "azHeaderImage", for: indexPath) as! AZHeaderImage
+
+            cell.headerImage.image = UIImage(named: self.header)
+            
+            return cell
+        }
+        else if (indexPath.row == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "azDetailHeaderCell", for: indexPath) as! AZDetailHeaderCell
             
-            cell.label.text = titles[indexPath.section]
+            cell.label.text = titles[indexPath.section - 1]
             
-            if (isExtended[indexPath.section]) {
+            if (isExtended[indexPath.section - 1]) {
                 cell.setExtended()
             }
             else {
@@ -73,7 +77,7 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "azDetailCell", for: indexPath) as! AZDetailCell
             
-            cell.label.text = descriptions[indexPath.section].htmlToString
+            cell.textView.text = descriptions[indexPath.section - 1].htmlToString
             
             let borderLayer = cell.borderView.layer
 
@@ -96,7 +100,7 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            isExtended[indexPath.section] = !isExtended[indexPath.section]
+            isExtended[indexPath.section - 1] = !isExtended[indexPath.section - 1]
             
             azDetailTableView.reloadSections([indexPath.section], with: .automatic)
         }

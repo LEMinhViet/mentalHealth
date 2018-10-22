@@ -11,7 +11,9 @@ import UIKit
 struct FavoritesData: Codable {
     var id: String
     var title: String
+    var date: String
     var featuredImage: String
+    var description: String
     var content: String
 }
 

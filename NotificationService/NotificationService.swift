@@ -39,7 +39,7 @@ struct NotiObject: Codable {
 }
 
 enum NotiType: Int, Codable {
-    case news, thirdtyDay, emotion, quiz
+    case news, thirtyDay, emotion, quiz
 }
 
 class NotificationService: UNNotificationServiceExtension {

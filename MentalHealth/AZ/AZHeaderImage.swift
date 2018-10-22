@@ -1,17 +1,16 @@
 //
-//  AZDetailCell.swift
+//  AZHeaderImage.swift
 //  MentalHealth
 //
-//  Created by LE Minh Viet on 17/07/2018.
+//  Created by LE Minh Viet on 15/10/2018.
 //  Copyright © 2018 LE Minh Viet. All rights reserved.
 //
 
 import UIKit
 
-class AZDetailCell: UITableViewCell {
-    
-    @IBOutlet weak var borderView: UIView!
-    @IBOutlet weak var textView: UITextView!
+class AZHeaderImage: UITableViewCell {
+
+    @IBOutlet weak var headerImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

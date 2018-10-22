@@ -65,7 +65,9 @@
 		80662B5221090BFE009FB4B5 /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80662B5121090BFE009FB4B5 /* DocumentViewController.swift */; };
 		80662B582109169B009FB4B5 /* QuestionChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80662B572109169B009FB4B5 /* QuestionChatCell.swift */; };
 		80662B5A210916AC009FB4B5 /* AnswerChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80662B59210916AC009FB4B5 /* AnswerChatCell.swift */; };
+		806AC316217E803100BC5CB4 /* DiaryGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806AC315217E803100BC5CB4 /* DiaryGroupCell.swift */; };
 		806FD8F820F971B400BEFFA3 /* AZDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806FD8F720F971B400BEFFA3 /* AZDetailViewController.swift */; };
+		80842F4621753CF400ECA914 /* AZHeaderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80842F4521753CF400ECA914 /* AZHeaderImage.swift */; };
 		808CCB0721486A0900169733 /* DayViewSlide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 808CCB0621486A0900169733 /* DayViewSlide.xib */; };
 		808CCB0921486ACD00169733 /* DayViewSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808CCB0821486ACD00169733 /* DayViewSlide.swift */; };
 		80B3FEBD210808760043A034 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3FEBC210808760043A034 /* LeftViewController.swift */; };
@@ -172,7 +174,9 @@
 		80662B5121090BFE009FB4B5 /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		80662B572109169B009FB4B5 /* QuestionChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionChatCell.swift; sourceTree = "<group>"; };
 		80662B59210916AC009FB4B5 /* AnswerChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerChatCell.swift; sourceTree = "<group>"; };
+		806AC315217E803100BC5CB4 /* DiaryGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryGroupCell.swift; sourceTree = "<group>"; };
 		806FD8F720F971B400BEFFA3 /* AZDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AZDetailViewController.swift; sourceTree = "<group>"; };
+		80842F4521753CF400ECA914 /* AZHeaderImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AZHeaderImage.swift; sourceTree = "<group>"; };
 		808CCB0621486A0900169733 /* DayViewSlide.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DayViewSlide.xib; path = MentalHealth/30Days/DayViewSlide.xib; sourceTree = SOURCE_ROOT; };
 		808CCB0821486ACD00169733 /* DayViewSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DayViewSlide.swift; path = MentalHealth/30Days/DayViewSlide.swift; sourceTree = SOURCE_ROOT; };
 		80B3FEBC210808760043A034 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
@@ -362,6 +366,7 @@
 				806FD8F720F971B400BEFFA3 /* AZDetailViewController.swift */,
 				801ECDF420FE9C5C00DDAE76 /* AZDetailHeaderCell.swift */,
 				801ECDF620FE9C6D00DDAE76 /* AZDetailCell.swift */,
+				80842F4521753CF400ECA914 /* AZHeaderImage.swift */,
 			);
 			path = AZ;
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 				8038CA22210141510042A64E /* NewDiaryViewController.swift */,
 				8038CA2421015D520042A64E /* DiaryDetailViewController.swift */,
 				8056D842210294D0008DB395 /* DiaryListViewController.swift */,
+				806AC315217E803100BC5CB4 /* DiaryGroupCell.swift */,
 				8056D8442102A1F3008DB395 /* DiaryListCell.swift */,
 				8061D15A2104173A000CAC43 /* ChatViewController.swift */,
 				8061D15C21041749000CAC43 /* ChartViewController.swift */,
@@ -641,6 +647,7 @@
 				80FAFB672113DA26002F6071 /* NewsDetailViewController.swift in Sources */,
 				80662B582109169B009FB4B5 /* QuestionChatCell.swift in Sources */,
 				02B6D7A020E18CF800B9946A /* ViewController.swift in Sources */,
+				806AC316217E803100BC5CB4 /* DiaryGroupCell.swift in Sources */,
 				8041B6C420F7FE0F00D5754E /* NewsCell.swift in Sources */,
 				8056D843210294D0008DB395 /* DiaryListViewController.swift in Sources */,
 				8041B6D120F8155700D5754E /* VideoViewController.swift in Sources */,
@@ -675,6 +682,7 @@
 				80662B5A210916AC009FB4B5 /* AnswerChatCell.swift in Sources */,
 				8038CA2521015D520042A64E /* DiaryDetailViewController.swift in Sources */,
 				8061D1632104282F000CAC43 /* ActivityViewCell.swift in Sources */,
+				80842F4621753CF400ECA914 /* AZHeaderImage.swift in Sources */,
 				8057C8DC213DD979004B6494 /* NotificationViewController.swift in Sources */,
 				806FD8F820F971B400BEFFA3 /* AZDetailViewController.swift in Sources */,
 				8061D15B2104173A000CAC43 /* ChatViewController.swift in Sources */,

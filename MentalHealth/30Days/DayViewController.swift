@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 struct OneDayDetail: Codable {
     let id: Int
@@ -20,6 +21,9 @@ struct OneDayDetail: Codable {
 }
 
 class DayViewController: BaseViewController {
+    
+    private let watchPrefix: String = "watch?v="
+    private let embedPrefix: String = "embed/"
     
     @IBOutlet weak var paginationControl: UIPageControl!
     @IBOutlet weak var contentView: UIView!
@@ -154,7 +158,7 @@ class DayViewController: BaseViewController {
             contentView = self.createTextSlide(index: index, text: data.text!)
         }
         else if data.video != nil && data.video != "" {
-            contentView = self.createVideoSlide(index: index, image: data.image ?? "", video: data.video!)
+            contentView = self.createVideoSlide(index: index, image: data.image ?? "", video: data.video ?? "")
         }
         else {
             if data.image != nil {
@@ -224,35 +228,38 @@ class DayViewController: BaseViewController {
             }
         }
         
-        let playImage = UIImageView(image: UIImage(named: "ic_video"))
-        slideContent.addSubview(playImage)
+        if (video != "") {
+            // Convert to embed url
+            let videoUrl = video.replacingOccurrences(of: watchPrefix, with: embedPrefix, options: .literal, range: nil)
+            
+            if let url = URL(string: videoUrl) {
+                let webView = WKWebView()
+                
+                webView.configuration.allowsInlineMediaPlayback = true
+                webView.load(URLRequest(url: url))
+                
+                slideContent.addSubview(webView)
+                self.fillAnchor(parent: slideContent, child: webView)
+                webView.contentMode = .center
+            }
+        }
+        
+//        let playImage = UIImageView(image: UIImage(named: "ic_video"))
+//        slideContent.addSubview(playImage)
         
         slideContent.isUserInteractionEnabled = true
         
-        self.fillAnchor(parent: slideContent, child: playImage)
-        playImage.contentMode = .center
+//        self.fillAnchor(parent: slideContent, child: playImage)
+//        playImage.contentMode = .center
         
         // Tap
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DayViewController.onVideoTap(_:)))
-        tapGesture.numberOfTapsRequired = 1
-        tapGesture.numberOfTouchesRequired = 1
-        
-        slideContent.addGestureRecognizer(tapGesture)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DayViewController.onVideoTap(_:)))
+//        tapGesture.numberOfTapsRequired = 1
+//        tapGesture.numberOfTouchesRequired = 1
+//
+//        slideContent.addGestureRecognizer(tapGesture)
         
         return slideContent
-    }
-    
-    @objc func onVideoTap(_ sender: UITapGestureRecognizer) {
-        let videoUrl = self.allData[(sender.view?.tag)!].video
-        guard let url = URL(string: videoUrl!) else {
-            return // Be safe
-        }
-        
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.openURL(url)
-        }
     }
     
     private func createTextSlide(index: Int, text: String) -> UILabel {
