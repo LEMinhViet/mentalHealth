@@ -3377,7 +3377,7 @@ FB: https://www.facebook.com/crisp.ued/
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qi6-ek-jSu">
-                                <rect key="frame" x="0.0" y="30" width="375" height="329"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="216"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_chat" translatesAutoresizingMaskIntoConstraints="NO" id="mao-YC-vtz">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="103"/>
@@ -3385,14 +3385,14 @@ FB: https://www.facebook.com/crisp.ued/
                                             <outletCollection property="gestureRecognizers" destination="WYR-6m-VcG" appends="YES" id="msK-wb-vla"/>
                                         </connections>
                                     </imageView>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_charts" translatesAutoresizingMaskIntoConstraints="NO" id="LUZ-sz-7Ns">
-                                        <rect key="frame" x="0.0" y="113" width="375" height="103"/>
+                                    <imageView hidden="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_charts" translatesAutoresizingMaskIntoConstraints="NO" id="LUZ-sz-7Ns">
+                                        <rect key="frame" x="0.0" y="108" width="375" height="0.0"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="q6A-eA-tEy" appends="YES" id="L3H-CS-wWh"/>
                                         </connections>
                                     </imageView>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_diarybook" translatesAutoresizingMaskIntoConstraints="NO" id="2HT-NA-uMu">
-                                        <rect key="frame" x="0.0" y="226" width="375" height="103"/>
+                                        <rect key="frame" x="0.0" y="113" width="375" height="103"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="xvb-2s-hSy" appends="YES" id="OaG-Fo-qfA"/>
                                         </connections>
