@@ -146,6 +146,8 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                     self.setupSlideScrollView(slides: self.slides)
                     self.featuredPageControl.numberOfPages = self.slides.count
                     self.featuredPageControl.currentPage = 0
+                    
+                    self.removeSpinner()
                 }
             } catch let jsonError {
                 print(jsonError)
@@ -227,19 +229,19 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                         DispatchQueue.main.async {
                             slide.imageView.image = UIImage(data: data)
                             
-                            if i == 0 {
-                                self.removeSpinner()
-                            }
+//                            if i == 0 {
+//                                self.removeSpinner()
+//                            }
                         }
                     }
-                    else if i == 0 {
-                        self.removeSpinner()
-                    }
+//                    else if i == 0 {
+//                        self.removeSpinner()
+//                    }
                 }
             }
-            else if i == 0 {
-                self.removeSpinner()
-            }
+//            else if i == 0 {
+//                self.removeSpinner()
+//            }
             
             if createdSlides.count < 3 {
                 createdSlides.append(slide)

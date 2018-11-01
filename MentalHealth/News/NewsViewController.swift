@@ -11,11 +11,11 @@ import UIKit
 struct AllNews: Codable {
     let per_page: Int
     let current_page: Int
-    let next_page_url: String?
+    var next_page_url: String?
     let prev_page_url: String?
     let from: Int
     let to: Int
-    let data: [OneNews]
+    var data: [OneNews]
     
     init() {
         per_page = 0
@@ -34,7 +34,7 @@ struct OneNews: Codable {
     let image: String
 }
 
-class NewsViewController: BaseViewController {
+class NewsViewController: BaseViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var newsStackView: UIStackView!
     
@@ -44,6 +44,9 @@ class NewsViewController: BaseViewController {
     
     var nbLoadingImage: Int = 0
     var nbFirstLoadingImage: Int = 3
+    
+    var loadingMore: Bool = false
+    var nextPageUrl: String = ""
     
     let apiUrl: String = Constants.url + Constants.apiPrefix + "/news"
     var newsData = AllNews()
@@ -71,6 +74,10 @@ class NewsViewController: BaseViewController {
                 DispatchQueue.main.async {
                     self.newsData = jsonData
                     
+                    if jsonData.next_page_url != nil {
+                        self.nextPageUrl = jsonData.next_page_url!
+                    }
+                                        
                     self.newsIds = []
                     self.newsImages = []
                     self.newsTitles = []
@@ -83,7 +90,7 @@ class NewsViewController: BaseViewController {
                     }
                     
                     self.nbLoadingImage = min(self.newsData.data.count, self.nbFirstLoadingImage)
-                    self.updateStackView()
+                    self.updateStackView(needEmpty: true, startIndex: 0)
                     
                     self.removeSpinner()
                 }
@@ -94,14 +101,16 @@ class NewsViewController: BaseViewController {
     }
     
     // The method returning each cell of the list
-    public func updateStackView() {
-        // Remove old content if needed
-        for oldNews in newsStackView.subviews{
-            oldNews.removeFromSuperview()
+    public func updateStackView(needEmpty: Bool, startIndex: Int) {
+        if needEmpty {
+            // Remove old content if needed
+            for oldNews in newsStackView.subviews{
+                oldNews.removeFromSuperview()
+            }
         }
         
         // Displaying values
-        for i in 0 ..< newsImages.count {
+        for i in startIndex ..< newsImages.count {
             let article: NewsCell = Bundle.main.loadNibNamed("NewsCell", owner: self, options: nil)?.first as! NewsCell
             
             let cellWidth = newsStackView.frame.width;
@@ -138,6 +147,65 @@ class NewsViewController: BaseViewController {
             article.setNavigation(navigation: navigationController!)
 
             newsStackView.addArrangedSubview(article);
+        }
+    }
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset;
+        let bounds = scrollView.bounds;
+        let size = scrollView.contentSize;
+        let inset = scrollView.contentInset;
+        let y: CGFloat = offset.y + bounds.size.height - inset.bottom;
+        let h: CGFloat = size.height;
+        
+        let reload_distance: CGFloat = 10;
+        if(y > h + reload_distance) {
+            if !self.loadingMore {
+                self.loadingMore = true
+                self.loadPage()
+            }
+        }
+    }
+    
+    func loadPage() {
+        if nextPageUrl != "" {
+            guard let url = URL(string: nextPageUrl) else { return }
+            URLSession.shared.dataTask(with: url) { (data, resonse, error) in
+                if error != nil {
+                    print(error!.localizedDescription)
+                }
+                
+                guard let data = data else { return }
+                
+                do {
+                    let jsonData = try JSONDecoder().decode(AllNews.self, from: data)
+                    
+                    // Get back to the main queue
+                    DispatchQueue.main.async {
+                        let lastIndex = self.newsData.data.count
+                        self.newsData.data += jsonData.data
+                        
+                        if jsonData.next_page_url != nil {
+                            self.nextPageUrl = jsonData.next_page_url!
+                        }
+                        else {
+                            self.nextPageUrl = ""
+                        }
+                        
+                        for i in 0 ..< jsonData.data.count {
+                            self.newsIds.append(String(jsonData.data[i].id))
+                            self.newsImages.append(Constants.url + Constants.filePrefix + "/" + jsonData.data[i].image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!)
+                            self.newsTitles.append(jsonData.data[i].title)
+                        }
+                        
+                        self.updateStackView(needEmpty: false, startIndex: lastIndex)
+                        
+                        self.loadingMore = false
+                    }
+                } catch let jsonError {
+                    print(jsonError)
+                }
+            }.resume()
         }
     }
 }

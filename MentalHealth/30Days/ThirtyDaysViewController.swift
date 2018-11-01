@@ -15,7 +15,7 @@ struct AllDays: Codable {
     let prev_page_url: String?
     let from: Int
     let to: Int
-    let data: [OneDay]
+    var data: [OneDay]
     
     init() {
         per_page = 0
@@ -38,6 +38,9 @@ struct OneDay: Codable {
 class ThirtyDaysViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var daysTableView: UITableView!
+    
+    var loadingMore: Bool = false
+    var nextPageUrl: String = ""
     
     let apiUrl = Constants.url + Constants.apiPrefix + "/days"
     var daysData = AllDays();
@@ -62,6 +65,10 @@ class ThirtyDaysViewController: BaseViewController, UITableViewDelegate, UITable
             
             do {
                 let jsonData = try JSONDecoder().decode(AllDays.self, from: data)
+                
+                if jsonData.next_page_url != nil {
+                    self.nextPageUrl = jsonData.next_page_url!
+                }
                 
                 // Get back to the main queue
                 DispatchQueue.main.async {
@@ -114,5 +121,51 @@ class ThirtyDaysViewController: BaseViewController, UITableViewDelegate, UITable
         let cell = daysTableView.cellForRow(at: indexPath) as? ThirtyDaysCell
         
         cell?.updateContent(dayId: row, type: type)
+    }
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+        if distanceFromBottom < height {
+            if !self.loadingMore {
+                self.loadingMore = true
+                self.loadPage()
+            }
+        }
+    }
+    
+    func loadPage() {
+        if nextPageUrl != "" {
+            guard let url = URL(string: nextPageUrl) else { return }
+            URLSession.shared.dataTask(with: url) { (data, resonse, error) in
+                if error != nil {
+                    print(error!.localizedDescription)
+                }
+                
+                guard let data = data else { return }
+                
+                do {
+                    let jsonData = try JSONDecoder().decode(AllDays.self, from: data)
+                    
+                    // Get back to the main queue
+                    DispatchQueue.main.async {
+                        self.daysData.data += jsonData.data
+                        
+                        if jsonData.next_page_url != nil {
+                            self.nextPageUrl = jsonData.next_page_url!
+                        }
+                        else {
+                            self.nextPageUrl = ""
+                        }
+                        
+                        self.daysTableView.reloadData()
+                        self.loadingMore = false
+                    }
+                } catch let jsonError {
+                    print(jsonError)
+                }
+            }.resume()
+        }
     }
 }

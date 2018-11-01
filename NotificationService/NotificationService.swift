@@ -80,7 +80,7 @@ class NotificationService: UNNotificationServiceExtension {
             // Modify the notification content here...
             // bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
             
-            bestAttemptContent.sound = .default
+            bestAttemptContent.sound = .default()
             bestAttemptContent.badge = nbBadge as NSNumber?
                         
             contentHandler(bestAttemptContent)

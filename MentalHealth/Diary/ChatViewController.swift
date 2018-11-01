@@ -8,6 +8,20 @@
 
 import UIKit
 
+struct SavedActivityData: Codable {
+    var id: Int
+    var image: String
+    var hImage: String
+    var text: String
+    
+    init(_ id: Int, _ image: String, _ hImage: String, _ text: String) {
+        self.id = id
+        self.image = image
+        self.hImage = hImage
+        self.text = text
+    }
+}
+
 struct ChatAllQuestionsData: Codable {
     let per_page: Int
     let current_page: Int
@@ -58,22 +72,15 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
     @IBOutlet weak var chatContentPanel: UITableView!
     @IBOutlet weak var chatTextField: UITextView!
     
-    
-    @IBOutlet weak var workingImageView: UIImageView!
-    @IBOutlet weak var relaxImageView: UIImageView!
-    @IBOutlet weak var friendsImageView: UIImageView!
-    @IBOutlet weak var loveImageView: UIImageView!
-    @IBOutlet weak var sportImageView: UIImageView!
-    @IBOutlet weak var partyImageView: UIImageView!
-    @IBOutlet weak var movieImageView: UIImageView!
-    @IBOutlet weak var readingImageView: UIView!
-    @IBOutlet weak var gameImageView: UIImageView!
-    
     @IBOutlet weak var greatImageView: UIImageView!
     @IBOutlet weak var goodImageView: UIImageView!
     @IBOutlet weak var normalImageView: UIImageView!
     @IBOutlet weak var badImageView: UIImageView!
     @IBOutlet weak var awfulImageView: UIImageView!
+    
+    @IBOutlet weak var activityPageView: UIView!
+    @IBOutlet weak var activityStackView: UIStackView!
+    @IBOutlet weak var activityPageControl: UIPageControl!
     
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var chatHeightLayoutConstraint: NSLayoutConstraint!
@@ -149,14 +156,28 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
         }.resume()
         
         // Implement Activities and Emoticons events
-        let activitiesViews = [workingImageView, relaxImageView, friendsImageView, loveImageView, sportImageView, partyImageView, movieImageView, readingImageView, gameImageView]
-        for i in 0 ..< activitiesViews.count {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.onActivitiyTap(_:)))
-            tapGesture.numberOfTapsRequired = 1
-            tapGesture.numberOfTouchesRequired = 1
-            
-            activitiesViews[i]?.addGestureRecognizer(tapGesture)
+        if let data = UserDefaults.standard.value(forKey: "savedActivities") as? Data {
+            self.savedActivitiesData = try! PropertyListDecoder().decode(Array<SavedActivityData>.self, from: data)
         }
+        else {
+            self.savedActivitiesData = [
+                SavedActivityData(0, "ic_work1", "ic_work2", "Làm việc"),
+                SavedActivityData(1, "ic_relax1", "ic_relax2", "Thư giãn"),
+                SavedActivityData(2, "ic_friend", "ic_friend2", "Bạn bè"),
+                SavedActivityData(3, "ic_love", "ic_love2", "Hẹn hò"),
+                SavedActivityData(4, "ic_sport1", "ic_sport2", "Thể thao"),
+                SavedActivityData(5, "ic_party1", "ic_party2", "Tiệc tùng"),
+                SavedActivityData(6, "ic_film1", "ic_film2", "Xem phim"),
+                SavedActivityData(7, "ic_reading1", "ic_reading2", "Đọc sách"),
+                SavedActivityData(8, "ic_game1", "ic_game2", "Chơi game")
+            ]
+            
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(self.savedActivitiesData), forKey: "savedActivities")
+        }
+        
+        self.updateActivityList()
+        
+        // Emoticon section
         
         let emotionViews = [greatImageView, goodImageView, normalImageView, badImageView, awfulImageView]
         for i in 0 ..< emotionViews.count {
@@ -166,6 +187,39 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
             
             emotionViews[i]?.addGestureRecognizer(tapGesture)
         }
+    }
+    
+    func updateActivityList() {
+        let nbItemsEachPage = NB_ITEMS_EACH_LINE * NB_LINES_EACH_PAGE
+        
+        self.nbPages = Int(ceil(Double(savedActivitiesData.count + 1) / Double(nbItemsEachPage)))
+        
+        self.activityPanels = []
+        for oldSubView in activityPageView.subviews {
+            oldSubView.removeFromSuperview()
+        }
+        
+        for i in 0 ..< nbPages {
+            let panel: ChatActivityPanel = Bundle.main.loadNibNamed("ChatActivityPanel", owner: self, options: nil)?.first as! ChatActivityPanel
+            
+            activityPageView.addSubview(panel)
+            activityPanels.append(panel)
+            
+            panel.translatesAutoresizingMaskIntoConstraints = false
+            panel.centerXAnchor.constraint(equalTo: self.activityPageView.centerXAnchor).isActive = true
+            panel.centerYAnchor.constraint(equalTo: self.activityPageView.centerYAnchor).isActive = true
+            
+            let startIndex: Int = i * nbItemsEachPage
+            let endIndex: Int = min((i + 1) * nbItemsEachPage - 1, savedActivitiesData.count - 1)
+            
+            panel.updateItems(items: savedActivitiesData, start: startIndex, end: endIndex, target: self)
+            panel.alpha = i == 0 ? 1 : 0
+        }
+        
+        self.currentPage = 0
+        
+        activityPageControl.numberOfPages = nbPages
+        activityPageControl.currentPage = self.currentPage
     }
     
     @objc func onActivitiyTap(_ sender: UITapGestureRecognizer) {
@@ -181,6 +235,17 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
         }
     }
     
+    @objc func onAddActivitiyTap(_ sender: UITapGestureRecognizer) {
+        self.activityTmpAnswer.removeAll()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ActivityViewController") as! ActivityViewController
+        
+        vc.chatViewController = self
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func onActivityDone(_ sender: Any) {
         var tmpAnswer = ""
         for i in 0 ..< self.activityTmpAnswer.count {
@@ -188,7 +253,7 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
                 tmpAnswer += ", "
             }
             
-            tmpAnswer += ACTIVITIES[self.activityTmpAnswer[i]]
+            tmpAnswer += self.savedActivitiesData[self.activityTmpAnswer[i]].text
         }
         
         answer.append(tmpAnswer)
@@ -351,4 +416,55 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
             view.layer.mask = mask
         }
     }
+    
+    // Activity Panel
+    private let NB_ITEMS_EACH_LINE: Int = 5
+    private let NB_LINES_EACH_PAGE: Int = 2
+    public var savedActivitiesData: [SavedActivityData] = []
+    private var activityPanels: [ChatActivityPanel] = []
+    
+    private var nbPages: Int = 1
+    
+    @IBOutlet var leftSwipeRecognizer: UISwipeGestureRecognizer!
+    @IBAction func onLeftSwipe(_ sender: Any) {
+        currentPage = min(currentPage + 1, activityPageControl.numberOfPages - 1)
+        self.setPage()
+    }
+    
+    
+    @IBOutlet var rightSwipeRecognizer: UISwipeGestureRecognizer!
+    @IBAction func onRightSwipe(_ sender: Any) {
+        currentPage = max(currentPage - 1, 0)
+        self.setPage()
+    }
+    
+    func setPage() {
+        self.activityPageControl.currentPage = currentPage
+        self.enableSwipe(value: false)
+                
+        for i in 0 ..< self.activityPanels.count {
+            if i == currentPage {
+                if self.activityPanels[i].alpha == 0 {
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.activityPanels[i].alpha = 1
+                    }, completion: { (done: Bool) in
+                        self.enableSwipe(value: true)
+                    })
+                }
+                else {
+                    self.enableSwipe(value: true)
+                }
+            }
+            else {
+                self.activityPanels[i].alpha = 0.0
+            }
+        }
+    }
+    
+    func enableSwipe(value: Bool) {
+        rightSwipeRecognizer.isEnabled = value
+        leftSwipeRecognizer.isEnabled = value
+    }
+    
+    var currentPage: Int = 0
 }

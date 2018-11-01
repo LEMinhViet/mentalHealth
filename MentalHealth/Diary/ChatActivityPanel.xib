@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="chatActivityPanel" id="iN0-l3-epB" customClass="ChatActivityPanel" customModule="MentalHealth" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TTJ-3X-bwh">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vsY-Oz-eY5">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="48.5"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="K6V-LI-vVj">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="48.5"/>
+                                    <subviews>
+                                        <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_work1" highlightedImage="ic_work2" translatesAutoresizingMaskIntoConstraints="NO" id="UpO-ch-OMB">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="34"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Làm việc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIJ-h2-DwM">
+                                            <rect key="frame" x="0.0" y="34" width="75" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="c3H-u1-qks"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JLE-Y6-VEt">
+                                    <rect key="frame" x="75" y="0.0" width="75" height="48.5"/>
+                                    <subviews>
+                                        <imageView tag="1" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_relax1" highlightedImage="ic_relax2" translatesAutoresizingMaskIntoConstraints="NO" id="1Ay-kd-mlJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="34"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Thư giãn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cD0-pp-QTz">
+                                            <rect key="frame" x="0.0" y="34" width="75" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="wP9-eR-WMu"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gHP-EH-Xtn">
+                                    <rect key="frame" x="150" y="0.0" width="75" height="48.5"/>
+                                    <subviews>
+                                        <imageView tag="2" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_friend" highlightedImage="ic_friend2" translatesAutoresizingMaskIntoConstraints="NO" id="jOv-jD-Asu">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="34"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Bạn bè" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ip-NX-3ll">
+                                            <rect key="frame" x="0.0" y="34" width="75" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="UHU-9T-kWC"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CYx-9j-Jhb">
+                                    <rect key="frame" x="225" y="0.0" width="75" height="48.5"/>
+                                    <subviews>
+                                        <imageView tag="3" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_love" highlightedImage="ic_love2" translatesAutoresizingMaskIntoConstraints="NO" id="7wp-AY-wcL">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="34"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Hẹn hò" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avt-Z3-rfm">
+                                            <rect key="frame" x="0.0" y="34" width="75" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="Hz0-AD-ZKv"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Tek-A9-XgX">
+                                    <rect key="frame" x="300" y="0.0" width="75" height="48.5"/>
+                                    <subviews>
+                                        <imageView tag="4" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_sport1" highlightedImage="ic_sport2" translatesAutoresizingMaskIntoConstraints="NO" id="xsP-EY-JAy">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="34"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Thể thao" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSV-3N-0AQ">
+                                            <rect key="frame" x="0.0" y="34" width="75" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="JYI-4o-N10"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="IuR-Rf-zOh">
+                            <rect key="frame" x="0.0" y="71.5" width="375" height="48.5"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8ch-8G-dg1">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="48.5"/>
+                                    <subviews>
+                                        <imageView tag="5" contentMode="center" horizontalHuggingPriority="251" image="ic_party1" highlightedImage="ic_party2" translatesAutoresizingMaskIntoConstraints="NO" id="ocJ-cf-7hU">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="34"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiệc tùng" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Af-mA-A0H">
+                                            <rect key="frame" x="0.0" y="34" width="75" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="ofH-Hb-UGa"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b5f-S3-iKg">
+                                    <rect key="frame" x="75" y="0.0" width="75" height="48.5"/>
+                                    <subviews>
+                                        <imageView tag="6" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_film1" highlightedImage="ic_film2" translatesAutoresizingMaskIntoConstraints="NO" id="QwD-R4-Tfg">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="34"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Xem phim" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Nf-4a-9FC">
+                                            <rect key="frame" x="0.0" y="34" width="75" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="Bdc-A7-HW9"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ceG-ks-BJQ">
+                                    <rect key="frame" x="150" y="0.0" width="75" height="48.5"/>
+                                    <subviews>
+                                        <imageView tag="7" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_reading1" highlightedImage="ic_reading2" translatesAutoresizingMaskIntoConstraints="NO" id="Cl9-xB-g5i">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="34"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Đọc sách" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqZ-QK-rb4">
+                                            <rect key="frame" x="0.0" y="34" width="75" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="JxU-W2-Bwu"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="prq-MB-SqV">
+                                    <rect key="frame" x="225" y="0.0" width="75" height="48.5"/>
+                                    <subviews>
+                                        <imageView tag="8" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_game1" highlightedImage="ic_game2" translatesAutoresizingMaskIntoConstraints="NO" id="XEi-Z9-QcO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="34"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Chơi game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qop-dI-gaX">
+                                            <rect key="frame" x="0.0" y="34" width="75" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="nvQ-km-bHR"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FUz-pJ-9p8">
+                                    <rect key="frame" x="300" y="0.0" width="75" height="48.5"/>
+                                    <subviews>
+                                        <imageView tag="8" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_add" translatesAutoresizingMaskIntoConstraints="NO" id="FGB-Nt-36k">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="34"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Khác" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkG-al-Q22">
+                                            <rect key="frame" x="0.0" y="34" width="75" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="75" id="SZk-lj-PWe"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.36862745098039218" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TTJ-3X-bwh" secondAttribute="trailing" id="a4E-KG-3PG"/>
+                <constraint firstItem="TTJ-3X-bwh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="emk-lR-lFW"/>
+                <constraint firstItem="TTJ-3X-bwh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="g28-iM-RJF"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="TTJ-3X-bwh" secondAttribute="bottom" id="uvw-Ez-ZlS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="icon00" destination="UpO-ch-OMB" id="crC-oR-sG6"/>
+                <outlet property="icon01" destination="1Ay-kd-mlJ" id="s6U-xn-ZTe"/>
+                <outlet property="icon02" destination="jOv-jD-Asu" id="6TO-mt-mod"/>
+                <outlet property="icon03" destination="7wp-AY-wcL" id="Bjz-M4-WBH"/>
+                <outlet property="icon04" destination="xsP-EY-JAy" id="gML-N8-RcM"/>
+                <outlet property="icon05" destination="ocJ-cf-7hU" id="cGv-v0-qlA"/>
+                <outlet property="icon06" destination="QwD-R4-Tfg" id="jlV-ow-b73"/>
+                <outlet property="icon07" destination="Cl9-xB-g5i" id="jfV-2u-yh6"/>
+                <outlet property="icon08" destination="XEi-Z9-QcO" id="Pyt-xt-g9W"/>
+                <outlet property="icon09" destination="FGB-Nt-36k" id="sRo-CZ-Kvo"/>
+                <outlet property="text00" destination="VIJ-h2-DwM" id="ft2-Kc-hhY"/>
+                <outlet property="text01" destination="cD0-pp-QTz" id="3nI-C8-TMX"/>
+                <outlet property="text02" destination="1Ip-NX-3ll" id="uiC-Pj-Tyr"/>
+                <outlet property="text03" destination="avt-Z3-rfm" id="SZZ-Ep-SBO"/>
+                <outlet property="text04" destination="JSV-3N-0AQ" id="L5C-d0-2fr"/>
+                <outlet property="text05" destination="3Af-mA-A0H" id="YbB-ji-XRL"/>
+                <outlet property="text06" destination="2Nf-4a-9FC" id="P8m-EL-F8R"/>
+                <outlet property="text07" destination="XqZ-QK-rb4" id="EWV-Qg-aIV"/>
+                <outlet property="text08" destination="qop-dI-gaX" id="NPo-UX-cbA"/>
+                <outlet property="text09" destination="CkG-al-Q22" id="jgb-FO-ww8"/>
+            </connections>
+            <point key="canvasLocation" x="12.5" y="128"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_add" width="34" height="34"/>
+        <image name="ic_film1" width="34" height="34"/>
+        <image name="ic_film2" width="34" height="34"/>
+        <image name="ic_friend" width="34" height="34"/>
+        <image name="ic_friend2" width="34" height="34"/>
+        <image name="ic_game1" width="34" height="34"/>
+        <image name="ic_game2" width="34" height="34"/>
+        <image name="ic_love" width="34" height="34"/>
+        <image name="ic_love2" width="34" height="34"/>
+        <image name="ic_party1" width="34" height="34"/>
+        <image name="ic_party2" width="34" height="34"/>
+        <image name="ic_reading1" width="34" height="34"/>
+        <image name="ic_reading2" width="34" height="34"/>
+        <image name="ic_relax1" width="34" height="34"/>
+        <image name="ic_relax2" width="34" height="34"/>
+        <image name="ic_sport1" width="34" height="34"/>
+        <image name="ic_sport2" width="34" height="34"/>
+        <image name="ic_work1" width="34" height="34"/>
+        <image name="ic_work2" width="34" height="34"/>
+    </resources>
+</document>
