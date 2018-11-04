@@ -272,10 +272,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         nbBadge = max(0, nbBadge! - 1)
         
         if notificationRawDatas != nil {
-            var notificationDatas = try! PropertyListDecoder().decode(Array<NotiObject>.self, from: notificationRawDatas!)
-            
-            notificationDatas.removeLast()
-            groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
+//            var notificationDatas = try! PropertyListDecoder().decode(Array<NotiObject>.self, from: notificationRawDatas!)
+//            
+//            notificationDatas.removeLast()
+//            groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
         }
         
         groupDefaults?.set(nbBadge, forKey: "nbBadge")
