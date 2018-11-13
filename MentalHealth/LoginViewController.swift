@@ -190,6 +190,8 @@ class LoginViewController: UIViewController {
             defaults.set(deviceId, forKey: "loggedDeviceId")
         }
         
+        print ("DEVICE ID: ", deviceId)
+        
         let logData: [String: Any] = [
             "user_id": userId,
             "action": action,

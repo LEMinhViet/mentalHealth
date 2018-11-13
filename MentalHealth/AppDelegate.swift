@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
         
+        let defaults = UserDefaults.standard
+        defaults.set(fcmToken, forKey: "loggedDeviceId")
+        
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
         // TODO: If necessary send token to application server.
@@ -52,8 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-
-        print("GO REMOTE NOTIF")
         let noti = NotiObject(dict: userInfo)
         removeNotification(data: noti)
         
@@ -184,6 +185,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let userId = defaults.integer(forKey: "loggedUserId")
         var deviceId = defaults.string(forKey: "loggedDeviceId") ?? ""
         
+        print ("DEVICE ID: ", deviceId)
+        
         if deviceId == "" {
             deviceId = (UIDevice.current.identifierForVendor?.uuidString)!
         }
@@ -193,6 +196,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             "action": action,
             "device_id": deviceId
         ]
+        
+        print("USER_ID : ", userId)
         
         guard let httpBody = try? JSONSerialization.data(withJSONObject: logData, options: []) else {
             return

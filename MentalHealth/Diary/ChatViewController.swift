@@ -22,6 +22,10 @@ struct SavedActivityData: Codable {
     }
 }
 
+struct PostAnswerData: Codable {
+    var message: String
+}
+
 struct ChatAllQuestionsData: Codable {
     let per_page: Int
     let current_page: Int
@@ -45,6 +49,16 @@ struct ChatAllQuestionsData: Codable {
 struct ChatQuestionData: Codable {
     let id: Int
     let question: String
+    let created_at: String
+    let updated_at: String
+}
+
+struct ChatAnswerData: Codable {
+    let id: Int
+    let user_id: Int
+    let monster_id: Int
+    let answer_id: Int?
+    let answer: String?
     let created_at: String
     let updated_at: String
 }
@@ -89,6 +103,7 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
     
     @IBAction func sendChatClicked(_ sender: Any) {
         answer.append(chatTextField.text)
+        self.postAnswer(questionId: curQuestion, answerId: nil, answer: answer[curQuestion])
         self.nextQuestion()
     }
     
@@ -148,7 +163,9 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
                     }
                     
                     self.chatContentPanel.reloadData()
-                    self.showUserInput()
+//                    self.showUserInput()
+                    self.hideUserInput()
+                    self.getAnswers()
                 }
             } catch let jsonError {
                 print(jsonError)
@@ -257,11 +274,13 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
         }
         
         answer.append(tmpAnswer)
+        self.postAnswer(questionId: curQuestion, answerId: self.activityTmpAnswer, answer: nil)
         self.nextQuestion()
     }
     
     @objc func onEmotionTap(_ sender: UITapGestureRecognizer) {
         answer.append(EMOTIONS[sender.view?.tag ?? 0])
+        self.postAnswer(questionId: curQuestion, answerId: [sender.view?.tag ?? 0], answer: nil)
         self.nextQuestion()
     }
     
@@ -467,4 +486,148 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
     }
     
     var currentPage: Int = 0
+    
+    // Data get/request
+    public func getAnswers() {
+        let defaults = UserDefaults.standard
+        let userId = defaults.integer(forKey: "loggedUserId")
+        let apiUrl: String = Constants.url + Constants.apiPrefix + "/monster/answer/" + String(userId)
+        
+        print ("API URL : ", apiUrl)
+        
+        guard let url = URL(string: apiUrl) else { return }
+        URLSession.shared.dataTask(with: url) { (data, resonse, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let jsonData = try JSONDecoder().decode([ChatAnswerData].self, from: data)
+                
+                // Get back to the main queue
+                DispatchQueue.main.async {
+                    self.curQuestion = 0
+                    self.answer = []
+                    
+                    print ("DATA : ", jsonData)
+                    
+                    for i in 0 ..< jsonData.count {
+                        if jsonData[i].monster_id == self.curQuestion && self.isToday(dateStr: jsonData[i].created_at) {
+                            if self.curQuestion == 0 {
+                                self.answer.append(self.EMOTIONS[jsonData[i].answer_id ?? 0])
+                            }
+                            else if self.curQuestion == 1 {
+                                self.answer.append(self.savedActivitiesData[jsonData[i].answer_id ?? 0].text)
+                            }
+                            else {
+                                self.answer.append(jsonData[i].answer ?? "")
+                            }
+                            
+                            self.nextQuestion()
+                            
+                            if (self.answer.count >= self.question.count) {
+                                self.hideUserInput()
+                                break
+                            }
+                        }
+                    }
+                    
+                    print ("ANSWER : ", self.answer)
+                    if self.answer.count == 0 {
+                        self.showUserInput()
+                    }
+                }
+            } catch let jsonError {
+                DispatchQueue.main.async {
+                    self.showUserInput()
+                }
+                
+                print(jsonError)
+            }
+        }.resume()
+    }
+    
+    public func postAnswer(questionId: Int, answerId: [Int]?, answer: String?) {
+        let apiUrl: String = Constants.url + Constants.apiPrefix + "/monster/answer"
+        guard let updateUrl = URL(string: apiUrl) else { return }
+        
+        let defaults = UserDefaults.standard
+        let userId = defaults.integer(forKey: "loggedUserId")
+        
+        var updateData: [String: Any] = [
+            "user_id": userId,
+            "monster_id": questionId
+        ]
+        
+        if answerId != nil {
+            updateData["answer_id"] = answerId![0]
+        }
+        else {
+            updateData["answer_id"] = ""
+        }
+        
+        if answer != nil {
+            updateData["answer"] = answer
+        }
+        else {
+            updateData["answer"] = ""
+        }
+        
+        print ("UPDATE DATA : ", updateData)
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: updateData, options: []) else {
+            return
+        }
+        
+        var updateUrlRequest = URLRequest(url: updateUrl)
+        updateUrlRequest.httpMethod = "POST"
+        updateUrlRequest.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        updateUrlRequest.httpBody = httpBody
+        
+        URLSession.shared.dataTask(with: updateUrlRequest) { (data, response, error)
+            in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+//                print("SAVE ANSWER DONE ", String(data: data, encoding: .utf8))
+
+                let updateResult = try JSONDecoder().decode(PostAnswerData.self, from: data)
+                
+//
+//                //Get back to the main queue
+//                DispatchQueue.main.async {
+//                    self.updateContent(dayId: updateResult.day_id!, name: self.dayName, type: ThirtyDayEnum.PassedDay.rawValue)
+//                }
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }.resume()
+    }
+    
+    public func isToday(dateStr: String) -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        guard let date = dateFormatter.date(from: dateStr) else {
+            return false
+        }
+        
+        let calendar = Calendar.current
+        
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+        
+        let curDate = Date()
+        let curYear = calendar.component(.year, from: curDate)
+        let curMonth = calendar.component(.month, from: curDate)
+        let curDay = calendar.component(.day, from: curDate)
+        
+        return year == curYear && month == curMonth && day == curDay
+    }
 }

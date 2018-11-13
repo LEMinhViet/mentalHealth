@@ -28,14 +28,16 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
     @IBOutlet weak var titleLabel: UILabel!
     private var contentWebView: WKWebView = WKWebView()
     
+    @IBOutlet weak var loadingLabel: UILabel!
+    
     @IBOutlet weak var featuredImageHeightConstraint: NSLayoutConstraint!
     private var contentWebViewHeightConstraint: NSLayoutConstraint?
     
     let apiUrl = Constants.url + Constants.apiPrefix + "/documents"
+    let pdfUrl = Constants.url + Constants.apiPrefix + "/pdf"
     
     private var baseHTML: String = "<html><head><meta name=\"viewport\" content=\"initial-scale=1.0\" /></head><body>{body}</body></html>"
     
-    public var urlVal: String = "http://www.pdf995.com/samples/pdf.pdf"
     public var documentId: Int = 1
     
     private var isFeaturedLoaded: Bool = false
@@ -121,6 +123,8 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
                 print(jsonError)
             }
         }.resume()
+        
+        loadingLabel.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -167,18 +171,43 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
     }
     
     @IBAction func pdfClicked(_ sender: Any) {
-        guard let url = URL(string: urlVal) else { return }
+        self.loadingLabel.isHidden = false
+        self.loadingLabel.setNeedsLayout()
+        self.loadingLabel.layoutIfNeeded()
         
+        guard let url = URL(string: pdfUrl + "/" + String(documentId)) else {
+            self.loadingLabel.isHidden = true
+            return
+        }
+
         if #available(iOS 11, *) {
-            guard let pdfDocument = PDFDocument(url: url) else { return }
-            guard let pdfData = pdfDocument.dataRepresentation() else { return }
-            
-            let shareVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
-            shareVC.popoverPresentationController?.sourceView = self.view
-            self.present(shareVC, animated: true, completion: nil)
+            DispatchQueue.global().async {
+                guard let pdfDocument = PDFDocument(url: url) else {
+                    DispatchQueue.main.async {
+                        self.loadingLabel.isHidden = true
+                    }
+                    return
+                }
+
+                guard let pdfData = pdfDocument.dataRepresentation() else {
+                    DispatchQueue.main.async {
+                        self.loadingLabel.isHidden = true
+                    }
+                    return
+                }
+
+                let shareVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
+                shareVC.popoverPresentationController?.sourceView = self.view
+                self.present(shareVC, animated: true, completion: nil)
+                
+                DispatchQueue.main.async {
+                    self.loadingLabel.isHidden = true
+                }
+            }
         }
         else if #available(iOS 10, *) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            loadingLabel.isHidden = true
         }
     }
 
