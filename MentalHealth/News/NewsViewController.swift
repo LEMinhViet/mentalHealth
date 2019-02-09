@@ -133,9 +133,9 @@ class NewsViewController: BaseViewController, UIScrollViewDelegate {
                         }
                     }
                     else {
-                        DispatchQueue.main.async {
-                            article.featuredImage.image = UIImage(named: "img_roiloancamxuc")
-                        }
+//                        DispatchQueue.main.async {
+//                            article.featuredImage.image = UIImage(named: "img_thumbnail")
+//                        }
                     }
                 }
             }

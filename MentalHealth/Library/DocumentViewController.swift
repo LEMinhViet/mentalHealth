@@ -68,10 +68,11 @@ class DocumentViewController: BaseViewController {
                         let id = self.allDocumentData.data[i].id
                         
                         // Default image
-                        let imageView = UIImageView(image: UIImage(named: "img_sinhvien.png"))
+                        let imageView = UIImageView(image: UIImage(named: "img_thumbnail"))
+                        imageView.contentMode = .scaleAspectFit
                         
                         let imageName = Constants.url + Constants.publicPrefix + "/" + (self.allDocumentData.data[i].image ?? "")
-                        print("  ", imageView.frame.height)
+                        
                         if let imageUrl = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!) {
                             DispatchQueue.global().async {
                                 if let data = try? Data(contentsOf: imageUrl) {

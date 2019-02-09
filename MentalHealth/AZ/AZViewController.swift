@@ -89,7 +89,8 @@ class AZViewController: BaseViewController {
                         let id = self.azData.data[i].id
                         
                         // Default image
-                        let imageView = UIImageView(image: UIImage(named: "img_roiloanloau.png"))
+                        let imageView = UIImageView(image: UIImage(named: "img_thumbnail.png"))
+                        imageView.contentMode = .scaleAspectFit
                         self.images.append(imageView)
                         
                         let imageName = Constants.url + Constants.publicPrefix + "/" + self.azData.data[i].image
