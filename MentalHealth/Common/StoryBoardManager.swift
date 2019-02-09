@@ -29,6 +29,10 @@ class StoryboardManager {
        return storyboard.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
     }
     
+    func instantiateVideoViewController() -> VideoViewController {
+        return storyboard.instantiateViewController(withIdentifier: "VideoViewController") as! VideoViewController
+    }
+    
     func instantiateThirtyDaysViewController() -> ThirtyDaysViewController {
         return storyboard.instantiateViewController(withIdentifier: "ThirtyDaysViewController") as! ThirtyDaysViewController
     }

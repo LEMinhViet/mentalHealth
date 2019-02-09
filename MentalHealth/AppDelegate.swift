@@ -91,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let noti = NotiObject(dict: userInfo)
         addNotification(data: noti)
         
-        completionHandler([.alert])
+        completionHandler([.alert, .sound])
     }
     
     // The callback to handle data message received via FCM for devices running iOS 10 or above.
@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print(remoteMessage.appData)
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -240,7 +240,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func addNotification(data: NotiObject) {
         let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
-        var nbBadge = groupDefaults?.integer(forKey: "nbBadge")
+        let nbBadge = groupDefaults?.integer(forKey: "nbBadge")
         
 //        let notificationRawDatas = groupDefaults?.value(forKey: "notificationDatas") as? Data
 //        var notificationDatas = Array<NotiObject>()

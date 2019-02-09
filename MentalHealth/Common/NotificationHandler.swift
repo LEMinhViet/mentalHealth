@@ -90,6 +90,15 @@ class NotificationHandler {
 //            quizVC.showLevel(noti.id)
             navigation.pushViewController(quizVC, animated: true)
             
+        case .az:
+            print ("GOGO")
+//            let azVC = StoryboardManager.shared.ins
+//            navigation.pushViewController(azVC, animated: true)
+        
+        case .video:
+            let videoVC = StoryboardManager.shared.instantiateVideoViewController()
+            navigation.pushViewController(videoVC, animated: true)
+            
         default:
             let newVC = StoryboardManager.shared.instantiateNewsViewContrller()
             navigation.pushViewController(newVC, animated: true)
@@ -128,5 +137,5 @@ struct NotiObject: Codable {
 }
 
 enum NotiType: Int, Codable {
-    case news, thirtyDay, emotion, quiz
+    case news, thirtyDay, emotion, quiz, az, video
 }

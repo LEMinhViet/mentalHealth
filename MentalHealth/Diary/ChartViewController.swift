@@ -235,7 +235,7 @@ class ChartViewController: BaseViewController, UICollectionViewDelegate, UIColle
         
         let cell: ActivityViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "activityViewCell" , for: indexPath) as! ActivityViewCell
         
-        cell.iconImage.image = UIImage(named: chartIcons[chartId[index]]! ?? "ic_friend.png")
+        cell.iconImage.image = UIImage(named: chartIcons[chartId[index]]!)
         cell.nbLabel.text = String(chartNb[index])
         
         cell.nbLabel.isHidden = true

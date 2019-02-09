@@ -47,7 +47,7 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
         if (indexPath.section != 0 && indexPath.row == 0) {
             return 80
         } else {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
     }
     
@@ -56,7 +56,15 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
         if (indexPath.section == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "azHeaderImage", for: indexPath) as! AZHeaderImage
 
-            cell.headerImage.image = UIImage(named: self.header)
+            if let imageUrl = URL(string: self.header.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!) {
+                DispatchQueue.global().async {
+                    if let data = try? Data(contentsOf: imageUrl) {
+                        DispatchQueue.main.async {
+                            cell.headerImage.image = UIImage(data: data)
+                        }
+                    }
+                }
+            }
             
             return cell
         }

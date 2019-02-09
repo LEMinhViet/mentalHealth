@@ -133,13 +133,13 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
         chatTextField.layer.cornerRadius = 20
         chatTextField.layer.masksToBounds = true
         
-        chatTextField.textContainerInset = UIEdgeInsetsMake(10, 15, 10, 15)
+        chatTextField.textContainerInset = UIEdgeInsets.init(top: 10, left: 15, bottom: 10, right: 15)
 
         chatPanel.frame.size = CGSize(width: chatPanel.frame.width, height: 0)
         
         NotificationCenter.default.addObserver(self,
            selector: #selector(self.keyboardNotification(notification:)),
-           name: NSNotification.Name.UIKeyboardWillChangeFrame,
+           name: UIResponder.keyboardWillChangeFrameNotification,
            object: nil)
         
         // Do any additional setup after loading the view.
@@ -385,12 +385,12 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
         let bottomMargin: CGFloat = 10.0
         
         if let userInfo = notification.userInfo {
-            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
             let endFrameY = endFrame?.origin.y ?? 0
-            let duration: TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
-            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
-            let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            let duration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+            let animationCurve: UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
             
             if endFrameY >= UIScreen.main.bounds.size.height {
                 self.keyboardHeightLayoutConstraint?.constant = bottomMargin
@@ -594,19 +594,19 @@ class ChatViewController: BaseViewController, UITextViewDelegate, UITableViewDel
             
             guard let data = data else { return }
             
-            do {
+//            do {
 //                print("SAVE ANSWER DONE ", String(data: data, encoding: .utf8))
 
-                let updateResult = try JSONDecoder().decode(PostAnswerData.self, from: data)
+//                let updateResult = try JSONDecoder().decode(PostAnswerData.self, from: data)
                 
 //
 //                //Get back to the main queue
 //                DispatchQueue.main.async {
 //                    self.updateContent(dayId: updateResult.day_id!, name: self.dayName, type: ThirtyDayEnum.PassedDay.rawValue)
 //                }
-            } catch let jsonError {
-                print(jsonError)
-            }
+//            } catch let jsonError {
+//                print(jsonError)
+//            }
         }.resume()
     }
     

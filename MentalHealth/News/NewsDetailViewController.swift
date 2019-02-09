@@ -117,7 +117,7 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
         
         contentWebView.configuration.dataDetectorTypes = .all
         
-        contentWebViewHeightConstraint = NSLayoutConstraint(item: contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 235)
+        contentWebViewHeightConstraint = NSLayoutConstraint(item: contentWebView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 235)
         
         mainStackView.addArrangedSubview(contentWebView)
         
@@ -163,8 +163,8 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
                         self.setNewsDescription(value: jsonData.description ?? "")
                         
                         if jsonData.image != nil {
-                            // let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
-                            let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+                            // let urlImage = Constants.url + Constants.publicPrefix + "/" + (jsonData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+                            let urlImage = Constants.url + Constants.publicPrefix + "/" + (jsonData.image!).addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
                             self.setFeaturedImage(value: urlImage)
                             
                             if let url = URL(string: urlImage) {
@@ -238,7 +238,7 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
             if complete != nil {
                 self.contentWebView.frame.size = self.contentWebView.scrollView.contentSize
                 
-                self.contentWebViewHeightConstraint = NSLayoutConstraint(item: self.contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.contentWebView.scrollView.contentSize.height);
+                self.contentWebViewHeightConstraint = NSLayoutConstraint(item: self.contentWebView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: self.contentWebView.scrollView.contentSize.height);
                 self.contentWebViewHeightConstraint?.isActive = true
                 
                 self.mainScrollView.contentSize = CGSize(

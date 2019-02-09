@@ -31,35 +31,14 @@ struct AllDocumentData: Codable {
 class DocumentViewController: BaseViewController {
     
     @IBOutlet weak var documentStackView: UIStackView!
-    @IBOutlet weak var studentImageView: UIImageView!
-    @IBOutlet weak var anxietyDisorderImageView: UIImageView!
-    @IBOutlet weak var stressImageView: UIImageView!
     
     let apiUrl = Constants.url + Constants.apiPrefix + "/documents"
     var allDocumentData = AllDocumentData()
     
-    @IBAction func studentClicked(_ sender: Any) {
-        if (allDocumentData.data.count > 0) {
-            openDocumentById(id: allDocumentData.data[0].id)
-        }
-    }
-    
-    @IBAction func anxietyDisorderClicked(_ sender: Any) {
-        if (allDocumentData.data.count > 1) {
-            openDocumentById(id: allDocumentData.data[1].id)
-        }
-    }
-    
-    @IBAction func stressClicked(_ sender: Any) {
-        if (allDocumentData.data.count > 2) {
-            openDocumentById(id: allDocumentData.data[2].id)
-        }
-    }
-    
-    private func openDocumentById(id: Int) {
+    @objc func openDocumentById(_ sender: UITapGestureRecognizer) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "DocumentDetailViewController") as? DocumentDetailViewController
-        vc?.documentId = id
+        vc?.documentId = sender.view?.tag ?? 1
         
         navigationController?.pushViewController(vc!, animated: true)
     }
@@ -84,6 +63,44 @@ class DocumentViewController: BaseViewController {
                 // Get back to the main queue
                 DispatchQueue.main.async {
                     self.documentStackView.isHidden = false
+                    
+                    for i in 0 ..< self.allDocumentData.data.count {
+                        let id = self.allDocumentData.data[i].id
+                        
+                        // Default image
+                        let imageView = UIImageView(image: UIImage(named: "img_sinhvien.png"))
+                        
+                        let imageName = Constants.url + Constants.publicPrefix + "/" + (self.allDocumentData.data[i].image ?? "")
+                        print("  ", imageView.frame.height)
+                        if let imageUrl = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!) {
+                            DispatchQueue.global().async {
+                                if let data = try? Data(contentsOf: imageUrl) {
+                                    DispatchQueue.main.async {
+                                        imageView.image = UIImage(data: data)
+                                        imageView.contentMode = .scaleAspectFit
+                                        
+                                        // Fit container to image
+                                        let ratio = imageView.image!.size.width / imageView.image!.size.height
+                                        let newHeight = self.documentStackView.frame.width / ratio
+                                        
+                                        let imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: newHeight);
+                                        imageHeightConstraint.isActive = true
+                                    }
+                                }
+                            }
+                        }
+                        
+                        imageView.tag = id
+                        
+                        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DocumentViewController.openDocumentById(_:)))
+                        tapGesture.numberOfTapsRequired = 1
+                        tapGesture.numberOfTouchesRequired = 1
+                        
+                        imageView.isUserInteractionEnabled = true
+                        imageView.addGestureRecognizer(tapGesture)
+                        
+                        self.documentStackView.addArrangedSubview(imageView)
+                    }
                     
                     self.removeSpinner()
                 }

@@ -495,7 +495,7 @@ open class Chart: UIControl {
         }
         lineLayer.fillColor = nil
         lineLayer.lineWidth = lineWidth
-        lineLayer.lineJoin = kCALineJoinBevel
+        lineLayer.lineJoin = CAShapeLayerLineJoin.bevel
 
         self.layer.addSublayer(lineLayer)
 

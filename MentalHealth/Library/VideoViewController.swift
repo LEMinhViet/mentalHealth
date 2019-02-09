@@ -89,6 +89,10 @@ class VideoViewController: BaseViewController, UITableViewDelegate, UITableViewD
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "videoCell", for: indexPath) as! VideoCell
         
+        if (cell.contentStackView.subviews.count > 0) {
+            return cell
+        }
+        
         // Displaying values
         let video: VideoByDayCell = Bundle.main.loadNibNamed("VideoByDayCell", owner: self, options: nil)?.first as! VideoByDayCell
         
@@ -98,7 +102,7 @@ class VideoViewController: BaseViewController, UITableViewDelegate, UITableViewD
         video.titleLabel.text = videosData.data[indexPath.row].title
         video.initVideo(srcUrl: videosData.data[indexPath.row].url, srcFrame: video.frame)
 //        video.featuredVideo.image = UIImage(named: videosData.data[indexPath.row].)
-        
+                        
         cell.contentStackView.addArrangedSubview(video);
         
         return cell

@@ -38,6 +38,8 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
     
     private var baseHTML: String = "<html><head><meta name=\"viewport\" content=\"initial-scale=1.0\" /></head><body>{body}</body></html>"
     
+    public var urlVal: String = "http://www.pdf995.com/samples/pdf.pdf"
+
     public var documentId: Int = 1
     
     private var isFeaturedLoaded: Bool = false
@@ -48,7 +50,7 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
         
         contentWebView.configuration.dataDetectorTypes = .all
         
-        contentWebViewHeightConstraint = NSLayoutConstraint(item: contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 235)
+        contentWebViewHeightConstraint = NSLayoutConstraint(item: contentWebView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 235)
         mainStackView.addArrangedSubview(contentWebView)
         
         self.displaySpinner(onView: self.view)
@@ -71,8 +73,8 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
                 DispatchQueue.main.async {
                     self.titleLabel.text = jsonData.title
                     if jsonData.image != nil {
-                        // let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
-                        let urlImage = Constants.url + Constants.filePrefix + "/" + (jsonData.image!).addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+                        // let urlImage = Constants.url + Constants.publicPrefix + "/" + (jsonData.image!).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+                        let urlImage = Constants.url + Constants.publicPrefix + "/" + (jsonData.image!).addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
                         
                         if let url = URL(string: urlImage) {
                             DispatchQueue.global().async {
@@ -153,7 +155,7 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
             if complete != nil {
                 self.contentWebView.frame.size = self.contentWebView.scrollView.contentSize
                 
-                self.contentWebViewHeightConstraint = NSLayoutConstraint(item: self.contentWebView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.contentWebView.scrollView.contentSize.height);
+                self.contentWebViewHeightConstraint = NSLayoutConstraint(item: self.contentWebView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: self.contentWebView.scrollView.contentSize.height);
                 self.contentWebViewHeightConstraint?.isActive = true
                 
                 self.mainStackView.updateConstraints()
@@ -175,6 +177,7 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
         self.loadingLabel.setNeedsLayout()
         self.loadingLabel.layoutIfNeeded()
         
+//        guard let url = URL(string: urlVal) else {
         guard let url = URL(string: pdfUrl + "/" + String(documentId)) else {
             self.loadingLabel.isHidden = true
             return
@@ -188,14 +191,14 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
                     }
                     return
                 }
-
+                
                 guard let pdfData = pdfDocument.dataRepresentation() else {
                     DispatchQueue.main.async {
                         self.loadingLabel.isHidden = true
                     }
                     return
                 }
-
+                
                 let shareVC = UIActivityViewController(activityItems: [pdfData], applicationActivities: nil)
                 shareVC.popoverPresentationController?.sourceView = self.view
                 self.present(shareVC, animated: true, completion: nil)
@@ -204,9 +207,10 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
                     self.loadingLabel.isHidden = true
                 }
             }
+
         }
         else if #available(iOS 10, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             loadingLabel.isHidden = true
         }
     }
@@ -221,4 +225,9 @@ class DocumentDetailViewController: BaseViewController, WKNavigationDelegate {
     }
     */
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

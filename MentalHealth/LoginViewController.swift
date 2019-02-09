@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var statusLabel: UILabel!
     
     @IBOutlet weak var paginationControl: UIPageControl!
     
@@ -71,6 +72,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        statusLabel.isHidden = true
 
         // Do any additional setup after loading the view.
         loginButton.layer.cornerRadius = loginButton.frame.height * 0.5
@@ -94,7 +97,7 @@ class LoginViewController: UIViewController {
     @IBAction func onLogin(_ sender: Any) {
         loginButton.isEnabled = false
         
-        let apiUrl: String = Constants.url + Constants.apiPrefix + "/login"
+        let apiUrl: String = Constants.url + Constants.publicPrefix + Constants.apiPrefix + "/login"
         guard let loginUrl = URL(string: apiUrl) else { return }
         
         let defaults = UserDefaults.standard
@@ -163,12 +166,16 @@ class LoginViewController: UIViewController {
         
         self.toMenu()
         self.logTime(action: Constants.TO_FOREGROUND)
+        
+        statusLabel.isHidden = true
     }
     
     func loginFailed() {
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: "isUserLoggedIn")
         defaults.synchronize()
+        
+        statusLabel.isHidden = false
     }
     
     func toMenu() {

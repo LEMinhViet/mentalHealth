@@ -11,15 +11,10 @@ import UIKit
 class VideoCell: UITableViewCell {
 
     @IBOutlet weak var contentStackView: UIStackView!
-    @IBOutlet weak var dayTitle: UILabel!
-    @IBOutlet weak var dateTitle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        dayTitle.isHidden = true
-        dateTitle.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

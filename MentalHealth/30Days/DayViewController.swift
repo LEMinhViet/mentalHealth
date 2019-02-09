@@ -34,7 +34,7 @@ class DayViewController: BaseViewController {
     private var allData: [OneDayDetail] = [] {
         didSet {
             if !allData.isEmpty {
-                if let firstItem = allData.first {
+                if allData.first != nil {
                     DispatchQueue.main.async {
                         self.navigationItem.title = self.dayName
                     }
@@ -185,9 +185,9 @@ class DayViewController: BaseViewController {
         let slideContent: UIImageView = UIImageView(image: UIImage(named: "img_roiloancamxuc"))
         slideContent.isHidden = true
         
-        // var urlImage = Constants.url + Constants.filePrefix + "/" + image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+        // var urlImage = Constants.url + Constants.publicPrefix + "/" + image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
         
-        let urlImage = Constants.url + Constants.filePrefix + "/" + image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+        let urlImage = Constants.url + Constants.publicPrefix + "/" + image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
                 
         if let url = URL(string: urlImage) {
             DispatchQueue.global().async {
@@ -211,9 +211,9 @@ class DayViewController: BaseViewController {
         if (image != "") {
             slideContent.isHidden = true
             
-            // let urlImage = Constants.url + Constants.filePrefix + "/" + image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+            // let urlImage = Constants.url + Constants.publicPrefix + "/" + image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
             
-            let urlImage = Constants.url + Constants.filePrefix + "/" + image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
+            let urlImage = Constants.url + Constants.publicPrefix + "/" + image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
             
             if let url = URL(string: urlImage) {
                 DispatchQueue.global().async {

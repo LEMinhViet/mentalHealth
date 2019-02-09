@@ -22,7 +22,7 @@ class NotificationViewController: BaseViewController, UITableViewDataSource, UIT
         let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
         let notificationRawDatas = groupDefaults?.value(forKey: "notificationDatas") as? Data
         
-        print ("NOTIFICATION RAW = ", notificationRawDatas)
+        print ("NOTIFICATION RAW = ", notificationRawDatas ?? "")
         
         if notificationRawDatas != nil {
             self.notificationDatas = try! PropertyListDecoder().decode(Array<NotiObject>.self, from: notificationRawDatas!)

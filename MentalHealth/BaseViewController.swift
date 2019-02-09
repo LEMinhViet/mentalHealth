@@ -136,7 +136,7 @@ class BaseViewController: UIViewController {
         if (spinnerView == nil) {
             spinnerView = UIView.init(frame: onView.bounds)
             spinnerView?.backgroundColor = UIColor.init(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
-            let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+            let ai = UIActivityIndicatorView.init(style: .whiteLarge)
             ai.startAnimating()
             ai.center = (spinnerView?.center)!
             

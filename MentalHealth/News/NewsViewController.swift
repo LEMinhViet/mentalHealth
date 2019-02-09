@@ -84,8 +84,8 @@ class NewsViewController: BaseViewController, UIScrollViewDelegate {
                     
                     for i in 0 ..< self.newsData.data.count {
                         self.newsIds.append(String(self.newsData.data[i].id))
-                        // self.newsImages.append(Constants.url + Constants.filePrefix + "/" + self.newsData.data[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
-                        self.newsImages.append(Constants.url + Constants.filePrefix + "/" + self.newsData.data[i].image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!)
+                        // self.newsImages.append(Constants.url + Constants.publicPrefix + "/" + self.newsData.data[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
+                        self.newsImages.append(Constants.url + Constants.publicPrefix + "/" + self.newsData.data[i].image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!)
                         self.newsTitles.append(self.newsData.data[i].title)
                     }
                     
@@ -194,7 +194,7 @@ class NewsViewController: BaseViewController, UIScrollViewDelegate {
                         
                         for i in 0 ..< jsonData.data.count {
                             self.newsIds.append(String(jsonData.data[i].id))
-                            self.newsImages.append(Constants.url + Constants.filePrefix + "/" + jsonData.data[i].image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!)
+                            self.newsImages.append(Constants.url + Constants.publicPrefix + "/" + jsonData.data[i].image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!)
                             self.newsTitles.append(jsonData.data[i].title)
                         }
                         

@@ -52,7 +52,7 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
     @IBOutlet var diaryTapGesture: UITapGestureRecognizer!
     @IBAction func diaryClicked(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "DiaryViewController") as UIViewController
+        let vc = storyboard.instantiateViewController(withIdentifier: "DiaryListViewController") as UIViewController
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -96,7 +96,7 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
         self.leftViewController = storyboard.instantiateViewController(withIdentifier: "LeftViewController") as? LeftViewController
 
         view.insertSubview((self.leftViewController?.view)!, at: 1)
-        addChildViewController(self.leftViewController!)
+        addChild(self.leftViewController!)
 
         self.leftViewController?.view.frame = CGRect(
             x: -leftPanelOffset,
@@ -136,8 +136,8 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                     self.featuredIds = []
                     
                     for i in 0 ..< min(jsonData.data.count, self.nbFeaturedSlides) {
-                        // self.placeHolders.append(Constants.url + Constants.filePrefix + "/" + jsonData.data[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
-                        self.placeHolders.append(Constants.url + Constants.filePrefix + "/" + jsonData.data[i].image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!)
+                        // self.placeHolders.append(Constants.url + Constants.publicPrefix + "/" + jsonData.data[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
+                        self.placeHolders.append(Constants.url + Constants.publicPrefix + "/" + jsonData.data[i].image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!)
                         self.featuredTitles.append(jsonData.data[i].title)
                         self.featuredIds.append(jsonData.data[i].id)
                     }
@@ -154,7 +154,7 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
             }
         }.resume()
         
-        self.view.bringSubview(toFront: self.featuredPageControl)
+        self.view.bringSubviewToFront(self.featuredPageControl)
     }
     
     @objc private func menuPush() {

@@ -807,7 +807,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_bg" translatesAutoresizingMaskIntoConstraints="NO" id="5fR-IR-MOW">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="NTF-yB-Ga5" userLabel="Slide 1st">
+                            <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="NTF-yB-Ga5" userLabel="Slide 1st">
                                 <rect key="frame" x="20" y="111.5" width="335" height="444.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chào mừng bạn tới Shining Mind" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSb-Aa-pYj">
@@ -970,8 +970,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="bDo-gZ-hVr">
-                                <rect key="frame" x="20" y="195" width="335" height="277"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="bDo-gZ-hVr">
+                                <rect key="frame" x="20" y="205.5" width="335" height="256.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo2" translatesAutoresizingMaskIntoConstraints="NO" id="Nrm-2s-AdN">
                                         <rect key="frame" x="136.5" y="0.0" width="62" height="73"/>
@@ -991,8 +991,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="username"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qhV-pM-CKd">
-                                        <rect key="frame" x="0.0" y="182" width="335" height="40"/>
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qhV-pM-CKd">
+                                        <rect key="frame" x="0.0" y="174.5" width="335" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="jwp-e6-h2y"/>
                                         </constraints>
@@ -1000,8 +1000,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên đăng nhập đã tồn tại" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLe-KN-2a9">
+                                        <rect key="frame" x="73" y="182" width="189.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="os1-Gh-aOv">
-                                        <rect key="frame" x="117.5" y="237" width="100" height="40"/>
+                                        <rect key="frame" x="117.5" y="216.5" width="100" height="40"/>
                                         <color key="backgroundColor" red="0.13333333333333333" green="0.50980392156862742" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="6L9-tM-Jfz"/>
@@ -1069,6 +1075,7 @@
                         <outlet property="slide1stPanel" destination="NTF-yB-Ga5" id="tze-Xy-QXx"/>
                         <outlet property="slide2ndPanel" destination="e6d-jS-Psd" id="kzX-Tf-vih"/>
                         <outlet property="slide3rdPanel" destination="ppn-Lb-GoS" id="PAT-xm-vGk"/>
+                        <outlet property="statusLabel" destination="MLe-KN-2a9" id="nyA-yr-NaV"/>
                         <outlet property="userInput" destination="pTL-DD-TaX" id="P5f-tO-klX"/>
                     </connections>
                 </viewController>
@@ -1618,1097 +1625,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2ez-oM-eiW">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KSQ-5u-uBj">
+                                <rect key="frame" x="10" y="10" width="375" height="647"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSQ-5u-uBj">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nDY-Tq-Qp4">
-                                                <rect key="frame" x="10" y="10" width="355" height="1451"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hF1-UZ-Q52">
-                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="1451"/>
-                                                        <attributedString key="attributedText">
-                                                            <fragment content="Trung tâm thông tin hư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Bold"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ớng nghiệp và nghiên cứu, ứng dụng tâm lý (CRISP)">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPS-BoldMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" là đơn v">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ị thiết kế ứng dụ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ng trên đi">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ện thoại Shinning Mind - ứng dụng cung cấp thông tin về Sức khỏe tâm thần.
-
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">Lịch sử về chúng tôi:
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPS-BoldMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="Năm 2007, Trung tâm Thông tin và Hư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ớng nghiệ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="p (SCUIO – “Service Commun Universitaire d'Information, d'Orientation, et d'Insertion Professionnelle”) đư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ợc thành lập tại ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="Khoa Sư ph">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.0" green="0.69019607843137254" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ạm ">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.0" green="0.69019607843137254" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="(tên cũ củ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="a trư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ờ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ng Đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ại học Giáo dục), trong khuôn khổ củ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="a trư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ờng Pôles Universitaires Français. Trên nền tảng">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" đó, Trung tâm Thông tin Hư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ớng nghiệp, Nghiên cứu và Ứng dụ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ng Tâm lý (CRISP) đư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ợc thành lập vào tháng 6, 2009, trực thuộ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="c Đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ại học Giáo Dụ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="c, ĐHQGHN.">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content" base64-UTF8="YES">
-Cgo
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">Sứ mệnh của chúng tôi:
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPS-BoldMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="- Thúc đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ẩy việc ứng dụng kiến thứ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="c tâm lý đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ể giải quyết các vấ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="n đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ề">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" khó khăn c">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ủa con">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" ngư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ờ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="i cũng như phát tri">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ển tiề">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="m năng c">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ủa mỗi cá nhân trong học tập, giáo dục, sức khỏe và công việc, nghề nghiệp.
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="- Thúc đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ẩy nâng cao hiểu biết về sức khỏe tâm thần cho cộ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ng đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ồng.
-
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">Các dịch vụ của chúng tôi
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPS-BoldMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="• ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Symbol"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="Cung cấp dịch vụ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" đánh giá tâm lý (đánh giá trí tu">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ệ, cảm xúc, hành vi, v.v.) và thích ứng nhữ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ng thang đo tâm lý m">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ới.
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="• ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Symbol"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="Phát triể">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="n các chương tr">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ình can thiệp, cung cấp trị liệu cho những vấ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="n đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ề liên quan tới sức khỏe tâm lý cho trẻ em và trẻ vị thành niên
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="• ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Symbol"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="Phát triển các mô hình tham vấn và hỗ trợ tâm lý tron">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="g trư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ờng học và cộ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ng đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ồng
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="• ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Symbol"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="Tổ chứ Khóa tập huấn, bồ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="i dư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ỡng liên quan tới những vấ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="n đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ề trắc nghiệm tâm lý (WISC, ASEBA, v.v.), tham vấn tâm lý học và giáo dục, 
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="• ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Symbol"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">Tham vấn, trị liệu tâm lý cá nhân
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" firstLineHeadIndent="18" headIndent="36" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" firstLineHeadIndent="18" headIndent="18" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">Nhân sự của chúng tôi:
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPS-BoldMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="- PGS.TS Đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ặ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ng Hoàng Minh – Giám đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ốc
-- PGS.TS Bahr Weiss – Cố vấn chuyên môn
-- TS. Amie Alley Pollack – Cố vấn chuyên môn
-- Ths. Hồ Thu Hà – Nghiên cứu viên
-- CN. Kiều Thị</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" Anh Đào – Tr">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ợ lý nghiên cứu
-- CN  Vũ Hồng Vân – Trợ lý nghiên cứu
-
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="Chấ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPS-BoldMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="t lư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Bold"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ợng thông tin trên App:
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPS-BoldMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="- Thông tin về sức khỏe tâm thầ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="n đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ề">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="u chúng tôi đư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ợc cập nhật mới nhấ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="t trên các website uy tín như: ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="www.nimh.nih.gov">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <url key="NSLink" string="http://www.nimh.nih.gov"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=", ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="www.apa.org">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <url key="NSLink" string="http://www.apa.org"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=", ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="www.helpguide.org">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <url key="NSLink" string="http://www.helpguide.org"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" , ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="www.nhs.uk">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <url key="NSLink" string="%22"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">, …
-- Toàn bộ thông tin về sức khỏe tâm thầ</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="n trư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ớ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="c khi đư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ợ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="c đưa vào app">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" Shinning Mind">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ề">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="u đư">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ợc">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content=" đ">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ội ngũ cố vấn chuyên môn kiểm duyệt.
-
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">Liên lạc với chúng tôi:
-
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPS-BoldMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="Phòng 203-204, tòa nhà C0, 182 L">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="ương Th">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">ế Vinh, Thanh Xuân, Hà Nội.
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="SĐT: (84-24) 7301 7123, ext 3203; (+84) 1687 885 182.">
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="Times-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">
-Email: </string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="crisp.ued@gmail.com">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <url key="NSLink" string="mailto:crisp.ued@gmail.com"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                    <integer key="NSUnderline" value="1"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment>
-                                                                <string key="content">Trang web: crisp.education.vnu.edu.vn hoặc crisp.vnu.edu.vn
-FB: https://www.facebook.com/crisp.ued/
-</string>
-                                                                <attributes>
-                                                                    <font key="NSFont" size="14" name="TimesNewRomanPSMT"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="470.30000000000001" lineHeightMultiple="1.5" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
-                                                                        <tabStops/>
-                                                                    </paragraphStyle>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="nDY-Tq-Qp4" firstAttribute="width" secondItem="KSQ-5u-uBj" secondAttribute="width" constant="-20" id="6o4-TT-PX9"/>
-                                            <constraint firstItem="nDY-Tq-Qp4" firstAttribute="top" secondItem="KSQ-5u-uBj" secondAttribute="top" constant="10" id="FIH-r8-qW3"/>
-                                            <constraint firstItem="nDY-Tq-Qp4" firstAttribute="leading" secondItem="KSQ-5u-uBj" secondAttribute="leading" constant="10" id="KWp-cZ-krv"/>
-                                            <constraint firstAttribute="bottom" secondItem="nDY-Tq-Qp4" secondAttribute="bottom" id="h07-Cy-8si"/>
-                                            <constraint firstAttribute="trailing" secondItem="nDY-Tq-Qp4" secondAttribute="trailing" id="wSP-Tl-WWv"/>
-                                        </constraints>
-                                    </scrollView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6NJ-3l-JlM">
+                                        <rect key="frame" x="132" y="223" width="110" height="200"/>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="6NJ-3l-JlM" secondAttribute="bottom" id="Npc-Ul-4vG"/>
+                                    <constraint firstItem="6NJ-3l-JlM" firstAttribute="width" secondItem="KSQ-5u-uBj" secondAttribute="width" id="Wj1-Pu-arL"/>
+                                    <constraint firstItem="6NJ-3l-JlM" firstAttribute="top" secondItem="KSQ-5u-uBj" secondAttribute="top" id="zf7-kd-Lbm"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2ez-oM-eiW" firstAttribute="top" secondItem="8Qy-Gy-XGR" secondAttribute="top" id="MtB-KW-3QP"/>
-                            <constraint firstItem="2ez-oM-eiW" firstAttribute="leading" secondItem="8Qy-Gy-XGR" secondAttribute="leading" id="NV9-gX-FxV"/>
-                            <constraint firstAttribute="bottom" secondItem="2ez-oM-eiW" secondAttribute="bottom" id="dmf-EM-22u"/>
-                            <constraint firstAttribute="trailing" secondItem="2ez-oM-eiW" secondAttribute="trailing" id="jB2-5H-rI8"/>
+                            <constraint firstItem="8Qy-Gy-XGR" firstAttribute="bottom" secondItem="KSQ-5u-uBj" secondAttribute="bottom" constant="10" id="RH4-xY-r3b"/>
+                            <constraint firstItem="KSQ-5u-uBj" firstAttribute="trailing" secondItem="8Qy-Gy-XGR" secondAttribute="trailing" constant="10" id="Ufy-Ix-fiR"/>
+                            <constraint firstItem="KSQ-5u-uBj" firstAttribute="leading" secondItem="8Qy-Gy-XGR" secondAttribute="leading" constant="10" id="cLD-HK-aHp"/>
+                            <constraint firstItem="KSQ-5u-uBj" firstAttribute="top" secondItem="eGp-9d-2i6" secondAttribute="top" constant="10" id="vpO-iO-rux"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8Qy-Gy-XGR"/>
                     </view>
                     <connections>
-                        <outlet property="contentLabel" destination="hF1-UZ-Q52" id="ZId-qd-x0g"/>
+                        <outlet property="scrollView" destination="KSQ-5u-uBj" id="FkT-XJ-HGA"/>
+                        <outlet property="stackView" destination="6NJ-3l-JlM" id="jBW-bV-QgX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fez-sI-VEB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2935,20 +1877,26 @@ FB: https://www.facebook.com/crisp.ued/
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="top" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7cD-Pr-rQ8">
-                                <rect key="frame" x="0.0" y="30" width="375" height="0.0"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OoW-4w-Rn5">
+                                <rect key="frame" x="0.0" y="30" width="375" height="637"/>
                                 <subviews>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_30ngay" translatesAutoresizingMaskIntoConstraints="NO" id="gNU-jX-Zsn">
-                                        <rect key="frame" x="0.0" y="0.0" width="166" height="0.0"/>
-                                    </imageView>
+                                    <stackView opaque="NO" contentMode="top" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7cD-Pr-rQ8">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="637"/>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="7cD-Pr-rQ8" firstAttribute="width" secondItem="OoW-4w-Rn5" secondAttribute="width" id="Suc-cP-d9n"/>
+                                    <constraint firstAttribute="bottom" secondItem="7cD-Pr-rQ8" secondAttribute="bottom" id="XK9-Dr-gov"/>
+                                    <constraint firstItem="7cD-Pr-rQ8" firstAttribute="top" secondItem="OoW-4w-Rn5" secondAttribute="top" id="YbD-5T-3rp"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2P1-Mw-uj4" firstAttribute="trailing" secondItem="7cD-Pr-rQ8" secondAttribute="trailing" id="OFl-U7-Vu4"/>
-                            <constraint firstItem="7cD-Pr-rQ8" firstAttribute="leading" secondItem="2P1-Mw-uj4" secondAttribute="leading" id="Wtq-Ze-Qjh"/>
-                            <constraint firstItem="7cD-Pr-rQ8" firstAttribute="top" secondItem="2P1-Mw-uj4" secondAttribute="top" constant="10" id="q9z-VT-nSK"/>
+                            <constraint firstItem="2P1-Mw-uj4" firstAttribute="trailing" secondItem="OoW-4w-Rn5" secondAttribute="trailing" id="30O-d2-TR3"/>
+                            <constraint firstItem="OoW-4w-Rn5" firstAttribute="top" secondItem="2P1-Mw-uj4" secondAttribute="top" constant="10" id="Uli-oZ-Lca"/>
+                            <constraint firstItem="2P1-Mw-uj4" firstAttribute="bottom" secondItem="OoW-4w-Rn5" secondAttribute="bottom" id="iVV-3e-JTI"/>
+                            <constraint firstItem="OoW-4w-Rn5" firstAttribute="leading" secondItem="2P1-Mw-uj4" secondAttribute="leading" id="sJv-kc-Hyf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2P1-Mw-uj4"/>
                     </view>
@@ -3163,20 +2111,6 @@ FB: https://www.facebook.com/crisp.ued/
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Gqw-v4-vh6">
                                                     <rect key="frame" x="10" y="10" width="355" height="24"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 tháng 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZW-FZ-vAk">
-                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="19"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="THỨ 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fcx-M1-G4i">
-                                                            <rect key="frame" x="0.0" y="24" width="355" height="0.0"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -3188,8 +2122,6 @@ FB: https://www.facebook.com/crisp.ued/
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="contentStackView" destination="Gqw-v4-vh6" id="hpu-Ec-zxG"/>
-                                            <outlet property="dateTitle" destination="Fcx-M1-G4i" id="Avx-zn-yr2"/>
-                                            <outlet property="dayTitle" destination="BZW-FZ-vAk" id="abe-d4-i3b"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -3224,61 +2156,34 @@ FB: https://www.facebook.com/crisp.ued/
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NkX-Ug-hUJ">
-                                <rect key="frame" x="0.0" y="30" width="375" height="329"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NAr-pn-udf">
+                                <rect key="frame" x="0.0" y="30" width="375" height="637"/>
                                 <subviews>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_sinhvien" translatesAutoresizingMaskIntoConstraints="NO" id="Skr-Jy-Dkc">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="103"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="JRh-H9-8kb" appends="YES" id="KkK-Il-E9J"/>
-                                        </connections>
-                                    </imageView>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_loaulantoa" translatesAutoresizingMaskIntoConstraints="NO" id="F4B-pI-jtm">
-                                        <rect key="frame" x="0.0" y="113" width="375" height="103"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="ms5-Vi-upa" appends="YES" id="zTV-Bo-nGz"/>
-                                        </connections>
-                                    </imageView>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_doiphostress" translatesAutoresizingMaskIntoConstraints="NO" id="0BO-dP-o1K">
-                                        <rect key="frame" x="0.0" y="226" width="375" height="103"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="4Ps-E2-pHP" appends="YES" id="oLj-eb-BP6"/>
-                                        </connections>
-                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NkX-Ug-hUJ">
+                                        <rect key="frame" x="0.0" y="-101" width="375" height="839"/>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="NkX-Ug-hUJ" firstAttribute="top" secondItem="NAr-pn-udf" secondAttribute="top" id="G0i-fV-hMD"/>
+                                    <constraint firstAttribute="bottom" secondItem="NkX-Ug-hUJ" secondAttribute="bottom" id="f45-kb-jQE"/>
+                                    <constraint firstItem="NkX-Ug-hUJ" firstAttribute="width" secondItem="NAr-pn-udf" secondAttribute="width" id="vVb-WL-FMQ"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gc3-at-4t4" firstAttribute="trailing" secondItem="NkX-Ug-hUJ" secondAttribute="trailing" id="PPR-v8-vzI"/>
-                            <constraint firstItem="NkX-Ug-hUJ" firstAttribute="top" secondItem="gc3-at-4t4" secondAttribute="top" constant="10" id="ajj-dN-vZf"/>
-                            <constraint firstItem="NkX-Ug-hUJ" firstAttribute="leading" secondItem="gc3-at-4t4" secondAttribute="leading" id="vSV-Ld-SVo"/>
+                            <constraint firstItem="gc3-at-4t4" firstAttribute="trailing" secondItem="NAr-pn-udf" secondAttribute="trailing" id="Ejf-RG-q2q"/>
+                            <constraint firstItem="NAr-pn-udf" firstAttribute="top" secondItem="gc3-at-4t4" secondAttribute="top" constant="10" id="THm-t2-enz"/>
+                            <constraint firstItem="NAr-pn-udf" firstAttribute="leading" secondItem="gc3-at-4t4" secondAttribute="leading" id="UFQ-ZS-2dl"/>
+                            <constraint firstItem="gc3-at-4t4" firstAttribute="bottom" secondItem="NAr-pn-udf" secondAttribute="bottom" id="fh0-nm-vrd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gc3-at-4t4"/>
                     </view>
                     <connections>
-                        <outlet property="anxietyDisorderImageView" destination="F4B-pI-jtm" id="n8O-6U-lsy"/>
                         <outlet property="documentStackView" destination="NkX-Ug-hUJ" id="616-Us-3yz"/>
-                        <outlet property="stressImageView" destination="0BO-dP-o1K" id="WC8-Pb-IQV"/>
-                        <outlet property="studentImageView" destination="Skr-Jy-Dkc" id="FDd-Du-RQe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tqp-iG-OxN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="JRh-H9-8kb" userLabel="Student Tap Gesture Recognizer">
-                    <connections>
-                        <action selector="studentClicked:" destination="ZEP-xV-MUW" id="J2a-cJ-SWR"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="ms5-Vi-upa" userLabel="Anxiety Disorder Tap Gesture Recognizer">
-                    <connections>
-                        <action selector="anxietyDisorderClicked:" destination="ZEP-xV-MUW" id="47R-hF-DKR"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="4Ps-E2-pHP" userLabel="Stress Tap Gesture Recognizer">
-                    <connections>
-                        <action selector="stressClicked:" destination="ZEP-xV-MUW" id="4DG-9N-QI8"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3516" y="778"/>
         </scene>
@@ -4471,18 +3376,18 @@ FB: https://www.facebook.com/crisp.ued/
         <image name="ic_about" width="21" height="21"/>
         <image name="ic_addsn" width="21" height="21"/>
         <image name="ic_app" width="48" height="48"/>
-        <image name="ic_arrow1" width="9" height="16"/>
-        <image name="ic_arrow2" width="12" height="7"/>
+        <image name="ic_arrow1" width="9" height="16.5"/>
+        <image name="ic_arrow2" width="12.5" height="7"/>
         <image name="ic_awful" width="32" height="32"/>
         <image name="ic_awfulsm" width="16" height="16"/>
         <image name="ic_b" width="22" height="15"/>
         <image name="ic_b1" width="22" height="15"/>
         <image name="ic_bad" width="32" height="32"/>
         <image name="ic_badsm" width="16" height="16"/>
-        <image name="ic_baivietyeuthich" width="20" height="18"/>
+        <image name="ic_baivietyeuthich" width="20" height="18.5"/>
         <image name="ic_bt" width="32" height="32"/>
-        <image name="ic_btnback" width="37" height="37"/>
-        <image name="ic_btnback2" width="78" height="29"/>
+        <image name="ic_btnback" width="37" height="37.5"/>
+        <image name="ic_btnback2" width="78" height="29.5"/>
         <image name="ic_btnnext" width="78" height="30"/>
         <image name="ic_btnok" width="44" height="44"/>
         <image name="ic_btsm" width="16" height="16"/>
@@ -4490,11 +3395,11 @@ FB: https://www.facebook.com/crisp.ued/
         <image name="ic_c1" width="20" height="20"/>
         <image name="ic_d" width="21" height="21"/>
         <image name="ic_d1" width="21" height="21"/>
-        <image name="ic_day" width="29" height="26"/>
-        <image name="ic_day1" width="29" height="26"/>
+        <image name="ic_day" width="29" height="26.5"/>
+        <image name="ic_day1" width="29" height="26.5"/>
         <image name="ic_deletebig" width="25" height="27"/>
-        <image name="ic_deletesm" width="16" height="17"/>
-        <image name="ic_download" width="13" height="19"/>
+        <image name="ic_deletesm" width="16" height="17.5"/>
+        <image name="ic_download" width="13" height="19.5"/>
         <image name="ic_e" width="20" height="22"/>
         <image name="ic_e1" width="20" height="22"/>
         <image name="ic_f" width="24" height="13"/>
@@ -4507,9 +3412,9 @@ FB: https://www.facebook.com/crisp.ued/
         <image name="ic_greatsm" width="16" height="16"/>
         <image name="ic_h" width="21" height="21"/>
         <image name="ic_h1" width="21" height="21"/>
-        <image name="ic_huongdan" width="24" height="21"/>
-        <image name="ic_like" width="17" height="15"/>
-        <image name="ic_like1" width="17" height="15"/>
+        <image name="ic_huongdan" width="24" height="21.5"/>
+        <image name="ic_like" width="17" height="15.5"/>
+        <image name="ic_like1" width="17" height="15.5"/>
         <image name="ic_logo1" width="88" height="103"/>
         <image name="ic_logo2" width="62" height="73"/>
         <image name="ic_m" width="20" height="19"/>
@@ -4531,7 +3436,7 @@ FB: https://www.facebook.com/crisp.ued/
         <image name="ic_r1" width="21" height="25"/>
         <image name="ic_s" width="11" height="20"/>
         <image name="ic_s1" width="11" height="20"/>
-        <image name="ic_share" width="19" height="14"/>
+        <image name="ic_share" width="19" height="14.5"/>
         <image name="ic_v" width="23" height="16"/>
         <image name="ic_v1" width="23" height="16"/>
         <image name="ic_workcircle" width="30" height="25"/>
@@ -4539,32 +3444,29 @@ FB: https://www.facebook.com/crisp.ued/
         <image name="ic_y1" width="21" height="21"/>
         <image name="ic_z" width="23" height="13"/>
         <image name="ic_z1" width="23" height="13"/>
-        <image name="img_30ngay" width="166" height="103"/>
-        <image name="img_AZ" width="166" height="103"/>
+        <image name="img_30ngay" width="166" height="103.5"/>
+        <image name="img_AZ" width="166" height="103.5"/>
         <image name="img_Chat" width="344" height="103"/>
         <image name="img_bg" width="375" height="667"/>
         <image name="img_bggame" width="375" height="645"/>
-        <image name="img_charts" width="344" height="103"/>
+        <image name="img_charts" width="344" height="103.5"/>
         <image name="img_chatbg" width="279" height="480"/>
         <image name="img_diary" width="166" height="103"/>
-        <image name="img_diarybook" width="344" height="103"/>
-        <image name="img_documnet" width="344" height="103"/>
-        <image name="img_doiphostress" width="344" height="103"/>
-        <image name="img_frame1" width="313" height="512"/>
-        <image name="img_frameanswer" width="312" height="487"/>
+        <image name="img_diarybook" width="344" height="103.5"/>
+        <image name="img_documnet" width="344" height="103.5"/>
+        <image name="img_frame1" width="313" height="512.5"/>
+        <image name="img_frameanswer" width="312.5" height="487"/>
         <image name="img_framequestion" width="317" height="196"/>
-        <image name="img_left_menu" width="500" height="292"/>
+        <image name="img_left_menu" width="500" height="292.5"/>
         <image name="img_level" width="257" height="53"/>
         <image name="img_levellock" width="257" height="53"/>
-        <image name="img_library" width="166" height="103"/>
-        <image name="img_loaulantoa" width="344" height="103"/>
-        <image name="img_news" width="166" height="103"/>
+        <image name="img_library" width="166" height="103.5"/>
+        <image name="img_news" width="166" height="103.5"/>
         <image name="img_ngaylock" width="346" height="75"/>
         <image name="img_placeholder" width="380" height="185"/>
-        <image name="img_quiz" width="166" height="103"/>
+        <image name="img_quiz" width="166" height="103.5"/>
         <image name="img_roiloancamxuc" width="375" height="190"/>
-        <image name="img_roiloantramcam" width="344" height="103"/>
-        <image name="img_sinhvien" width="344" height="103"/>
-        <image name="img_video" width="344" height="103"/>
+        <image name="img_roiloantramcam" width="344" height="103.5"/>
+        <image name="img_video" width="344" height="103.5"/>
     </resources>
 </document>
