@@ -3,11 +3,11 @@ This application makes use of the following third party libraries:
 
 ## Firebase
 
-Copyright 2019 Google
+Copyright 2018 Google
 
 ## FirebaseAnalytics
 
-Copyright 2019 Google
+Copyright 2018 Google
 
 ## FirebaseAnalyticsInterop
 
@@ -423,7 +423,7 @@ Copyright 2019 Google
 
 ## FirebaseInstanceID
 
-Copyright 2019 Google
+Copyright 2018 Google
 
 ## FirebaseMessaging
 
@@ -633,7 +633,7 @@ Copyright 2019 Google
 
 ## GoogleAppMeasurement
 
-Copyright 2019 Google
+Copyright 2018 Google
 
 ## GoogleUtilities
 

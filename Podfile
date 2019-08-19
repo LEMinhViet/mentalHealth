@@ -6,9 +6,9 @@ target 'MentalHealth' do
   use_frameworks!
 
   # Pods for MentalHealth
-  pod "SwiftChart"
-  pod 'Firebase/Core'
-  pod 'Firebase/Messaging'
+  pod 'SwiftChart'
+  pod 'Firebase/Core', '~> 5.15.0'
+  pod 'Firebase/Messaging', '~> 5.15.0'
 
   target 'MentalHealthUITests' do
     inherit! :search_paths

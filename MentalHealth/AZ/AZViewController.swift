@@ -51,7 +51,6 @@ struct DetailAZ: Codable {
 
 class AZViewController: BaseViewController {
     
-    var images: [UIImageView] = []
     var headerImages: [String: String] = [:]
     
     let apiUrl = Constants.url + Constants.apiPrefix + "/subject"
@@ -59,7 +58,7 @@ class AZViewController: BaseViewController {
     
     let detailApiUrl = Constants.url + Constants.apiPrefix + "/diseases/"
     var detailData: [DetailAZ] = []
-
+    
     @IBOutlet weak var azStackView: UIStackView!
     
     override func viewDidLoad() {
@@ -85,13 +84,11 @@ class AZViewController: BaseViewController {
                 DispatchQueue.main.async {
                     self.azData = jsonData
 
-                    for i in 0 ..< self.azData.data.count {
+                    for i in stride(from: self.azData.data.count - 1, to: -1, by: -1) {
                         let id = self.azData.data[i].id
-                        
                         // Default image
                         let imageView = UIImageView(image: UIImage(named: "img_thumbnail.png"))
                         imageView.contentMode = .scaleAspectFit
-                        self.images.append(imageView)
                         
                         let imageName = Constants.url + Constants.publicPrefix + "/" + self.azData.data[i].image
                         
@@ -122,7 +119,7 @@ class AZViewController: BaseViewController {
                         imageView.isUserInteractionEnabled = true
                         imageView.addGestureRecognizer(tapGesture)
                         
-                        self.azStackView.addArrangedSubview(self.images[i])
+                        self.azStackView.addArrangedSubview(imageView)
                         
                         self.headerImages[String(id - 1)] = imageName
                     }
@@ -144,7 +141,11 @@ class AZViewController: BaseViewController {
     }
     
     @objc func onImageTap(_ sender: UITapGestureRecognizer) {        
-        guard let url = URL(string: detailApiUrl + String(sender.view?.tag ?? 1)) else { return }
+        self.jumpToDetail(sender.view?.tag ?? 1)
+    }
+    
+    func jumpToDetail(_ detailId: Int) {
+        guard let url = URL(string: detailApiUrl + String(detailId)) else { return }
         URLSession.shared.dataTask(with: url) { (data, resonse, error) in
             if error != nil {
                 print(error!.localizedDescription)
@@ -171,7 +172,7 @@ class AZViewController: BaseViewController {
                             treatments: updateData.treatments,
                             help: updateData.help,
                             quote: updateData.quote)
-                    
+                        
                         let vc = azViewController as UIViewController
                         self.navigationController?.pushViewController(vc, animated: true)
                     }

@@ -105,7 +105,7 @@ class LoginViewController: UIViewController {
         
         if deviceId == "" {
             deviceId = (UIDevice.current.identifierForVendor?.uuidString)!
-            defaults.set(deviceId, forKey: "loggedDeviceId")
+            // defaults.set(deviceId, forKey: "loggedDeviceId")
         }
         
         let loginData: [String: Any] = [
@@ -164,16 +164,14 @@ class LoginViewController: UIViewController {
         defaults.set(userId, forKey: "loggedUserId")
         defaults.synchronize()
         
-        self.toMenu()
-        self.logTime(action: Constants.TO_FOREGROUND)
-        
         statusLabel.isHidden = true
+        self.logTime(action: Constants.TO_FOREGROUND)
+        self.toMenu()
     }
     
     func loginFailed() {
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: "isUserLoggedIn")
-        defaults.synchronize()
         
         statusLabel.isHidden = false
     }
@@ -194,7 +192,7 @@ class LoginViewController: UIViewController {
         
         if deviceId == "" {
             deviceId = (UIDevice.current.identifierForVendor?.uuidString)!
-            defaults.set(deviceId, forKey: "loggedDeviceId")
+            // defaults.set(deviceId, forKey: "loggedDeviceId")
         }
         
         print ("DEVICE ID: ", deviceId)

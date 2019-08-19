@@ -15,5 +15,6 @@ struct Constants {
     static let TO_FOREGROUND: Int = 0
     
     //MARK: FCM
-    static let FCM_TOPIC  = "signning_mine"
+    static let FCM_TOPIC  = "Shining_Mind"
+    static let APP_GROUP = "group.crisp.mentalhealth.shinningmind"
 }

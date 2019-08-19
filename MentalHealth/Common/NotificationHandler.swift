@@ -15,7 +15,7 @@ class NotificationHandler {
         guard let navigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else {
             return
         }
-        
+                
         switch noti.type {
         case .news:
             let newVC = StoryboardManager.shared.instantiateNewsDetailViewContrller()
@@ -91,9 +91,8 @@ class NotificationHandler {
             navigation.pushViewController(quizVC, animated: true)
             
         case .az:
-            print ("GOGO")
-//            let azVC = StoryboardManager.shared.ins
-//            navigation.pushViewController(azVC, animated: true)
+            let azVC = StoryboardManager.shared.instantiateAZViewController()
+            navigation.pushViewController(azVC, animated: true)
         
         case .video:
             let videoVC = StoryboardManager.shared.instantiateVideoViewController()
@@ -126,7 +125,7 @@ struct NotiObject: Codable {
         if let aps = dict["aps"] as? [String: Any] {
             if let alertObj = aps["alert"] as? [String: Any] {
                 if let title = alertObj["title"] as? String {
-                    self.title = title
+                    self.title = title.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
                 }
             }
         }

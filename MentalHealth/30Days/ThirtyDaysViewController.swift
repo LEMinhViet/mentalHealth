@@ -72,6 +72,7 @@ class ThirtyDaysViewController: BaseViewController, UITableViewDelegate, UITable
                 
                 // Get back to the main queue
                 DispatchQueue.main.async {
+                    print("DATA", jsonData)
                     self.daysData = jsonData
                     self.daysTableView.reloadData()
                     

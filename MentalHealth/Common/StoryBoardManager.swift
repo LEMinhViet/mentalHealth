@@ -37,6 +37,10 @@ class StoryboardManager {
         return storyboard.instantiateViewController(withIdentifier: "ThirtyDaysViewController") as! ThirtyDaysViewController
     }
     
+    func instantiateAZViewController() -> AZViewController {
+        return storyboard.instantiateViewController(withIdentifier: "AZViewController") as! AZViewController
+    }
+    
     func instantiateDayViewController() -> DayViewController {
         return storyboard.instantiateViewController(withIdentifier: "DayViewController") as! DayViewController
     }

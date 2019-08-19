@@ -29,20 +29,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
-        
-        //register FCM Topic
+        Messaging.messaging().subscribe(toTopic: Constants.FCM_TOPIC) { (err) in
+            print("FCM Messaging Err: \(String(describing: err?.localizedDescription))")
+        }
+    }
+    
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         Messaging.messaging().subscribe(toTopic: Constants.FCM_TOPIC) { (err) in
             print("FCM Messaging Err: \(String(describing: err?.localizedDescription))")
         }
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // Print full message.
+        print(userInfo)
+        
         let noti = NotiObject(dict: userInfo)
         
         removeNotification(data: noti)
@@ -50,19 +58,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print(error)
+        print("FAIL TO REGISTER REMOTE NOTI ", error)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("didReceiveRemoteNotification notification === ", userInfo)
         let noti = NotiObject(dict: userInfo)
         removeNotification(data: noti)
         
-        if application.applicationState == .active {
-            NotificationHandler.receiveNoti(noti)
-        } else {
-            NotificationHandler.receiveNoti(noti)
-        }
+        NotificationHandler.receiveNoti(noti)
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -71,26 +76,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let userInfo = notification.request.content.userInfo as! [String: Any]
         
         // Print full message.
-        print("Notification message === ", userInfo)
-        
-//        [
-//            "title": 'Hôm nay bạn cảm thấy thế nào?',
-//            "id": 0,
-//            "gcm.message_id": 0:1538429451929790%0e2953720e295372,
-//            "type": 2,
-//            "google.c.a.e": 1,
-//            "gcm.notification.id": 0,
-//            "aps": {
-//                alert = {
-//                    title = "'H\U00f4m nay b\U1ea1n c\U1ea3m th\U1ea5y th\U1ebf n\U00e0o?'";
-//                };
-//            },
-//            "gcm.notification.type": 2
-//        ]
+        print("willPresent notification === ", userInfo)
         
         let noti = NotiObject(dict: userInfo)
         addNotification(data: noti)
-        
+                
         completionHandler([.alert, .sound])
     }
     
@@ -100,9 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         FirebaseApp.configure()
-
+        
+        Messaging.messaging().delegate = self
+        
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -110,9 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             UNUserNotificationCenter.current().requestAuthorization(
                 options: authOptions,
                 completionHandler: {_, _ in })
-            
-            // For iOS 10 data message (sent via FCM
-            Messaging.messaging().delegate = self
         } else {
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -256,7 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //        }
 //
 //        notificationDatas.append(data)
-//        groupDefaults?.set(nbBadge, forKey: "nbBadge")
+//        groupDefaults?.set(nbBadge, forKey: "nßbBadge")
 //        groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
 
         UIApplication.shared.applicationIconBadgeNumber = nbBadge!

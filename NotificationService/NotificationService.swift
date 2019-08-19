@@ -16,7 +16,6 @@ struct NotiObject: Codable {
     var isRead: Bool?
     
     init(dict: [AnyHashable: Any]) {
-        
         if let newId = dict["id"] as? String {
             self.id = Int(newId) ?? -1
         }
@@ -28,7 +27,7 @@ struct NotiObject: Codable {
         if let aps = dict["aps"] as? [String: Any] {
             if let alertObj = aps["alert"] as? [String: Any] {
                 if let title = alertObj["title"] as? String {
-                    self.title = title
+                    self.title = title.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
                 }
             }
         }
@@ -48,6 +47,7 @@ class NotificationService: UNNotificationServiceExtension {
     var bestAttemptContent: UNMutableNotificationContent?
 
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+        print("DID RECEIVE")
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
         
@@ -78,7 +78,7 @@ class NotificationService: UNNotificationServiceExtension {
         
         if let bestAttemptContent = bestAttemptContent {
             // Modify the notification content here...
-            // bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
+            bestAttemptContent.title = bestAttemptContent.title.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
             
             bestAttemptContent.sound = .default
             bestAttemptContent.badge = nbBadge as NSNumber?

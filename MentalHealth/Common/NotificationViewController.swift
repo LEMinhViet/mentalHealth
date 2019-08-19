@@ -19,7 +19,7 @@ class NotificationViewController: BaseViewController, UITableViewDataSource, UIT
 
         // Do any additional setup after loading the view.
         
-        let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
+        let groupDefaults = UserDefaults.init(suiteName: Constants.APP_GROUP)
         let notificationRawDatas = groupDefaults?.value(forKey: "notificationDatas") as? Data
         
         print ("NOTIFICATION RAW = ", notificationRawDatas ?? "")
@@ -38,12 +38,12 @@ class NotificationViewController: BaseViewController, UITableViewDataSource, UIT
     func readNoti(notiIndex: Int) {
         notificationDatas[notiIndex].isRead = true
         
-        let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
+        let groupDefaults = UserDefaults.init(suiteName: Constants.APP_GROUP)
         groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
     }
     
     func resetBadge() {
-        let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
+        let groupDefaults = UserDefaults.init(suiteName: Constants.APP_GROUP)
         groupDefaults?.set(0, forKey: "nbBadge")
         
         UIApplication.shared.applicationIconBadgeNumber = 0

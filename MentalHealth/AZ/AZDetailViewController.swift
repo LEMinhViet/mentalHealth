@@ -46,6 +46,8 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath.section != 0 && indexPath.row == 0) {
             return 80
+        } else if (indexPath.section == 0) {
+            return 180
         } else {
             return UITableView.automaticDimension
         }
