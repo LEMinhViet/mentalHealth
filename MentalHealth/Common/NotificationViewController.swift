@@ -22,16 +22,10 @@ class NotificationViewController: BaseViewController, UITableViewDataSource, UIT
         let groupDefaults = UserDefaults.init(suiteName: Constants.APP_GROUP)
         let notificationRawDatas = groupDefaults?.value(forKey: "notificationDatas") as? Data
         
-        print ("NOTIFICATION RAW = ", notificationRawDatas ?? "")
-        
         if notificationRawDatas != nil {
             self.notificationDatas = try! PropertyListDecoder().decode(Array<NotiObject>.self, from: notificationRawDatas!)
-            
-            print ("NOTIFICATION DATA = ", notificationDatas, notificationDatas.count)
-            
+                        
             notificationTableView.reloadData()
-            
-            resetBadge()
         }
     }
     
@@ -40,13 +34,16 @@ class NotificationViewController: BaseViewController, UITableViewDataSource, UIT
         
         let groupDefaults = UserDefaults.init(suiteName: Constants.APP_GROUP)
         groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
-    }
-    
-    func resetBadge() {
-        let groupDefaults = UserDefaults.init(suiteName: Constants.APP_GROUP)
-        groupDefaults?.set(0, forKey: "nbBadge")
         
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        var nbBadge = groupDefaults?.integer(forKey: "nbBadge")
+        if nbBadge == nil {
+            nbBadge = 0
+        }
+        
+        nbBadge = max(0, nbBadge! - 1)
+        groupDefaults?.set(nbBadge, forKey: "nbBadge")
+        
+        UIApplication.shared.applicationIconBadgeNumber = nbBadge!
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "BadgeNotification"), object: nil)
     }
@@ -101,6 +98,8 @@ class NotificationViewController: BaseViewController, UITableViewDataSource, UIT
         NotificationHandler.receiveNoti(noti)
         
         readNoti(notiIndex: sender.view?.tag ?? 0)
+        
+        print("ON TAP ", noti)
         notificationTableView.reloadData()
     }
 }

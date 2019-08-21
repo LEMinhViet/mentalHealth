@@ -15,6 +15,8 @@ class NotificationHandler {
         guard let navigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else {
             return
         }
+        
+        print("NOTI ", noti)
                 
         switch noti.type {
         case .news:
@@ -122,13 +124,12 @@ struct NotiObject: Codable {
             self.type = NotiType(rawValue: Int(type) ?? 0) ?? .news
         }
         
-        if let aps = dict["aps"] as? [String: Any] {
-            if let alertObj = aps["alert"] as? [String: Any] {
-                if let title = alertObj["title"] as? String {
-                    self.title = title.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
-                }
-            }
+        self.title = dict["title"] as! String
+        if let notiName = dict["name"] as? String {
+            self.title += ": " + notiName
         }
+        
+        self.title = self.title.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
         
         self.date = Date()
         self.isRead = false

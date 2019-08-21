@@ -86,6 +86,9 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
         self.displaySpinner(onView: self.view)
         self.updateBadge()
     
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { (note) -> Void in
+            self.updateBadge()
+        }
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BadgeNotification"), object: nil, queue: nil) { (note) -> Void in
             self.updateBadge()
         }
@@ -198,7 +201,7 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        self.updateBadge()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -306,9 +309,9 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
     }
     
     func updateBadge() {
-        let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
+        let groupDefaults = UserDefaults.init(suiteName: Constants.APP_GROUP)
         var nbBadge = groupDefaults?.integer(forKey: "nbBadge")
-        
+        print("BQDGE ", nbBadge)
         if nbBadge == nil {
             nbBadge = 0
         }

@@ -179,6 +179,10 @@ class LoginViewController: UIViewController {
     func toMenu() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "NavigationController") as UIViewController
+        
+        UIApplication.shared.keyWindow?.rootViewController = vc
+        UIApplication.shared.keyWindow?.makeKeyAndVisible()
+        
         present(vc, animated: false, completion: nil)
     }
     

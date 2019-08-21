@@ -29,9 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-        
-        // TODO: If necessary send token to application server.
-        // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -52,8 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print(userInfo)
         
         let noti = NotiObject(dict: userInfo)
-        
-        removeNotification(data: noti)
+        readNotification(data: noti)
         NotificationHandler.receiveNoti(noti)
     }
     
@@ -63,9 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("didReceiveRemoteNotification notification === ", userInfo)
         let noti = NotiObject(dict: userInfo)
-        removeNotification(data: noti)
+        readNotification(data: noti)
         
         NotificationHandler.receiveNoti(noti)
         
@@ -76,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let userInfo = notification.request.content.userInfo as! [String: Any]
         
         // Print full message.
-        print("willPresent notification === ", userInfo)
+        print("willPresent notification: ", userInfo)
         
         let noti = NotiObject(dict: userInfo)
         addNotification(data: noti)
@@ -115,7 +110,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let defaults = UserDefaults.standard
         let isLoggedIn = defaults.bool(forKey: "isUserLoggedIn")
         
-        print ("IS USER LOGGED ", isLoggedIn)
         if isLoggedIn {
             let nvc = storyboard.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
             
@@ -137,31 +131,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-        print("RESIGN ACTIVE")
 //        logTime(action: Constants.TO_BACKGROUND)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        print("ENTER BACKGROUND")
         logTime(action: Constants.TO_BACKGROUND)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        print("ENTER FOREGROUND")
         logTime(action: Constants.TO_FOREGROUND)
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        print("DID BECOME ACTIVE")
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        print("WILL TERMINATE")
         logTime(action: Constants.TO_BACKGROUND)
     }
     
@@ -227,12 +216,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func addNotification(data: NotiObject) {
-        let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
+        let groupDefaults = UserDefaults.init(suiteName: Constants.APP_GROUP)
         let nbBadge = groupDefaults?.integer(forKey: "nbBadge")
         
 //        let notificationRawDatas = groupDefaults?.value(forKey: "notificationDatas") as? Data
 //        var notificationDatas = Array<NotiObject>()
-//
+
 //        if nbBadge == nil {
 //            nbBadge = 0
 //        }
@@ -244,20 +233,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //        }
 //
 //        notificationDatas.append(data)
-//        groupDefaults?.set(nbBadge, forKey: "nßbBadge")
+//        groupDefaults?.set(nbBadge, forKey: "nbBadge")
 //        groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
-
+//
         UIApplication.shared.applicationIconBadgeNumber = nbBadge!
-        
+
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "BadgeNotification"), object: nil)
     }
     
-    func removeNotification(data: NotiObject) {
-        let groupDefaults = UserDefaults.init(suiteName: "group.crisp.mentalhealth.shinningmind")
+    func readNotification(data: NotiObject) {
+        let groupDefaults = UserDefaults.init(suiteName: Constants.APP_GROUP)
         var nbBadge = groupDefaults?.integer(forKey: "nbBadge")
         
         let notificationRawDatas = groupDefaults?.value(forKey: "notificationDatas") as? Data
-        
+        var notificationDatas = Array<NotiObject>()
+
         if nbBadge == nil {
             nbBadge = 0
         }
@@ -265,10 +255,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         nbBadge = max(0, nbBadge! - 1)
         
         if notificationRawDatas != nil {
-//            var notificationDatas = try! PropertyListDecoder().decode(Array<NotiObject>.self, from: notificationRawDatas!)
-//            
-//            notificationDatas.removeLast()
-//            groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
+            notificationDatas = try! PropertyListDecoder().decode(Array<NotiObject>.self, from: notificationRawDatas!)
+            
+            var lastNoti = notificationDatas.removeLast()
+            lastNoti.isRead = true
+            notificationDatas.append(lastNoti)
+            
+            groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
         }
         
         groupDefaults?.set(nbBadge, forKey: "nbBadge")

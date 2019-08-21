@@ -24,14 +24,12 @@ struct NotiObject: Codable {
             self.type = NotiType(rawValue: Int(type) ?? 0) ?? .news
         }
         
-        if let aps = dict["aps"] as? [String: Any] {
-            if let alertObj = aps["alert"] as? [String: Any] {
-                if let title = alertObj["title"] as? String {
-                    self.title = title.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
-                }
-            }
-        }
+        let notiTitle = dict["title"] as! String
+        let notiName = dict["name"] as! String
         
+        self.title = notiTitle + ": " + notiName
+        self.title = self.title.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+
         self.date = Date()
         self.isRead = false
     }
@@ -78,7 +76,7 @@ class NotificationService: UNNotificationServiceExtension {
         
         if let bestAttemptContent = bestAttemptContent {
             // Modify the notification content here...
-            bestAttemptContent.title = bestAttemptContent.title.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+            bestAttemptContent.title = noti.title
             
             bestAttemptContent.sound = .default
             bestAttemptContent.badge = nbBadge as NSNumber?
