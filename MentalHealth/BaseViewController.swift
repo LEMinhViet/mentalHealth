@@ -147,6 +147,12 @@ class BaseViewController: UIViewController {
                 }
             }
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+            if (self.spinnerView != nil) {
+                self.removeSpinner()
+            }
+        }
     }
     
     func removeSpinner() {

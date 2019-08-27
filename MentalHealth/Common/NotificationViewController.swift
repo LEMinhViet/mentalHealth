@@ -30,7 +30,7 @@ class NotificationViewController: BaseViewController, UITableViewDataSource, UIT
     }
     
     func readNoti(notiIndex: Int) {
-        notificationDatas[notiIndex].isRead = true
+        notificationDatas.remove(at: notiIndex)
         
         let groupDefaults = UserDefaults.init(suiteName: Constants.APP_GROUP)
         groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")

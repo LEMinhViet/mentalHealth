@@ -257,9 +257,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if notificationRawDatas != nil {
             notificationDatas = try! PropertyListDecoder().decode(Array<NotiObject>.self, from: notificationRawDatas!)
             
-            var lastNoti = notificationDatas.removeLast()
-            lastNoti.isRead = true
-            notificationDatas.append(lastNoti)
+            notificationDatas.removeLast()
             
             groupDefaults?.set(try? PropertyListEncoder().encode(notificationDatas), forKey: "notificationDatas")
         }
