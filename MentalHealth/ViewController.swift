@@ -130,7 +130,6 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
             guard let data = data else { return }
             
             do {
-               // let jsonData = try JSONDecoder().decode([FeaturedData].self, from: data)
                 let jsonData = try JSONDecoder().decode(AllNews.self, from: data)
                 // Get back to the main queue
                 DispatchQueue.main.async {
@@ -139,7 +138,6 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                     self.featuredIds = []
                     
                     for i in 0 ..< min(jsonData.data.count, self.nbFeaturedSlides) {
-                        // self.placeHolders.append(Constants.url + Constants.publicPrefix + "/" + jsonData.data[i].image.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil))
                         self.placeHolders.append(Constants.url + Constants.publicPrefix + "/" + jsonData.data[i].image.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!)
                         self.featuredTitles.append(jsonData.data[i].title)
                         self.featuredIds.append(jsonData.data[i].id)
@@ -231,20 +229,10 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                     {
                         DispatchQueue.main.async {
                             slide.imageView.image = UIImage(data: data)
-                            
-//                            if i == 0 {
-//                                self.removeSpinner()
-//                            }
                         }
                     }
-//                    else if i == 0 {
-//                        self.removeSpinner()
-//                    }
                 }
             }
-//            else if i == 0 {
-//                self.removeSpinner()
-//            }
             
             if createdSlides.count < 3 {
                 createdSlides.append(slide)

@@ -24,10 +24,10 @@ struct NotiObject: Codable {
             self.type = NotiType(rawValue: Int(type) ?? 0) ?? .news
         }
         
-        let notiTitle = dict["title"] as! String
-        let notiName = dict["name"] as! String
-        
-        self.title = notiTitle + ": " + notiName
+        self.title = dict["title"] as! String
+        if let notiName = dict["name"] as? String {
+            self.title += ": " + notiName
+        }
         self.title = self.title.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
 
         self.date = Date()

@@ -83,10 +83,6 @@ class NotificationHandler {
                 }
             }.resume()
 
-        case .emotion:
-            let emotionVC = StoryboardManager.shared.instantiateChatViewController()
-            navigation.pushViewController(emotionVC, animated: true)
-
         case .quiz:
             let quizVC = StoryboardManager.shared.instantiateQuizViewController()
 //            quizVC.showLevel(noti.id)
@@ -99,10 +95,6 @@ class NotificationHandler {
         case .video:
             let videoVC = StoryboardManager.shared.instantiateVideoViewController()
             navigation.pushViewController(videoVC, animated: true)
-            
-        default:
-            let newVC = StoryboardManager.shared.instantiateNewsViewContrller()
-            navigation.pushViewController(newVC, animated: true)
         }
     }
 }
@@ -137,5 +129,5 @@ struct NotiObject: Codable {
 }
 
 enum NotiType: Int, Codable {
-    case news, thirtyDay, emotion, quiz, az, video
+    case news, thirtyDay, quiz, az, video
 }
