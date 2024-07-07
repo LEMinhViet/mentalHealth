@@ -7,6 +7,7 @@ target 'MentalHealth' do
 
   # Pods for MentalHealth
   pod 'SwiftChart'
+  pod 'Protobuf', '= 3.9.0'
   pod 'Firebase/Core', '~> 5.15.0'
   pod 'Firebase/Messaging', '~> 5.15.0'
 
