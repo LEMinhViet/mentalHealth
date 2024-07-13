@@ -100,7 +100,11 @@ class VideoViewController: BaseViewController, UITableViewDelegate, UITableViewD
         
         video.frame.size = CGSize(width: cellWidth, height: video.frame.height)
         video.titleLabel.text = videosData.data[videosData.data.count - 1 - indexPath.row].title
-        video.initVideo(srcUrl: videosData.data[videosData.data.count - 1 - indexPath.row].url, srcFrame: video.frame)
+        video.initVideo(srcUrl: "https://www.youtube.com/watch?v=waMl_fNmLpE", srcFrame: video.frame)
+        print("SIZE ", cellWidth, video.frame.height)
+        print("ID ", String(videosData.data.count - 1 - indexPath.row))
+        print("LABEL", videosData.data[videosData.data.count - 1 - indexPath.row].title)
+        print("URL ", videosData.data[videosData.data.count - 1 - indexPath.row].url)
 //        video.featuredVideo.image = UIImage(named: videosData.data[indexPath.row].)
                         
         cell.contentStackView.addArrangedSubview(video);

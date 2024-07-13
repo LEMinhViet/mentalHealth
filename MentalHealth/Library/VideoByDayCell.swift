@@ -39,7 +39,7 @@ class VideoByDayCell: UIView, WKNavigationDelegate {
         self.webView.frame = srcFrame
         self.webView.configuration.allowsInlineMediaPlayback = true
         self.webView.load(URLRequest(url: url))
-        self.webView.isHidden = true
+        self.webView.isHidden = false
         self.webView.navigationDelegate = self
         
         self.addSubview(self.webView)

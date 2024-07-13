@@ -130,7 +130,8 @@ class AZViewController: BaseViewController {
                 DispatchQueue.main.async {
                     self.removeSpinner()
                 }
-                print(jsonError)
+                
+                print("Error when loading AZ data", jsonError)
             }
         }.resume()
     }

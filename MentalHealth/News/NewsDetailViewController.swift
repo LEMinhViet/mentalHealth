@@ -135,16 +135,23 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
         
         if newsId != "" {
             let newsUrl = apiUrl + "/" + newsId
-            guard let url = URL(string: newsUrl) else { return }
+            guard let url = URL(string: newsUrl) else {
+                print("News url faildd")
+                return
+            }
+            
             URLSession.shared.dataTask(with: url) { (data, resonse, error) in
                 if error != nil {
-                    print(error!.localizedDescription)
+                    print("Error when loading news detail", error!.localizedDescription)
                 }
                 
                 guard let data = data else { return }
                 
                 do {
+                    print("News raw data : ", data)
                     let jsonData = try JSONDecoder().decode(NewsDetailData.self, from: data)
+                    
+                    print("JSON Data: ", jsonData);
                     
                     // Get back to the main queue
                     DispatchQueue.main.async {
@@ -208,7 +215,7 @@ class NewsDetailViewController: BaseViewController, WKNavigationDelegate {
                         self.contentWebView.loadHTMLString("\(contentText)", baseURL: Bundle.main.bundleURL)
                     }
                 } catch let jsonError {
-                    print(jsonError)
+                    print("Error when loading news detail", jsonError)
                 }
             }.resume()
         }

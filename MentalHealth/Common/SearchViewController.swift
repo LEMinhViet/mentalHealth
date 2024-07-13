@@ -28,7 +28,7 @@ class SearchViewController: BaseViewController, UISearchResultsUpdating, UISearc
         // Do any additional setup after loading the view.
         searchControl = UISearchController(searchResultsController: nil)
         searchControl?.searchResultsUpdater = self
-        searchControl?.dimsBackgroundDuringPresentation = false
+        searchControl?.obscuresBackgroundDuringPresentation = false
         searchControl?.hidesNavigationBarDuringPresentation = false
         searchControl?.searchBar.delegate = self
         

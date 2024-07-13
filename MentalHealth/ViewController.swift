@@ -165,7 +165,7 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                 self.mainView.frame.origin.x = self.leftPanelOffset;
                 self.subBgView.frame.origin.x = self.leftPanelOffset;
                 self.leftViewController?.view.frame.origin.x = 0;
-                self.navigationController?.navigationBar.frame.origin.x = self.leftPanelOffset
+                self.navigationController?.navigationBar.transform = CGAffineTransform(translationX: self.leftPanelOffset, y: 0);
             }, completion: nil)
             
             // Disable interaction of main menu when left menu is opened
@@ -176,7 +176,7 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
                 self.mainView.frame.origin.x = 0;
                 self.subBgView.frame.origin.x = 0;
                 self.leftViewController?.view.frame.origin.x = -self.leftPanelOffset;
-                self.navigationController?.navigationBar.frame.origin.x = 0
+                self.navigationController?.navigationBar.transform = CGAffineTransform(translationX: 0, y: 0);
             }, completion: nil)
             
             self.enableMainTaps(true)
@@ -299,7 +299,6 @@ class ViewController: BaseViewController, UIScrollViewDelegate, ShowLeftSubPageD
     func updateBadge() {
         let groupDefaults = UserDefaults.init(suiteName: Constants.APP_GROUP)
         var nbBadge = groupDefaults?.integer(forKey: "nbBadge")
-        print("BQDGE ", nbBadge)
         if nbBadge == nil {
             nbBadge = 0
         }

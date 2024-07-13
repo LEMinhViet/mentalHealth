@@ -7,7 +7,7 @@
 //
 
 struct Constants {
-    static let url = "https://mucilaginous-commit.000webhostapp.com"
+    static let url = "http://ec2-54-251-153-248.ap-southeast-1.compute.amazonaws.com/shining"
     static let apiPrefix = "/api"
     static let publicPrefix = "/public"
     

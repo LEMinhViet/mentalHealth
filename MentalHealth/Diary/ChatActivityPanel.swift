@@ -41,12 +41,12 @@ class ChatActivityPanel: UIView {
     */
 
     func updateItems(items: [SavedActivityData], start: Int, end: Int, target: Any?) {
-        var icons: [UIImageView] = [
+        let icons: [UIImageView] = [
             icon00, icon01, icon02, icon03, icon04,
             icon05, icon06, icon07, icon08, icon09
         ]
         
-        var texts: [UILabel] = [
+        let texts: [UILabel] = [
             text00, text01, text02, text03, text04,
             text05, text06, text07, text08, text09
         ]

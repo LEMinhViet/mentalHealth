@@ -116,7 +116,10 @@ class LoginViewController: UIViewController {
         
         print ("LOGIN :", loginData)
         
-        guard let httpBody = try? JSONSerialization.data(withJSONObject: loginData, options: []) else {
+        self.loginSucceed(userId: Int.random(in: 1024..<10240))
+        
+        /*
+         guard let httpBody = try? JSONSerialization.data(withJSONObject: loginData, options: []) else {
             return
         }
 
@@ -151,11 +154,12 @@ class LoginViewController: UIViewController {
                 print(jsonError)
                 DispatchQueue.main.async {
                     self.loginFailed()
-                    
+
                     self.loginButton.isEnabled = true
                 }
             }
         }.resume()
+         */
     }
     
     func loginSucceed(userId: Int) {
