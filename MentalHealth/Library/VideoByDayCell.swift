@@ -30,9 +30,9 @@ class VideoByDayCell: UIView, WKNavigationDelegate {
     
     public func initVideo(srcUrl: String, srcFrame: CGRect) {
         // Convert to embed url
-        videoUrl = srcUrl.replacingOccurrences(of: watchPrefix, with: embedPrefix, options: .literal, range: nil)
+        // videoUrl = srcUrl.replacingOccurrences(of: watchPrefix, with: embedPrefix, options: .literal, range: nil)
         
-        guard let url = URL(string: videoUrl) else {
+        guard let url = URL(string: srcUrl) else {
             return // Be safe
         }
         
