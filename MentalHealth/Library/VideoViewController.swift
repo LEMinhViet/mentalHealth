@@ -97,14 +97,11 @@ class VideoViewController: BaseViewController, UITableViewDelegate, UITableViewD
         let video: VideoByDayCell = Bundle.main.loadNibNamed("VideoByDayCell", owner: self, options: nil)?.first as! VideoByDayCell
         
         let cellWidth = cell.frame.width;
+        let videoData = videosData.data[videosData.data.count - 1 - indexPath.row];
         
         video.frame.size = CGSize(width: cellWidth, height: video.frame.height)
-        video.titleLabel.text = videosData.data[videosData.data.count - 1 - indexPath.row].title
-        video.initVideo(srcUrl: "https://www.youtube.com/watch?v=waMl_fNmLpE", srcFrame: video.frame)
-        print("SIZE ", cellWidth, video.frame.height)
-        print("ID ", String(videosData.data.count - 1 - indexPath.row))
-        print("LABEL", videosData.data[videosData.data.count - 1 - indexPath.row].title)
-        print("URL ", videosData.data[videosData.data.count - 1 - indexPath.row].url)
+        video.titleLabel.text = videoData.title
+        video.initVideo(srcUrl: videoData.url, srcFrame: video.frame)
 //        video.featuredVideo.image = UIImage(named: videosData.data[indexPath.row].)
                         
         cell.contentStackView.addArrangedSubview(video);

@@ -15,11 +15,9 @@ struct NewsDetailData: Codable {
     let image: String?
     let description: String?
     let content: String?
-    let noti_at: String?
-    let order: Int
+    let cate_id: Int
     let created_at: String?
     let updated_at: String?
-    let total_views: Int?
 }
 
 class NewsDetailViewController: BaseViewController, WKNavigationDelegate {

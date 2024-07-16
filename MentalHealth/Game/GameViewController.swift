@@ -30,12 +30,13 @@ struct AllLevels: Codable {
 
 struct LevelData: Codable {
     let id: Int
+    let level: String
     let name: String
-    let created_at: String
-    let updated_at: String
+    let created_at: String?
+    let updated_at: String?
 }
 
-struct LevelQuestions: Codable {
+struct AllQuestions: Codable {
     let per_page: Int
     let current_page: Int
     let next_page_url: String?
@@ -57,14 +58,13 @@ struct LevelQuestions: Codable {
 
 struct OneQuestion: Codable {
     let id: Int
-    let level_id: String
+    let level_id: Int
     let content: String
     let choose1: String
     let choose2: String
     let choose3: String
     let choose4: String
     let answer: String
-    let about_answer: String
     let created_at: String?
     let updated_at: String?
 }
@@ -97,7 +97,9 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     public func showLevel(_ level: Int) {
         self.updateLevel(level)
         
-        levelView.isHidden = true
+        if (self.nbQuestions > 0) {
+            levelView.isHidden = true
+        }
     }
     
     var currentLevel = 0
@@ -160,7 +162,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         if (!isAnswered) {
             isAnswered = true
             
-            let currentQuestionData = self.levelQuestionsData.data[self.currentQuestion]
+            let currentQuestionData = self.levelQuestionsData[self.currentQuestion]
             for i in 0 ..< answerPanels.count {
                 if (String(i + 1) == currentQuestionData.answer) {
                     answerPanels[i].setRightAnswer()
@@ -204,7 +206,9 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     var levelsData = AllLevels()
     
     let questionUrl = Constants.url + Constants.apiPrefix + "/questions"
-    var levelQuestionsData = LevelQuestions()
+    var allQuestions = AllQuestions()
+    var allQuestionsByLevels: [String: [OneQuestion]] = [:]
+    var levelQuestionsData: [OneQuestion] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -228,6 +232,36 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
                 DispatchQueue.main.async {
                     self.levelsData = jsonData
                     self.levelTableView.reloadData()
+                }
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }.resume()
+        
+        guard let url = URL(string: questionUrl) else { return }
+        URLSession.shared.dataTask(with: url) { (data, resonse, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let jsonData = try JSONDecoder().decode(AllQuestions.self, from: data)
+                
+                //Get back to the main queue
+                DispatchQueue.main.async {
+                    self.allQuestions = jsonData
+                    
+                    for i in 0 ..< self.allQuestions.data.count {
+                        let questionData = self.allQuestions.data[i]
+                        let levelId = String(questionData.level_id)
+                        if (self.allQuestionsByLevels[levelId] == nil) {
+                            self.allQuestionsByLevels[levelId] = []
+                        }
+                        
+                        self.allQuestionsByLevels[levelId]?.append(questionData)
+                    }
                 }
             } catch let jsonError {
                 print(jsonError)
@@ -294,33 +328,16 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func updateLevel(_ level: Int) {
-        let levelQuestionUrl = questionUrl + "/" + String(level)
-        guard let url = URL(string: levelQuestionUrl) else { return }
-        URLSession.shared.dataTask(with: url) { (data, resonse, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-            }
-            
-            guard let data = data else { return }
-            
-            do {
-                let jsonData = try JSONDecoder().decode(LevelQuestions.self, from: data)
-                
-                //Get back to the main queue
-                DispatchQueue.main.async {
-                    self.levelView.isHidden = true
-                    self.levelQuestionsData = jsonData
-                    self.currentQuestion = 0
-                    self.isAnswered = false
-                    self.nbQuestions = self.levelQuestionsData.data.count
-                    self.updateQuestion()
-                    
-                    self.questionView.isHidden = false
-                }
-            } catch let jsonError {
-                print(jsonError)
-            }
-        }.resume()
+        self.levelQuestionsData = self.allQuestionsByLevels[String(level)] ?? []
+        self.currentQuestion = 0
+        self.isAnswered = false
+        self.nbQuestions = self.levelQuestionsData.count
+        
+        if (self.nbQuestions > 0) {
+            self.updateQuestion()
+            self.levelView.isHidden = true
+            self.questionView.isHidden = false
+        }
     }
     
     private func setupDetailView() {
@@ -403,7 +420,11 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     private func updateQuestion() {
-        let currentQuestionData = self.levelQuestionsData.data[self.currentQuestion]
+        if (self.nbQuestions == 0) {
+            return
+        }
+
+        let currentQuestionData = self.levelQuestionsData[self.currentQuestion]
         
         questionLabel.frame.size = CGSize(width: 265, height: 130)
         questionLabel.text = currentQuestionData.content
@@ -414,7 +435,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         answerPanels[2].updateAnswer(currentQuestionData.choose3)
         answerPanels[3].updateAnswer(currentQuestionData.choose4)
         
-        self.updateDetail(aboutAnswer: currentQuestionData.about_answer)
+        self.updateDetail(aboutAnswer: "") // currentQuestionData.about_answer
     }
     
     func createAnswers() -> [AnswerPanel] {

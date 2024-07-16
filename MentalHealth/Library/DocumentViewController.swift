@@ -15,7 +15,7 @@ struct AllDocumentData: Codable {
     let prev_page_url: String?
     let from: Int
     let to: Int
-    let data: [DocumentData]
+    let data: [DocumentPreviewData]
     
     init() {
         per_page = 0
@@ -28,9 +28,19 @@ struct AllDocumentData: Codable {
     }
 }
 
+struct DocumentPreviewData: Codable {
+    let id: Int
+    let title: String
+}
+
 class DocumentViewController: BaseViewController {
     
     @IBOutlet weak var documentStackView: UIStackView!
+    
+    var sectionImages: [String: String] = [
+        "2": "img_sinhvien.png",
+        "4": "img_loaulantoa.png"
+    ];
     
     let apiUrl = Constants.url + Constants.apiPrefix + "/documents"
     var allDocumentData = AllDocumentData()
@@ -68,29 +78,15 @@ class DocumentViewController: BaseViewController {
                         let id = self.allDocumentData.data[i].id
                         
                         // Default image
-                        let imageView = UIImageView(image: UIImage(named: "img_thumbnail"))
+                        let imageView = UIImageView(image: UIImage(named: self.sectionImages[String(id)] ?? "img_thumbnail"))
                         imageView.contentMode = .scaleAspectFit
-                        
-                        let imageName = Constants.url + Constants.publicPrefix + "/" + (self.allDocumentData.data[i].image ?? "")
-                        
-                        if let imageUrl = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!) {
-                            DispatchQueue.global().async {
-                                if let data = try? Data(contentsOf: imageUrl) {
-                                    DispatchQueue.main.async {
-                                        imageView.image = UIImage(data: data)
-                                        imageView.contentMode = .scaleAspectFit
                                         
-                                        // Fit container to image
-                                        let ratio = imageView.image!.size.width / imageView.image!.size.height
-                                        let newHeight = self.documentStackView.frame.width / ratio
-                                        
-                                        let imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: newHeight);
-                                        imageHeightConstraint.isActive = true
-                                    }
-                                }
-                            }
-                        }
+                        // Fit container to image
+                        let ratio = imageView.image!.size.width / imageView.image!.size.height
+                        let newHeight = self.documentStackView.frame.width / ratio
                         
+                        let imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: newHeight);
+                        imageHeightConstraint.isActive = true
                         imageView.tag = id
                         
                         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DocumentViewController.openDocumentById(_:)))

@@ -58,15 +58,7 @@ class AZDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
         if (indexPath.section == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "azHeaderImage", for: indexPath) as! AZHeaderImage
 
-            if let imageUrl = URL(string: self.header.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!) {
-                DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: imageUrl) {
-                        DispatchQueue.main.async {
-                            cell.headerImage.image = UIImage(data: data)
-                        }
-                    }
-                }
-            }
+            cell.headerImage.image = UIImage(named: self.header)
             
             return cell
         }

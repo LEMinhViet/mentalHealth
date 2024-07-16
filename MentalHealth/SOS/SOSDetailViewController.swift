@@ -11,12 +11,13 @@ import WebKit
 
 struct SOSDetailData: Codable {
     let id: Int
+    let sos_id: Int
     let title: String
     let image: String
     let description: String
     let content: String
-    let created_at: String
-    let updated_at: String
+    let created_at: String?
+    let updated_at: String?
 }
 
 class SOSDetailViewController: BaseViewController, WKNavigationDelegate {

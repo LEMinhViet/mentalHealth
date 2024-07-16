@@ -31,14 +31,13 @@ struct AllAZ: Codable {
 struct OneAZ: Codable {
     let id: Int
     let name: String
-    let image: String
     let created_at: String
     let updated_at: String
 }
 
 struct DetailAZ: Codable {
     let id: Int
-    let subject_id: String
+    let subject_id: Int
     let definition: String
     let symptom: String
     let treatments: String
@@ -51,7 +50,17 @@ struct DetailAZ: Codable {
 
 class AZViewController: BaseViewController {
     
-    var headerImages: [String: String] = [:]
+    var sectionImages: [String: String] = [
+        "1": "img_roiloanloau.png",
+        "2": "img_roiloanluongcuc.png",
+        "4": "img_roiloantramcam.png"
+    ]
+    
+    var headerImages: [String: String] = [
+        "1": "img_roiloanloau-1.png",
+        "2": "img_roiloancamxuc.png",
+        "4": "img_roiloantramcam-1.png"
+    ]
     
     let apiUrl = Constants.url + Constants.apiPrefix + "/subject"
     var azData = AllAZ();
@@ -87,29 +96,15 @@ class AZViewController: BaseViewController {
                     for i in stride(from: self.azData.data.count - 1, to: -1, by: -1) {
                         let id = self.azData.data[i].id
                         // Default image
-                        let imageView = UIImageView(image: UIImage(named: "img_thumbnail.png"))
+                        let imageView = UIImageView(image: UIImage(named: self.sectionImages[String(id)] ?? "img_thumbnail.png"))
                         imageView.contentMode = .scaleAspectFit
+                                            
+                        // Fit container to image
+                        let ratio = imageView.image!.size.width / imageView.image!.size.height
+                        let newHeight = self.azStackView.frame.width / ratio
                         
-                        let imageName = Constants.url + Constants.publicPrefix + "/" + self.azData.data[i].image
-                        
-                        if let imageUrl = URL(string: imageName.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!) {
-                            DispatchQueue.global().async {
-                                if let data = try? Data(contentsOf: imageUrl) {
-                                    DispatchQueue.main.async {
-                                        imageView.image = UIImage(data: data)
-                                        imageView.contentMode = .scaleAspectFit
-                                        
-                                        // Fit container to image
-                                        let ratio = imageView.image!.size.width / imageView.image!.size.height
-                                        let newHeight = self.azStackView.frame.width / ratio
-                                        
-                                        let imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: newHeight);
-                                        imageHeightConstraint.isActive = true
-                                    }
-                                }
-                            }
-                        }
-                        
+                        let imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: newHeight);
+                        imageHeightConstraint.isActive = true
                         imageView.tag = id;
                         
                         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AZViewController.onImageTap(_:)))
@@ -120,8 +115,6 @@ class AZViewController: BaseViewController {
                         imageView.addGestureRecognizer(tapGesture)
                         
                         self.azStackView.addArrangedSubview(imageView)
-                        
-                        self.headerImages[String(id - 1)] = imageName
                     }
                     
                     self.removeSpinner()
@@ -166,7 +159,7 @@ class AZViewController: BaseViewController {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let azViewController = storyboard.instantiateViewController(withIdentifier: "AZDetailViewController") as! AZDetailViewController
                         azViewController.setData(
-                            header: self.headerImages[String(Int(updateData.subject_id)! - 1)]!,
+                            header: self.headerImages[String(updateData.subject_id)]!,
                             definition: updateData.definition,
                             symptom: updateData.symptom,
                             type: updateData.type,
