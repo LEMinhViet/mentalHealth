@@ -56,11 +56,16 @@ class AZViewController: BaseViewController {
         "4": "img_roiloantramcam.png"
     ]
     
+    var defaultSectionImage: String = "img_defaultAZ.png";
+    
     var headerImages: [String: String] = [
         "1": "img_roiloanloau-1.png",
         "2": "img_roiloancamxuc.png",
         "4": "img_roiloantramcam-1.png"
     ]
+    
+    var defaultHeaderImage: String = "img_roiloantramcam-1.png";
+
     
     let apiUrl = Constants.url + Constants.apiPrefix + "/subject"
     var azData = AllAZ();
@@ -95,8 +100,11 @@ class AZViewController: BaseViewController {
 
                     for i in stride(from: self.azData.data.count - 1, to: -1, by: -1) {
                         let id = self.azData.data[i].id
+                        let curSectionImage = self.sectionImages[String(id)]
+                        let useDefaultImage = curSectionImage == nil
+                        
                         // Default image
-                        let imageView = UIImageView(image: UIImage(named: self.sectionImages[String(id)] ?? "img_thumbnail.png"))
+                        let imageView = UIImageView(image: UIImage(named: curSectionImage ?? self.defaultSectionImage))
                         imageView.contentMode = .scaleAspectFit
                                             
                         // Fit container to image
@@ -115,6 +123,20 @@ class AZViewController: BaseViewController {
                         imageView.addGestureRecognizer(tapGesture)
                         
                         self.azStackView.addArrangedSubview(imageView)
+                        
+                        if useDefaultImage {
+                            let containerWidth = self.azStackView.bounds.width
+                            let containerHeight = newHeight
+                            
+                            let titleView = UILabel(frame: CGRect(x: containerWidth * 0.4, y: 0, width: containerWidth / 2, height: containerHeight))
+                            titleView.font = UIFont.boldSystemFont(ofSize: 20.0)
+                            titleView.textAlignment = .center
+                            titleView.textColor = UIColor.white
+                            titleView.numberOfLines = 0
+                            titleView.text = self.azData.data[i].name
+
+                            imageView.addSubview(titleView)
+                        }
                     }
                     
                     self.removeSpinner()
@@ -159,7 +181,7 @@ class AZViewController: BaseViewController {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let azViewController = storyboard.instantiateViewController(withIdentifier: "AZDetailViewController") as! AZDetailViewController
                         azViewController.setData(
-                            header: self.headerImages[String(updateData.subject_id)]!,
+                            header: self.headerImages[String(updateData.subject_id)] ?? self.defaultHeaderImage,
                             definition: updateData.definition,
                             symptom: updateData.symptom,
                             type: updateData.type,
