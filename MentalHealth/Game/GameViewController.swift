@@ -65,6 +65,7 @@ struct OneQuestion: Codable {
     let choose3: String
     let choose4: String
     let answer: String
+    let about_answer: String?
     let created_at: String?
     let updated_at: String?
 }
@@ -435,7 +436,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         answerPanels[2].updateAnswer(currentQuestionData.choose3)
         answerPanels[3].updateAnswer(currentQuestionData.choose4)
         
-        self.updateDetail(aboutAnswer: "") // currentQuestionData.about_answer
+        self.updateDetail(aboutAnswer: currentQuestionData.about_answer ?? "")
     }
     
     func createAnswers() -> [AnswerPanel] {
